@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production/Exemple_IO_16F877.X.production.hex">
+  <executable name="dist/default/production/I4-Systeme-Embarque-TP.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>130</used>
-      <free>8062</free>
+      <used>277</used>
+      <free>7915</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>368</length>
-      <used>13</used>
-      <free>355</free>
+      <used>17</used>
+      <free>351</free>
     </memory>
   </executable>
 </project>

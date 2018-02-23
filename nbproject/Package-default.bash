@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/Exemple_IO_16F877.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=Exemple_IO_16F877.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=exempleio16f877.x/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/I4-Systeme-Embarque-TP.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=I4-Systeme-Embarque-TP.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=i4-systeme-embarque-tp/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/exempleio16f877.x/bin
+makeDirectory ${TMPDIR}/i4-systeme-embarque-tp/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/exempleio16f877.x.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/i4-systeme-embarque-tp.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/exempleio16f877.x.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/i4-systeme-embarque-tp.tar *
 checkReturnCode
 
 # Cleanup

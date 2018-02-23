@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Exemple IO 16F877.X
+PROJECTNAME=I4-Systeme-Embarque-TP
 
 # Active Configuration
 DEFAULTCONF=default

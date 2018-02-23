@@ -1,0 +1,8 @@
+testbench for "pic16f877" is
+    begin
+    process is
+     begin
+        RC0 <= '1';
+        wait;
+    end process;
+end testbench;

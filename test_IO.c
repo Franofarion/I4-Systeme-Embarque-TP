@@ -4,6 +4,7 @@
  * Created on 17 février 2017, 11:30
  */
 #include <xc.h>
+#include "pic16f877.h"
 // fichier config des bits spécifiques au processeur 16f877
 // à utiliser dans les autres projets utilisant ce processeur
 #include "config_bits.h"
@@ -14,27 +15,45 @@ void main(void)
     int currentTemperature = 31;
     int goUp = 0;
     int goDown = 0;
-    PORTC = 0b00100011;
+    
+    
+    int toggleButtonRC0 = 0;
+    int toggleButtonRC1 = 0;
     // configuration des ports 
     // voir doc 16f877 page 33 
-    TRISC = 0b00000000;  //  Port C en  sortie 
+    TRISC = 0b00000011;  //  Port C en  sortie 
     TRISD = 0b11111100;  //port D  tout en entree  
-   //  le bit 3 du port D est mis à 1 si les bit 0 et 1 du port D sont à 1 
+    PORTC = 0b00100011;
    // ajouter les lignes RD0 et RD1 dans les i/o pins du simulateur 
    // ajouter PORTC en watch run time ( Debug -> new runtime watch))
     // tester en simulation 
     while (1)
     {
-    
-        if((PORTC & 0b00000001) == 0b00000000){//temp - est appuyé
+       
+        
+        if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){//temp - est appuyé
+            toggleButtonRC0 = 1;
             if(selectedTemperature - 4 >= 22){
                 selectedTemperature -= 4;
             }
-        }else if((PORTC & 0b00000010) == 0b00000000){//temp +  est appuyé
+        }
+        
+        if((PORTC & 0b00000001) == 0b0000000){
+            toggleButtonRC0 = 0;
+        }
+        
+        
+        if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){//temp +  est appuyé
+            toggleButtonRC1 = 1;
             if(selectedTemperature + 4 <= 38){
                 selectedTemperature += 4;
             }
         }
+        
+        if((PORTC & 0b00000010) == 0b00000000){
+            toggleButtonRC1 = 0;   
+        }
+        
         
         switch(selectedTemperature){
             case 22:
@@ -58,42 +77,36 @@ void main(void)
             if(currentTemperature <= selectedTemperature - 1){
                 goUp = 1;
                 //allume
-                TRISD = 0b11111110;
+                PORTD = 0b11111110;
             }else{
                 if(currentTemperature >= selectedTemperature){
                     goUp = 0;
                 } 
                 if(!goUp){
                     //eteins
-                    TRISD = 0b11111100;
+                    PORTD = 0b11111100;
                 }else{
                     //allume
-                    TRISD = 0b11111110;
+                    PORTD = 0b11111110;
                 }
             }
         }else{
         if(currentTemperature >= selectedTemperature + 1){
             goDown = 1;
-            TRISD = 0b11111101;
+            PORTD = 0b11111101;
             }else{
                 if(currentTemperature >= selectedTemperature){
                     goDown = 0;
                 }
 
                 if(!goDown){
-                    TRISD = 0b11111100;
+                    PORTD = 0b11111100;
                 }else{
-                    TRISD = 0b11111101;
+                    PORTD = 0b11111101;
                 }
             }   
         }
         
-        
-        
-    
-        //Data = RD0 & RD1;  // lit l'état des broches 0 et 1 du port D  Data <- Rd0 et Rd1
-                            // Data = 1 si RD0 =1 et RD1 = 1  sinon Data = 0 
-        //Data = Data <<3 ;  // décale Data de 3 bit vers la gauche ( multiplication par 8))
-                           // le bit 1 se retrouve dans le bit 3 
+       
      }             
 }

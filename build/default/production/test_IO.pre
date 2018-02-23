@@ -1386,60 +1386,105 @@ extern __bank0 __bit __timeout;
 #pragma config CPD = OFF
 #pragma config WRT = ON
 
-# 11 "test_IO.c"
+# 12 "test_IO.c"
 void main(void)
 {
 int selectedTemperature = 30;
 int currentTemperature = 31;
 int goUp = 0;
 int goDown = 0;
-PORTC = 0b00100011;
 
 
-TRISC = 0b00000000;
+int toggleButtonRC0 = 0;
+int toggleButtonRC1 = 0;
+
+
+TRISC = 0b00000011;
 TRISD = 0b11111100;
-
+PORTC = 0b00100011;
 
 
 
 while (1)
 {
 
-# 58
+
+if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
+toggleButtonRC0 = 1;
+if(selectedTemperature - 4 >= 22){
+selectedTemperature -= 4;
+}
+}
+
+if((PORTC & 0b00000001) == 0b0000000){
+toggleButtonRC0 = 0;
+}
+
+
+if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
+toggleButtonRC1 = 1;
+if(selectedTemperature + 4 <= 38){
+selectedTemperature += 4;
+}
+}
+
+if((PORTC & 0b00000010) == 0b00000000){
+toggleButtonRC1 = 0;
+}
+
+
+switch(selectedTemperature){
+case 22:
+PORTC = 0b00001011;
+break;
+case 26:
+PORTC = 0b00010011;
+break;
+case 30:
+PORTC = 0b00100011;
+break;
+case 34:
+PORTC = 0b01000011;
+break;
+case 38:
+PORTC = 0b10000011;
+break;
+}
+
 if(currentTemperature <= selectedTemperature){
 if(currentTemperature <= selectedTemperature - 1){
 goUp = 1;
 
-TRISD = 0b11111110;
+PORTD = 0b11111110;
 }else{
 if(currentTemperature >= selectedTemperature){
 goUp = 0;
 }
 if(!goUp){
 
-TRISD = 0b11111100;
+PORTD = 0b11111100;
 }else{
 
-TRISD = 0b11111110;
+PORTD = 0b11111110;
 }
 }
 }else{
 if(currentTemperature >= selectedTemperature + 1){
 goDown = 1;
-TRISD = 0b11111101;
+PORTD = 0b11111101;
 }else{
 if(currentTemperature >= selectedTemperature){
 goDown = 0;
 }
 
 if(!goDown){
-TRISD = 0b11111100;
+PORTD = 0b11111100;
 }else{
-TRISD = 0b11111101;
+PORTD = 0b11111101;
 }
 }
 }
 
-# 99
+# 117
 }
 }

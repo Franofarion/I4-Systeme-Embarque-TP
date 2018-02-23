@@ -1,11 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"276 /opt/microchip/xc8/v1.45/include/pic16f877.h
-[v _PORTC `Vuc ~T0 @X0 0 e@7 ]
-"1430
+"1430 /opt/microchip/xc8/v1.45/include/pic16f877.h
 [v _TRISC `Vuc ~T0 @X0 0 e@135 ]
 "1492
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"276
+[v _PORTC `Vuc ~T0 @X0 0 e@7 ]
+"338
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -978,169 +980,306 @@ Version 3.2 HI-TECH Software Intermediate Code
 "19
 [p x WRT=ON ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"11 test_IO.c
+"12 test_IO.c
 [v _main `(v ~T0 @X0 1 ef ]
-"12
+"13
 {
-[; ;test_IO.c: 11: void main(void)
-[; ;test_IO.c: 12: {
+[; ;test_IO.c: 12: void main(void)
+[; ;test_IO.c: 13: {
 [e :U _main ]
 [f ]
-"13
-[v _selectedTemperature `i ~T0 @X0 1 a ]
-[; ;test_IO.c: 13: int selectedTemperature = 30;
-[e = _selectedTemperature -> 30 `i ]
 "14
-[v _currentTemperature `i ~T0 @X0 1 a ]
-[; ;test_IO.c: 14: int currentTemperature = 31;
-[e = _currentTemperature -> 31 `i ]
+[v _selectedTemperature `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 14: int selectedTemperature = 30;
+[e = _selectedTemperature -> 30 `i ]
 "15
-[v _goUp `i ~T0 @X0 1 a ]
-[; ;test_IO.c: 15: int goUp = 0;
-[e = _goUp -> 0 `i ]
+[v _currentTemperature `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 15: int currentTemperature = 31;
+[e = _currentTemperature -> 31 `i ]
 "16
-[v _goDown `i ~T0 @X0 1 a ]
-[; ;test_IO.c: 16: int goDown = 0;
-[e = _goDown -> 0 `i ]
-[; ;test_IO.c: 17: PORTC = 0b00100011;
-"17
-[e = _PORTC -> -> 35 `i `uc ]
-[; ;test_IO.c: 20: TRISC = 0b00000000;
-"20
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;test_IO.c: 21: TRISD = 0b11111100;
-"21
-[e = _TRISD -> -> 252 `i `uc ]
-[; ;test_IO.c: 26: while (1)
-"26
-[e :U 92 ]
-[; ;test_IO.c: 27: {
-"27
-{
-[; ;test_IO.c: 58: if(currentTemperature <= selectedTemperature){
-"58
-[e $ ! <= _currentTemperature _selectedTemperature 94  ]
-{
-[; ;test_IO.c: 59: if(currentTemperature <= selectedTemperature - 1){
-"59
-[e $ ! <= _currentTemperature - _selectedTemperature -> 1 `i 95  ]
-{
-[; ;test_IO.c: 60: goUp = 1;
-"60
-[e = _goUp -> 1 `i ]
-[; ;test_IO.c: 62: TRISD = 0b11111110;
-"62
-[e = _TRISD -> -> 254 `i `uc ]
-"63
-}
-[; ;test_IO.c: 63: }else{
-[e $U 96  ]
-[e :U 95 ]
-{
-[; ;test_IO.c: 64: if(currentTemperature >= selectedTemperature){
-"64
-[e $ ! >= _currentTemperature _selectedTemperature 97  ]
-{
-[; ;test_IO.c: 65: goUp = 0;
-"65
+[v _goUp `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 16: int goUp = 0;
 [e = _goUp -> 0 `i ]
-"66
-}
-[e :U 97 ]
-[; ;test_IO.c: 66: }
-[; ;test_IO.c: 67: if(!goUp){
-"67
-[e $ ! ! != _goUp -> 0 `i 98  ]
-{
-[; ;test_IO.c: 69: TRISD = 0b11111100;
-"69
+"17
+[v _goDown `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 17: int goDown = 0;
+[e = _goDown -> 0 `i ]
+"20
+[v _toggleButtonRC0 `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 20: int toggleButtonRC0 = 0;
+[e = _toggleButtonRC0 -> 0 `i ]
+"21
+[v _toggleButtonRC1 `i ~T0 @X0 1 a ]
+[; ;test_IO.c: 21: int toggleButtonRC1 = 0;
+[e = _toggleButtonRC1 -> 0 `i ]
+[; ;test_IO.c: 24: TRISC = 0b00000011;
+"24
+[e = _TRISC -> -> 3 `i `uc ]
+[; ;test_IO.c: 25: TRISD = 0b11111100;
+"25
 [e = _TRISD -> -> 252 `i `uc ]
-"70
-}
-[; ;test_IO.c: 70: }else{
-[e $U 99  ]
-[e :U 98 ]
+[; ;test_IO.c: 26: PORTC = 0b00100011;
+"26
+[e = _PORTC -> -> 35 `i `uc ]
+[; ;test_IO.c: 30: while (1)
+"30
+[e :U 92 ]
+[; ;test_IO.c: 31: {
+"31
 {
-[; ;test_IO.c: 72: TRISD = 0b11111110;
-"72
-[e = _TRISD -> -> 254 `i `uc ]
-"73
+[; ;test_IO.c: 34: if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
+"34
+[e $ ! && == & -> _PORTC `i -> 1 `i -> 1 `i == _toggleButtonRC0 -> 0 `i 94  ]
+{
+[; ;test_IO.c: 35: toggleButtonRC0 = 1;
+"35
+[e = _toggleButtonRC0 -> 1 `i ]
+[; ;test_IO.c: 36: if(selectedTemperature - 4 >= 22){
+"36
+[e $ ! >= - _selectedTemperature -> 4 `i -> 22 `i 95  ]
+{
+[; ;test_IO.c: 37: selectedTemperature -= 4;
+"37
+[e =- _selectedTemperature -> 4 `i ]
+"38
 }
-[e :U 99 ]
-"74
+[e :U 95 ]
+"39
+}
+[e :U 94 ]
+[; ;test_IO.c: 38: }
+[; ;test_IO.c: 39: }
+[; ;test_IO.c: 41: if((PORTC & 0b00000001) == 0b0000000){
+"41
+[e $ ! == & -> _PORTC `i -> 1 `i -> 0 `i 96  ]
+{
+[; ;test_IO.c: 42: toggleButtonRC0 = 0;
+"42
+[e = _toggleButtonRC0 -> 0 `i ]
+"43
 }
 [e :U 96 ]
-"75
+[; ;test_IO.c: 43: }
+[; ;test_IO.c: 46: if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
+"46
+[e $ ! && == & -> _PORTC `i -> 2 `i -> 2 `i == _toggleButtonRC1 -> 0 `i 97  ]
+{
+[; ;test_IO.c: 47: toggleButtonRC1 = 1;
+"47
+[e = _toggleButtonRC1 -> 1 `i ]
+[; ;test_IO.c: 48: if(selectedTemperature + 4 <= 38){
+"48
+[e $ ! <= + _selectedTemperature -> 4 `i -> 38 `i 98  ]
+{
+[; ;test_IO.c: 49: selectedTemperature += 4;
+"49
+[e =+ _selectedTemperature -> 4 `i ]
+"50
 }
-[; ;test_IO.c: 73: }
-[; ;test_IO.c: 74: }
-[; ;test_IO.c: 75: }else{
+[e :U 98 ]
+"51
+}
+[e :U 97 ]
+[; ;test_IO.c: 50: }
+[; ;test_IO.c: 51: }
+[; ;test_IO.c: 53: if((PORTC & 0b00000010) == 0b00000000){
+"53
+[e $ ! == & -> _PORTC `i -> 2 `i -> 0 `i 99  ]
+{
+[; ;test_IO.c: 54: toggleButtonRC1 = 0;
+"54
+[e = _toggleButtonRC1 -> 0 `i ]
+"55
+}
+[e :U 99 ]
+[; ;test_IO.c: 55: }
+[; ;test_IO.c: 58: switch(selectedTemperature){
+"58
+[e $U 101  ]
+{
+[; ;test_IO.c: 59: case 22:
+"59
+[e :U 102 ]
+[; ;test_IO.c: 60: PORTC = 0b00001011;
+"60
+[e = _PORTC -> -> 11 `i `uc ]
+[; ;test_IO.c: 61: break;
+"61
 [e $U 100  ]
-[e :U 94 ]
-{
-[; ;test_IO.c: 76: if(currentTemperature >= selectedTemperature + 1){
-"76
-[e $ ! >= _currentTemperature + _selectedTemperature -> 1 `i 101  ]
-{
-[; ;test_IO.c: 77: goDown = 1;
-"77
-[e = _goDown -> 1 `i ]
-[; ;test_IO.c: 78: TRISD = 0b11111101;
-"78
-[e = _TRISD -> -> 253 `i `uc ]
-"79
-}
-[; ;test_IO.c: 79: }else{
-[e $U 102  ]
-[e :U 101 ]
-{
-[; ;test_IO.c: 80: if(currentTemperature >= selectedTemperature){
-"80
-[e $ ! >= _currentTemperature _selectedTemperature 103  ]
-{
-[; ;test_IO.c: 81: goDown = 0;
-"81
-[e = _goDown -> 0 `i ]
-"82
-}
+[; ;test_IO.c: 62: case 26:
+"62
 [e :U 103 ]
-[; ;test_IO.c: 82: }
-[; ;test_IO.c: 84: if(!goDown){
-"84
-[e $ ! ! != _goDown -> 0 `i 104  ]
-{
-[; ;test_IO.c: 85: TRISD = 0b11111100;
-"85
-[e = _TRISD -> -> 252 `i `uc ]
-"86
-}
-[; ;test_IO.c: 86: }else{
-[e $U 105  ]
+[; ;test_IO.c: 63: PORTC = 0b00010011;
+"63
+[e = _PORTC -> -> 19 `i `uc ]
+[; ;test_IO.c: 64: break;
+"64
+[e $U 100  ]
+[; ;test_IO.c: 65: case 30:
+"65
 [e :U 104 ]
+[; ;test_IO.c: 66: PORTC = 0b00100011;
+"66
+[e = _PORTC -> -> 35 `i `uc ]
+[; ;test_IO.c: 67: break;
+"67
+[e $U 100  ]
+[; ;test_IO.c: 68: case 34:
+"68
+[e :U 105 ]
+[; ;test_IO.c: 69: PORTC = 0b01000011;
+"69
+[e = _PORTC -> -> 67 `i `uc ]
+[; ;test_IO.c: 70: break;
+"70
+[e $U 100  ]
+[; ;test_IO.c: 71: case 38:
+"71
+[e :U 106 ]
+[; ;test_IO.c: 72: PORTC = 0b10000011;
+"72
+[e = _PORTC -> -> 131 `i `uc ]
+[; ;test_IO.c: 73: break;
+"73
+[e $U 100  ]
+"74
+}
+[; ;test_IO.c: 74: }
+[e $U 100  ]
+"58
+[e :U 101 ]
+[e [\ _selectedTemperature , $ -> 22 `i 102
+ , $ -> 26 `i 103
+ , $ -> 30 `i 104
+ , $ -> 34 `i 105
+ , $ -> 38 `i 106
+ 100 ]
+"74
+[e :U 100 ]
+[; ;test_IO.c: 76: if(currentTemperature <= selectedTemperature){
+"76
+[e $ ! <= _currentTemperature _selectedTemperature 107  ]
 {
-[; ;test_IO.c: 87: TRISD = 0b11111101;
+[; ;test_IO.c: 77: if(currentTemperature <= selectedTemperature - 1){
+"77
+[e $ ! <= _currentTemperature - _selectedTemperature -> 1 `i 108  ]
+{
+[; ;test_IO.c: 78: goUp = 1;
+"78
+[e = _goUp -> 1 `i ]
+[; ;test_IO.c: 80: PORTD = 0b11111110;
+"80
+[e = _PORTD -> -> 254 `i `uc ]
+"81
+}
+[; ;test_IO.c: 81: }else{
+[e $U 109  ]
+[e :U 108 ]
+{
+[; ;test_IO.c: 82: if(currentTemperature >= selectedTemperature){
+"82
+[e $ ! >= _currentTemperature _selectedTemperature 110  ]
+{
+[; ;test_IO.c: 83: goUp = 0;
+"83
+[e = _goUp -> 0 `i ]
+"84
+}
+[e :U 110 ]
+[; ;test_IO.c: 84: }
+[; ;test_IO.c: 85: if(!goUp){
+"85
+[e $ ! ! != _goUp -> 0 `i 111  ]
+{
+[; ;test_IO.c: 87: PORTD = 0b11111100;
 "87
-[e = _TRISD -> -> 253 `i `uc ]
+[e = _PORTD -> -> 252 `i `uc ]
 "88
 }
-[e :U 105 ]
-"89
-}
-[e :U 102 ]
+[; ;test_IO.c: 88: }else{
+[e $U 112  ]
+[e :U 111 ]
+{
+[; ;test_IO.c: 90: PORTD = 0b11111110;
 "90
+[e = _PORTD -> -> 254 `i `uc ]
+"91
 }
-[e :U 100 ]
+[e :U 112 ]
+"92
+}
+[e :U 109 ]
+"93
+}
+[; ;test_IO.c: 91: }
+[; ;test_IO.c: 92: }
+[; ;test_IO.c: 93: }else{
+[e $U 113  ]
+[e :U 107 ]
+{
+[; ;test_IO.c: 94: if(currentTemperature >= selectedTemperature + 1){
+"94
+[e $ ! >= _currentTemperature + _selectedTemperature -> 1 `i 114  ]
+{
+[; ;test_IO.c: 95: goDown = 1;
+"95
+[e = _goDown -> 1 `i ]
+[; ;test_IO.c: 96: PORTD = 0b11111101;
+"96
+[e = _PORTD -> -> 253 `i `uc ]
+"97
+}
+[; ;test_IO.c: 97: }else{
+[e $U 115  ]
+[e :U 114 ]
+{
+[; ;test_IO.c: 98: if(currentTemperature >= selectedTemperature){
+"98
+[e $ ! >= _currentTemperature _selectedTemperature 116  ]
+{
+[; ;test_IO.c: 99: goDown = 0;
 "99
+[e = _goDown -> 0 `i ]
+"100
+}
+[e :U 116 ]
+[; ;test_IO.c: 100: }
+[; ;test_IO.c: 102: if(!goDown){
+"102
+[e $ ! ! != _goDown -> 0 `i 117  ]
+{
+[; ;test_IO.c: 103: PORTD = 0b11111100;
+"103
+[e = _PORTD -> -> 252 `i `uc ]
+"104
+}
+[; ;test_IO.c: 104: }else{
+[e $U 118  ]
+[e :U 117 ]
+{
+[; ;test_IO.c: 105: PORTD = 0b11111101;
+"105
+[e = _PORTD -> -> 253 `i `uc ]
+"106
+}
+[e :U 118 ]
+"107
+}
+[e :U 115 ]
+"108
+}
+[e :U 113 ]
+"117
 }
 [e :U 91 ]
-"26
+"30
 [e $U 92  ]
 [e :U 93 ]
-[; ;test_IO.c: 88: }
-[; ;test_IO.c: 89: }
-[; ;test_IO.c: 90: }
-[; ;test_IO.c: 99: }
-[; ;test_IO.c: 100: }
-"100
+[; ;test_IO.c: 106: }
+[; ;test_IO.c: 107: }
+[; ;test_IO.c: 108: }
+[; ;test_IO.c: 117: }
+[; ;test_IO.c: 118: }
+"118
 [e :UE 90 ]
 }

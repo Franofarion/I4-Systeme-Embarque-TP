@@ -11,24 +11,30 @@
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"11 /home/azuron/Project/I4/Exemple IO 16F877.X/test_IO.c
+"12 /home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
 [v _main main `(v  1 e 1 0 ]
 "276 /opt/microchip/xc8/v1.45/include/pic16f877.h
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"338
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "1430
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1492
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-"11 /home/azuron/Project/I4/Exemple IO 16F877.X/test_IO.c
+"12 /home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
 [v _main main `(v  1 e 1 0 ]
 {
 "14
-[v main@currentTemperature currentTemperature `i  1 a 2 9 ]
-"13
-[v main@selectedTemperature selectedTemperature `i  1 a 2 7 ]
-"16
-[v main@goDown goDown `i  1 a 2 5 ]
+[v main@selectedTemperature selectedTemperature `i  1 a 2 10 ]
 "15
-[v main@goUp goUp `i  1 a 2 3 ]
-"100
+[v main@currentTemperature currentTemperature `i  1 a 2 8 ]
+"21
+[v main@toggleButtonRC1 toggleButtonRC1 `i  1 a 2 6 ]
+"20
+[v main@toggleButtonRC0 toggleButtonRC0 `i  1 a 2 4 ]
+"17
+[v main@goDown goDown `i  1 a 2 2 ]
+"16
+[v main@goUp goUp `i  1 a 2 0 ]
+"118
 } 0
