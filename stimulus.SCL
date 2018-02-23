@@ -1,8 +1,10 @@
 testbench for "pic16f877" is
-    begin
-    process is
-     begin
-        RC0 <= '1';
-        wait;
-    end process;
-end testbench;
+ begin
+ process is
+  begin
+   RA0 <= 1200 mV;
+   wait for 2000 ms; 
+   RA0 <= 250 mV;
+   wait for 2000 ms; 
+  end process;
+ end testbench;

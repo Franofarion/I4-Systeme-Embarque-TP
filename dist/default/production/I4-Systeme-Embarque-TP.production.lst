@@ -1,688 +1,2256 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.45 build -152302408 
-                                                                                               Fri Feb 23 09:23:21 2018
+                                                                                               Fri Feb 23 10:39:37 2018
 
 Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160504
      1                           	processor	16F877
      2                           	opt	pw 120
      3                           	opt	lm
      4                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     5                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     6                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
-     7                           	psect	maintext,global,class=CODE,split=1,delta=2
-     8                           	dabs	1,0x7E,2
-     9  0000                     
-    10                           ; Version 1.45
-    11                           ; Generated 16/11/2017 GMT
-    12                           ; 
-    13                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    14                           ; All rights reserved.
-    15                           ; 
-    16                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+     5                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2,group=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2,group=2
+    11                           	psect	text3,local,class=CODE,merge=1,delta=2,group=2
+    12                           	psect	text4,local,class=CODE,merge=1,delta=2,group=2
+    13                           	psect	text5,local,class=CODE,merge=1,delta=2,group=2
+    14                           	psect	text6,local,class=CODE,merge=1,delta=2,group=2
+    15                           	psect	text7,local,class=CODE,merge=1,delta=2
+    16                           	psect	intentry,global,class=CODE,delta=2
+    17                           	dabs	1,0x7E,2
+    18  0000                     
+    19                           ; Version 1.45
+    20                           ; Generated 16/11/2017 GMT
+    21                           ; 
+    22                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    23                           ; All rights reserved.
+    24                           ; 
+    25                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
       +                          ip").
-    17                           ; 
-    18                           ; Redistribution and use in source and binary forms, with or without modification, are
-    19                           ; permitted provided that the following conditions are met:
-    20                           ; 
-    21                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    26                           ; 
+    27                           ; Redistribution and use in source and binary forms, with or without modification, are
+    28                           ; permitted provided that the following conditions are met:
+    29                           ; 
+    30                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    22                           ;        conditions and the following disclaimer.
-    23                           ; 
-    24                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    31                           ;        conditions and the following disclaimer.
+    32                           ; 
+    33                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    25                           ;        of conditions and the following disclaimer in the documentation and/or other
-    26                           ;        materials provided with the distribution.
-    27                           ; 
-    28                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    34                           ;        of conditions and the following disclaimer in the documentation and/or other
+    35                           ;        materials provided with the distribution.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    29                           ;        software without specific prior written permission.
-    30                           ; 
-    31                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    32                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
-      +                          OR
-    33                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
-      +                          T,
-    34                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    35                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    36                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
-      +                          RICT
-    37                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
-      +                          SE OF
-    38                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    38                           ;        software without specific prior written permission.
     39                           ; 
-    40                           ; 
-    41                           ; Code-generator required, PIC16F877 Definitions
-    42                           ; 
-    43                           ; SFR Addresses
-    44  0000                     	;# 
-    45  0001                     	;# 
-    46  0002                     	;# 
-    47  0003                     	;# 
-    48  0004                     	;# 
-    49  0005                     	;# 
-    50  0006                     	;# 
-    51  0007                     	;# 
-    52  0008                     	;# 
-    53  0009                     	;# 
-    54  000A                     	;# 
-    55  000B                     	;# 
-    56  000C                     	;# 
-    57  000D                     	;# 
-    58  000E                     	;# 
-    59  000E                     	;# 
-    60  000F                     	;# 
-    61  0010                     	;# 
-    62  0011                     	;# 
-    63  0012                     	;# 
-    64  0013                     	;# 
-    65  0014                     	;# 
-    66  0015                     	;# 
-    67  0015                     	;# 
-    68  0016                     	;# 
-    69  0017                     	;# 
-    70  0018                     	;# 
-    71  0019                     	;# 
-    72  001A                     	;# 
-    73  001B                     	;# 
-    74  001B                     	;# 
-    75  001C                     	;# 
-    76  001D                     	;# 
-    77  001E                     	;# 
-    78  001F                     	;# 
-    79  0081                     	;# 
-    80  0085                     	;# 
-    81  0086                     	;# 
-    82  0087                     	;# 
-    83  0088                     	;# 
-    84  0089                     	;# 
-    85  008C                     	;# 
-    86  008D                     	;# 
-    87  008E                     	;# 
-    88  0091                     	;# 
-    89  0092                     	;# 
-    90  0093                     	;# 
-    91  0094                     	;# 
-    92  0098                     	;# 
-    93  0099                     	;# 
-    94  009E                     	;# 
-    95  009F                     	;# 
-    96  010C                     	;# 
-    97  010D                     	;# 
-    98  010E                     	;# 
-    99  010F                     	;# 
-   100  018C                     	;# 
-   101  018D                     	;# 
-   102  0008                     _PORTD	set	8
-   103  0007                     _PORTC	set	7
-   104  0088                     _TRISD	set	136
-   105  0087                     _TRISC	set	135
-   106                           
-   107                           ; #config settings
-   108  0000                     
-   109                           	psect	cinit
-   110  07FC                     start_initialization:	
-   111  07FC                     __initialization:	
-   112  07FC                     end_of_initialization:	
-   113                           ;End of C runtime variable initialization code
-   114                           
-   115  07FC                     __end_of__initialization:	
-   116  07FC  0183               	clrf	3
-   117  07FD  120A  118A  2EEB   	ljmp	_main	;jump to C main() function
-   118                           
-   119                           	psect	cstackCOMMON
-   120  0070                     __pcstackCOMMON:	
-   121  0070                     ?_main:	
-   122  0070                     ??_main:	
-   123                           ; 1 bytes @ 0x0
-   124                           
-   125                           
-   126                           ; 1 bytes @ 0x0
-   127  0070                     	ds	3
-   128                           
-   129                           	psect	cstackBANK0
-   130  0020                     __pcstackBANK0:	
-   131  0020                     main@goUp:	
-   132                           
-   133                           ; 2 bytes @ 0x0
-   134  0020                     	ds	2
-   135  0022                     main@goDown:	
-   136                           
-   137                           ; 2 bytes @ 0x2
-   138  0022                     	ds	2
-   139  0024                     main@toggleButtonRC0:	
-   140                           
-   141                           ; 2 bytes @ 0x4
-   142  0024                     	ds	2
-   143  0026                     main@toggleButtonRC1:	
-   144                           
-   145                           ; 2 bytes @ 0x6
-   146  0026                     	ds	2
-   147  0028                     main@currentTemperature:	
-   148                           
-   149                           ; 2 bytes @ 0x8
-   150  0028                     	ds	2
-   151  002A                     main@selectedTemperature:	
-   152                           
-   153                           ; 2 bytes @ 0xA
-   154  002A                     	ds	2
-   155                           
-   156                           	psect	maintext
-   157  06EB                     __pmaintext:	
-   158 ;;
-   159 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
-   160 ;;
-   161 ;; *************** function _main *****************
-   162 ;; Defined at:
-   163 ;;		line 12 in file "test_IO.c"
-   164 ;; Parameters:    Size  Location     Type
-   165 ;;		None
-   166 ;; Auto vars:     Size  Location     Type
-   167 ;;  selectedTemp    2   10[BANK0 ] int 
-   168 ;;  currentTempe    2    8[BANK0 ] int 
-   169 ;;  toggleButton    2    6[BANK0 ] int 
-   170 ;;  toggleButton    2    4[BANK0 ] int 
-   171 ;;  goDown          2    2[BANK0 ] int 
-   172 ;;  goUp            2    0[BANK0 ] int 
-   173 ;; Return value:  Size  Location     Type
-   174 ;;                  1    wreg      void 
-   175 ;; Registers used:
-   176 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1
-   177 ;; Tracked objects:
-   178 ;;		On entry : B00/0
-   179 ;;		On exit  : 0/0
-   180 ;;		Unchanged: 0/0
-   181 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   182 ;;      Params:         0       0       0       0       0
-   183 ;;      Locals:         0      12       0       0       0
-   184 ;;      Temps:          3       0       0       0       0
-   185 ;;      Totals:         3      12       0       0       0
-   186 ;;Total ram usage:       15 bytes
-   187 ;; This function calls:
-   188 ;;		Nothing
-   189 ;; This function is called by:
-   190 ;;		Startup code after reset
-   191 ;; This function uses a non-reentrant model
-   192 ;;
-   193                           
-   194                           
-   195                           ;psect for function _main
-   196  06EB                     _main:	
-   197                           
-   198                           ;test_IO.c: 14: int selectedTemperature = 30;
-   199                           
-   200                           ;incstack = 0
-   201                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1]
-   202  06EB  301E               	movlw	30
-   203  06EC  1283               	bcf	3,5	;RP0=0, select bank0
-   204  06ED  1303               	bcf	3,6	;RP1=0, select bank0
-   205  06EE  00AA               	movwf	main@selectedTemperature
-   206  06EF  3000               	movlw	0
-   207  06F0  00AB               	movwf	main@selectedTemperature+1
-   208                           
-   209                           ;test_IO.c: 15: int currentTemperature = 31;
-   210  06F1  301F               	movlw	31
-   211  06F2  00A8               	movwf	main@currentTemperature
-   212  06F3  3000               	movlw	0
-   213  06F4  00A9               	movwf	main@currentTemperature+1
-   214                           
-   215                           ;test_IO.c: 16: int goUp = 0;
-   216  06F5  01A0               	clrf	main@goUp
-   217  06F6  01A1               	clrf	main@goUp+1
-   218                           
-   219                           ;test_IO.c: 17: int goDown = 0;
-   220  06F7  01A2               	clrf	main@goDown
-   221  06F8  01A3               	clrf	main@goDown+1
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC16F877 Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53  0000                     	;# 
+    54  0001                     	;# 
+    55  0002                     	;# 
+    56  0003                     	;# 
+    57  0004                     	;# 
+    58  0005                     	;# 
+    59  0006                     	;# 
+    60  0007                     	;# 
+    61  0008                     	;# 
+    62  0009                     	;# 
+    63  000A                     	;# 
+    64  000B                     	;# 
+    65  000C                     	;# 
+    66  000D                     	;# 
+    67  000E                     	;# 
+    68  000E                     	;# 
+    69  000F                     	;# 
+    70  0010                     	;# 
+    71  0011                     	;# 
+    72  0012                     	;# 
+    73  0013                     	;# 
+    74  0014                     	;# 
+    75  0015                     	;# 
+    76  0015                     	;# 
+    77  0016                     	;# 
+    78  0017                     	;# 
+    79  0018                     	;# 
+    80  0019                     	;# 
+    81  001A                     	;# 
+    82  001B                     	;# 
+    83  001B                     	;# 
+    84  001C                     	;# 
+    85  001D                     	;# 
+    86  001E                     	;# 
+    87  001F                     	;# 
+    88  0081                     	;# 
+    89  0085                     	;# 
+    90  0086                     	;# 
+    91  0087                     	;# 
+    92  0088                     	;# 
+    93  0089                     	;# 
+    94  008C                     	;# 
+    95  008D                     	;# 
+    96  008E                     	;# 
+    97  0091                     	;# 
+    98  0092                     	;# 
+    99  0093                     	;# 
+   100  0094                     	;# 
+   101  0098                     	;# 
+   102  0099                     	;# 
+   103  009E                     	;# 
+   104  009F                     	;# 
+   105  010C                     	;# 
+   106  010D                     	;# 
+   107  010E                     	;# 
+   108  010F                     	;# 
+   109  018C                     	;# 
+   110  018D                     	;# 
+   111  0006                     _PORTBbits	set	6
+   112  0008                     _PORTD	set	8
+   113  001E                     _ADRESH	set	30
+   114  001F                     _ADCON0bits	set	31
+   115  001F                     _ADCON0	set	31
+   116  000B                     _INTCONbits	set	11
+   117  0001                     _TMR0	set	1
+   118  0007                     _PORTC	set	7
+   119  005F                     _GIE	set	95
+   120  009E                     _ADRESL	set	158
+   121  009F                     _ADCON1	set	159
+   122  0085                     _TRISA	set	133
+   123  0081                     _OPTION_REGbits	set	129
+   124  0086                     _TRISBbits	set	134
+   125  0088                     _TRISD	set	136
+   126  0087                     _TRISC	set	135
+   127                           
+   128                           ; #config settings
+   129  0000                     
+   130                           	psect	cinit
+   131  0015                     start_initialization:	
+   132  0015                     __initialization:	
+   133                           
+   134                           ; Clear objects allocated to BANK0
+   135  0015  1283               	bcf	3,5	;RP0=0, select bank0
+   136  0016  1303               	bcf	3,6	;RP1=0, select bank0
+   137  0017  01E0               	clrf	__pbssBANK0& (0+127)
+   138  0018  01E1               	clrf	(__pbssBANK0+1)& (0+127)
+   139  0019                     end_of_initialization:	
+   140                           ;End of C runtime variable initialization code
+   141                           
+   142  0019                     __end_of__initialization:	
+   143  0019  0183               	clrf	3
+   144  001A  120A  118A  281D   	ljmp	_main	;jump to C main() function
+   145                           
+   146                           	psect	bssBANK0
+   147  0060                     __pbssBANK0:	
+   148  0060                     _timer:	
+   149  0060                     	ds	2
+   150                           
+   151                           	psect	cstackCOMMON
+   152  0070                     __pcstackCOMMON:	
+   153  0070                     ?_main:	
+   154  0070                     ?_timer_0:	
+   155                           ; 1 bytes @ 0x0
+   156                           
+   157  0070                     ??_timer_0:	
+   158                           ; 1 bytes @ 0x0
+   159                           
+   160                           
+   161                           ; 1 bytes @ 0x0
+   162  0070                     	ds	4
+   163  0074                     ?___ftpack:	
+   164  0074                     ___ftpack@arg:	
+   165                           ; 3 bytes @ 0x4
+   166                           
+   167                           
+   168                           ; 3 bytes @ 0x4
+   169  0074                     	ds	3
+   170  0077                     ___ftpack@exp:	
+   171                           
+   172                           ; 1 bytes @ 0x7
+   173  0077                     	ds	1
+   174  0078                     ___ftpack@sign:	
+   175                           
+   176                           ; 1 bytes @ 0x8
+   177  0078                     	ds	1
+   178  0079                     ??___lltoft:	
+   179  0079                     ___awtoft@sign:	
+   180                           ; 1 bytes @ 0x9
+   181                           
+   182                           
+   183                           ; 1 bytes @ 0x9
+   184  0079                     	ds	1
+   185                           
+   186                           	psect	cstackBANK0
+   187  0020                     __pcstackBANK0:	
+   188  0020                     ??___ftpack:	
+   189                           
+   190                           ; 1 bytes @ 0x0
+   191  0020                     	ds	3
+   192  0023                     ?___awtoft:	
+   193  0023                     ?___lltoft:	
+   194                           ; 3 bytes @ 0x3
+   195                           
+   196  0023                     ___awtoft@c:	
+   197                           ; 3 bytes @ 0x3
+   198                           
+   199  0023                     ___lltoft@c:	
+   200                           ; 2 bytes @ 0x3
+   201                           
+   202                           
+   203                           ; 4 bytes @ 0x3
+   204  0023                     	ds	3
+   205  0026                     ??___awtoft:	
+   206                           
+   207                           ; 1 bytes @ 0x6
+   208  0026                     	ds	1
+   209  0027                     ___lltoft@exp:	
+   210                           
+   211                           ; 1 bytes @ 0x7
+   212  0027                     	ds	1
+   213  0028                     ?___ftge:	
+   214  0028                     ?___ftmul:	
+   215                           ; 1 bit 
+   216                           
+   217  0028                     ___ftge@ff1:	
+   218                           ; 3 bytes @ 0x8
+   219                           
+   220  0028                     ___ftmul@f1:	
+   221                           ; 3 bytes @ 0x8
    222                           
-   223                           ;test_IO.c: 20: int toggleButtonRC0 = 0;
-   224  06F9  01A4               	clrf	main@toggleButtonRC0
-   225  06FA  01A5               	clrf	main@toggleButtonRC0+1
-   226                           
-   227                           ;test_IO.c: 21: int toggleButtonRC1 = 0;
-   228  06FB  01A6               	clrf	main@toggleButtonRC1
-   229  06FC  01A7               	clrf	main@toggleButtonRC1+1
+   223                           
+   224                           ; 3 bytes @ 0x8
+   225  0028                     	ds	3
+   226  002B                     ___ftge@ff2:	
+   227  002B                     ___ftmul@f2:	
+   228                           ; 3 bytes @ 0xB
+   229                           
    230                           
-   231                           ;test_IO.c: 24: TRISC = 0b00000011;
-   232  06FD  3003               	movlw	3
-   233  06FE  1683               	bsf	3,5	;RP0=1, select bank1
-   234  06FF  1303               	bcf	3,6	;RP1=0, select bank1
-   235  0700  0087               	movwf	7	;volatile
+   231                           ; 3 bytes @ 0xB
+   232  002B                     	ds	3
+   233  002E                     ??___ftge:	
+   234  002E                     ??___ftmul:	
+   235                           ; 1 bytes @ 0xE
    236                           
-   237                           ;test_IO.c: 25: TRISD = 0b11111100;
-   238  0701  30FC               	movlw	252
-   239  0702  0088               	movwf	8	;volatile
-   240                           
-   241                           ;test_IO.c: 26: PORTC = 0b00100011;
-   242  0703  3023               	movlw	35
-   243  0704  1283               	bcf	3,5	;RP0=0, select bank0
-   244  0705  1303               	bcf	3,6	;RP1=0, select bank0
-   245  0706  0087               	movwf	7	;volatile
-   246  0707                     l629:	
-   247                           ;test_IO.c: 30: while (1)
-   248                           
+   237                           
+   238                           ; 1 bytes @ 0xE
+   239  002E                     	ds	4
+   240  0032                     ___ftmul@exp:	
+   241                           
+   242                           ; 1 bytes @ 0x12
+   243  0032                     	ds	1
+   244  0033                     ___ftmul@f3_as_product:	
+   245                           
+   246                           ; 3 bytes @ 0x13
+   247  0033                     	ds	3
+   248  0036                     ___ftmul@cntr:	
    249                           
-   250                           ;test_IO.c: 31: {
-   251                           ;test_IO.c: 34: if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
-   252  0707  1C07               	btfss	7,0	;volatile
-   253  0708  2F2C               	goto	l639
-   254  0709  0824               	movf	main@toggleButtonRC0,w
-   255  070A  0425               	iorwf	main@toggleButtonRC0+1,w
-   256  070B  1D03               	btfss	3,2
-   257  070C  2F2C               	goto	l639
-   258                           
-   259                           ;test_IO.c: 35: toggleButtonRC0 = 1;
-   260  070D  3001               	movlw	1
-   261  070E  00A4               	movwf	main@toggleButtonRC0
-   262  070F  3000               	movlw	0
-   263  0710  00A5               	movwf	main@toggleButtonRC0+1
+   250                           ; 1 bytes @ 0x16
+   251  0036                     	ds	1
+   252  0037                     ___ftmul@sign:	
+   253                           
+   254                           ; 1 bytes @ 0x17
+   255  0037                     	ds	1
+   256  0038                     ?___ftdiv:	
+   257  0038                     ___ftdiv@f2:	
+   258                           ; 3 bytes @ 0x18
+   259                           
+   260                           
+   261                           ; 3 bytes @ 0x18
+   262  0038                     	ds	3
+   263  003B                     ___ftdiv@f1:	
    264                           
-   265                           ;test_IO.c: 36: if(selectedTemperature - 4 >= 22){
-   266  0711  082A               	movf	main@selectedTemperature,w
-   267  0712  3EFC               	addlw	252
-   268  0713  00F0               	movwf	??_main
-   269  0714  082B               	movf	main@selectedTemperature+1,w
-   270  0715  1803               	skipnc
-   271  0716  3E01               	addlw	1
-   272  0717  3EFF               	addlw	255
-   273  0718  00F1               	movwf	??_main+1
-   274  0719  0871               	movf	??_main+1,w
-   275  071A  3A80               	xorlw	128
-   276  071B  00FF               	movwf	127
-   277  071C  3080               	movlw	128
-   278  071D  027F               	subwf	127,w
-   279  071E  1D03               	skipz
-   280  071F  2F22               	goto	u185
-   281  0720  3016               	movlw	22
-   282  0721  0270               	subwf	??_main,w
-   283  0722                     u185:	
-   284  0722  1C03               	skipc
-   285  0723  2F2C               	goto	l639
-   286                           
-   287                           ;test_IO.c: 37: selectedTemperature -= 4;
-   288  0724  30FC               	movlw	252
-   289  0725  1283               	bcf	3,5	;RP0=0, select bank0
-   290  0726  1303               	bcf	3,6	;RP1=0, select bank0
-   291  0727  07AA               	addwf	main@selectedTemperature,f
-   292  0728  1803               	skipnc
-   293  0729  0AAB               	incf	main@selectedTemperature+1,f
-   294  072A  30FF               	movlw	255
-   295  072B  07AB               	addwf	main@selectedTemperature+1,f
-   296  072C                     l639:	
-   297                           
-   298                           ;test_IO.c: 38: }
-   299                           ;test_IO.c: 39: }
-   300                           ;test_IO.c: 41: if((PORTC & 0b00000001) == 0b0000000){
-   301  072C  1283               	bcf	3,5	;RP0=0, select bank0
-   302  072D  1303               	bcf	3,6	;RP1=0, select bank0
-   303  072E  1807               	btfsc	7,0	;volatile
-   304  072F  2F32               	goto	l643
-   305                           
-   306                           ;test_IO.c: 42: toggleButtonRC0 = 0;
-   307  0730  01A4               	clrf	main@toggleButtonRC0
-   308  0731  01A5               	clrf	main@toggleButtonRC0+1
-   309  0732                     l643:	
-   310                           
-   311                           ;test_IO.c: 43: }
-   312                           ;test_IO.c: 46: if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
-   313  0732  1C87               	btfss	7,1	;volatile
-   314  0733  2F57               	goto	l653
-   315  0734  0826               	movf	main@toggleButtonRC1,w
-   316  0735  0427               	iorwf	main@toggleButtonRC1+1,w
-   317  0736  1D03               	btfss	3,2
-   318  0737  2F57               	goto	l653
-   319                           
-   320                           ;test_IO.c: 47: toggleButtonRC1 = 1;
-   321  0738  3001               	movlw	1
-   322  0739  00A6               	movwf	main@toggleButtonRC1
-   323  073A  3000               	movlw	0
-   324  073B  00A7               	movwf	main@toggleButtonRC1+1
-   325                           
-   326                           ;test_IO.c: 48: if(selectedTemperature + 4 <= 38){
-   327  073C  082A               	movf	main@selectedTemperature,w
-   328  073D  3E04               	addlw	4
-   329  073E  00F0               	movwf	??_main
-   330  073F  082B               	movf	main@selectedTemperature+1,w
-   331  0740  1803               	skipnc
-   332  0741  3E01               	addlw	1
-   333  0742  3E00               	addlw	0
-   334  0743  00F1               	movwf	??_main+1
-   335  0744  0871               	movf	??_main+1,w
-   336  0745  3A80               	xorlw	128
-   337  0746  00FF               	movwf	127
-   338  0747  3080               	movlw	128
-   339  0748  027F               	subwf	127,w
-   340  0749  1D03               	skipz
-   341  074A  2F4D               	goto	u225
-   342  074B  3027               	movlw	39
-   343  074C  0270               	subwf	??_main,w
-   344  074D                     u225:	
-   345  074D  1803               	skipnc
-   346  074E  2F57               	goto	l653
-   347                           
-   348                           ;test_IO.c: 49: selectedTemperature += 4;
-   349  074F  3004               	movlw	4
-   350  0750  1283               	bcf	3,5	;RP0=0, select bank0
-   351  0751  1303               	bcf	3,6	;RP1=0, select bank0
-   352  0752  07AA               	addwf	main@selectedTemperature,f
-   353  0753  1803               	skipnc
-   354  0754  0AAB               	incf	main@selectedTemperature+1,f
-   355  0755  3000               	movlw	0
-   356  0756  07AB               	addwf	main@selectedTemperature+1,f
-   357  0757                     l653:	
-   358                           
-   359                           ;test_IO.c: 50: }
-   360                           ;test_IO.c: 51: }
-   361                           ;test_IO.c: 53: if((PORTC & 0b00000010) == 0b00000000){
-   362  0757  1283               	bcf	3,5	;RP0=0, select bank0
-   363  0758  1303               	bcf	3,6	;RP1=0, select bank0
-   364  0759  1887               	btfsc	7,1	;volatile
-   365  075A  2F69               	goto	l669
-   366                           
-   367                           ;test_IO.c: 54: toggleButtonRC1 = 0;
-   368  075B  01A6               	clrf	main@toggleButtonRC1
-   369  075C  01A7               	clrf	main@toggleButtonRC1+1
-   370                           
-   371                           ;test_IO.c: 55: }
-   372                           ;test_IO.c: 58: switch(selectedTemperature){
-   373  075D  2F69               	goto	l669
-   374  075E                     l657:	
-   375                           ;test_IO.c: 59: case 22:
-   376                           
-   377                           
-   378                           ;test_IO.c: 60: PORTC = 0b00001011;
-   379  075E  300B               	movlw	11
-   380  075F  2F67               	goto	L4
-   381  0760                     l659:	
-   382                           ;test_IO.c: 62: case 26:
+   265                           ; 3 bytes @ 0x1B
+   266  003B                     	ds	3
+   267  003E                     ??___ftdiv:	
+   268                           
+   269                           ; 1 bytes @ 0x1E
+   270  003E                     	ds	4
+   271  0042                     ___ftdiv@cntr:	
+   272                           
+   273                           ; 1 bytes @ 0x22
+   274  0042                     	ds	1
+   275  0043                     ___ftdiv@f3:	
+   276                           
+   277                           ; 3 bytes @ 0x23
+   278  0043                     	ds	3
+   279  0046                     ___ftdiv@exp:	
+   280                           
+   281                           ; 1 bytes @ 0x26
+   282  0046                     	ds	1
+   283  0047                     ___ftdiv@sign:	
+   284                           
+   285                           ; 1 bytes @ 0x27
+   286  0047                     	ds	1
+   287  0048                     ??_main:	
+   288                           
+   289                           ; 1 bytes @ 0x28
+   290  0048                     	ds	4
+   291  004C                     main@tension:	
+   292                           
+   293                           ; 3 bytes @ 0x2C
+   294  004C                     	ds	3
+   295  004F                     main@ValeurADC:	
+   296                           
+   297                           ; 4 bytes @ 0x2F
+   298  004F                     	ds	4
+   299  0053                     main@goUp:	
+   300                           
+   301                           ; 2 bytes @ 0x33
+   302  0053                     	ds	2
+   303  0055                     main@goDown:	
+   304                           
+   305                           ; 2 bytes @ 0x35
+   306  0055                     	ds	2
+   307  0057                     main@toggleButtonRC0:	
+   308                           
+   309                           ; 2 bytes @ 0x37
+   310  0057                     	ds	2
+   311  0059                     main@toggleButtonRC1:	
+   312                           
+   313                           ; 2 bytes @ 0x39
+   314  0059                     	ds	2
+   315  005B                     main@currentTemperature:	
+   316                           
+   317                           ; 3 bytes @ 0x3B
+   318  005B                     	ds	3
+   319  005E                     main@selectedTemperature:	
+   320                           
+   321                           ; 2 bytes @ 0x3E
+   322  005E                     	ds	2
+   323                           
+   324                           	psect	maintext
+   325  001D                     __pmaintext:	
+   326 ;;
+   327 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   328 ;;
+   329 ;; *************** function _main *****************
+   330 ;; Defined at:
+   331 ;;		line 22 in file "test_IO.c"
+   332 ;; Parameters:    Size  Location     Type
+   333 ;;		None
+   334 ;; Auto vars:     Size  Location     Type
+   335 ;;  ValeurADC       4   47[BANK0 ] unsigned long 
+   336 ;;  currentTempe    3   59[BANK0 ] float 
+   337 ;;  tension         3   44[BANK0 ] float 
+   338 ;;  selectedTemp    2   62[BANK0 ] int 
+   339 ;;  toggleButton    2   57[BANK0 ] int 
+   340 ;;  toggleButton    2   55[BANK0 ] int 
+   341 ;;  goDown          2   53[BANK0 ] int 
+   342 ;;  goUp            2   51[BANK0 ] int 
+   343 ;; Return value:  Size  Location     Type
+   344 ;;                  1    wreg      void 
+   345 ;; Registers used:
+   346 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   347 ;; Tracked objects:
+   348 ;;		On entry : B00/0
+   349 ;;		On exit  : 0/0
+   350 ;;		Unchanged: 0/0
+   351 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   352 ;;      Params:         0       0       0       0       0
+   353 ;;      Locals:         0      20       0       0       0
+   354 ;;      Temps:          0       4       0       0       0
+   355 ;;      Totals:         0      24       0       0       0
+   356 ;;Total ram usage:       24 bytes
+   357 ;; Hardware stack levels required when called:    3
+   358 ;; This function calls:
+   359 ;;		___awtoft
+   360 ;;		___ftdiv
+   361 ;;		___ftge
+   362 ;;		___ftmul
+   363 ;;		___lltoft
+   364 ;; This function is called by:
+   365 ;;		Startup code after reset
+   366 ;; This function uses a non-reentrant model
+   367 ;;
+   368                           
+   369                           
+   370                           ;psect for function _main
+   371  001D                     _main:	
+   372                           
+   373                           ;test_IO.c: 24: int selectedTemperature = 30;
+   374                           
+   375                           ;incstack = 0
+   376                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   377  001D  301E               	movlw	30
+   378  001E  1283               	bcf	3,5	;RP0=0, select bank0
+   379  001F  1303               	bcf	3,6	;RP1=0, select bank0
+   380  0020  00DE               	movwf	main@selectedTemperature
+   381  0021  3000               	movlw	0
+   382  0022  00DF               	movwf	main@selectedTemperature+1
    383                           
-   384                           ;test_IO.c: 61: break;
-   385                           
-   386                           
-   387                           ;test_IO.c: 63: PORTC = 0b00010011;
-   388  0760  3013               	movlw	19
-   389  0761  2F67               	goto	L4
-   390  0762                     l661:	
-   391                           ;test_IO.c: 65: case 30:
-   392                           
-   393                           ;test_IO.c: 64: break;
-   394                           
+   384                           ;test_IO.c: 25: float currentTemperature = 31;
+   385  0023  3000               	movlw	0
+   386  0024  00DB               	movwf	main@currentTemperature
+   387  0025  30F8               	movlw	248
+   388  0026  00DC               	movwf	main@currentTemperature+1
+   389  0027  3041               	movlw	65
+   390  0028  00DD               	movwf	main@currentTemperature+2
+   391                           
+   392                           ;test_IO.c: 28: int goUp = 0;
+   393  0029  01D3               	clrf	main@goUp
+   394  002A  01D4               	clrf	main@goUp+1
    395                           
-   396                           ;test_IO.c: 66: PORTC = 0b00100011;
-   397  0762  3023               	movlw	35
-   398  0763  2F67               	goto	L4
-   399  0764                     l663:	
-   400                           ;test_IO.c: 68: case 34:
-   401                           
-   402                           ;test_IO.c: 67: break;
+   396                           ;test_IO.c: 29: int goDown = 0;
+   397  002B  01D5               	clrf	main@goDown
+   398  002C  01D6               	clrf	main@goDown+1
+   399                           
+   400                           ;test_IO.c: 33: int toggleButtonRC0 = 0;
+   401  002D  01D7               	clrf	main@toggleButtonRC0
+   402  002E  01D8               	clrf	main@toggleButtonRC0+1
    403                           
-   404                           
-   405                           ;test_IO.c: 69: PORTC = 0b01000011;
-   406  0764  3043               	movlw	67
-   407  0765  2F67               	goto	L4
-   408  0766                     l665:	
-   409                           ;test_IO.c: 71: case 38:
-   410                           
-   411                           ;test_IO.c: 70: break;
-   412                           
+   404                           ;test_IO.c: 34: int toggleButtonRC1 = 0;
+   405  002F  01D9               	clrf	main@toggleButtonRC1
+   406  0030  01DA               	clrf	main@toggleButtonRC1+1
+   407                           
+   408                           ;test_IO.c: 38: TRISC = 0b00000011;
+   409  0031  3003               	movlw	3
+   410  0032  1683               	bsf	3,5	;RP0=1, select bank1
+   411  0033  1303               	bcf	3,6	;RP1=0, select bank1
+   412  0034  0087               	movwf	7	;volatile
    413                           
-   414                           ;test_IO.c: 72: PORTC = 0b10000011;
-   415  0766  3083               	movlw	131
-   416  0767                     L4:	
-   417  0767  0087               	movwf	7	;volatile
-   418                           
-   419                           ;test_IO.c: 74: }
-   420                           
-   421                           ;test_IO.c: 73: break;
-   422  0768  2F7F               	goto	l671
-   423  0769                     l669:	
-   424                           
-   425                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
-      +                          itches
-   426                           ; Switch size 1, requested type "space"
-   427                           ; Number of cases is 1, Range of values is 0 to 0
-   428                           ; switch strategies available:
-   429                           ; Name         Instructions Cycles
-   430                           ; simple_byte            4     3 (average)
-   431                           ; direct_byte           11     8 (fixed)
-   432                           ; jumptable            260     6 (fixed)
-   433                           ;	Chosen strategy is simple_byte
-   434  0769  082B               	movf	main@selectedTemperature+1,w
-   435  076A  3A00               	xorlw	0	; case 0
-   436  076B  1903               	skipnz
-   437  076C  2F6E               	goto	l737
-   438  076D  2F7F               	goto	l671
-   439  076E                     l737:	
+   414                           ;test_IO.c: 39: TRISD = 0b11111100;
+   415  0035  30FC               	movlw	252
+   416  0036  0088               	movwf	8	;volatile
+   417                           
+   418                           ;test_IO.c: 40: PORTC = 0b00100011;
+   419  0037  3023               	movlw	35
+   420  0038  1283               	bcf	3,5	;RP0=0, select bank0
+   421  0039  1303               	bcf	3,6	;RP1=0, select bank0
+   422  003A  0087               	movwf	7	;volatile
+   423                           
+   424                           ;test_IO.c: 44: TRISBbits.TRISB4 = 0;
+   425  003B  1683               	bsf	3,5	;RP0=1, select bank1
+   426  003C  1303               	bcf	3,6	;RP1=0, select bank1
+   427  003D  1206               	bcf	6,4	;volatile
+   428                           
+   429                           ;test_IO.c: 45: OPTION_REGbits.T0CS=0;
+   430  003E  1281               	bcf	1,5	;volatile
+   431                           
+   432                           ;test_IO.c: 46: OPTION_REGbits.PSA=0;
+   433  003F  1181               	bcf	1,3	;volatile
+   434                           
+   435                           ;test_IO.c: 47: OPTION_REGbits.PS0=1 ;
+   436  0040  1401               	bsf	1,0	;volatile
+   437                           
+   438                           ;test_IO.c: 48: OPTION_REGbits.PS1=1 ;
+   439  0041  1481               	bsf	1,1	;volatile
    440                           
-   441                           ; Switch size 1, requested type "space"
-   442                           ; Number of cases is 5, Range of values is 22 to 38
-   443                           ; switch strategies available:
-   444                           ; Name         Instructions Cycles
-   445                           ; simple_byte           16     9 (average)
-   446                           ; direct_byte           62    11 (fixed)
-   447                           ; jumptable            263     9 (fixed)
-   448                           ;	Chosen strategy is simple_byte
-   449  076E  082A               	movf	main@selectedTemperature,w
-   450  076F  3A16               	xorlw	22	; case 22
-   451  0770  1903               	skipnz
-   452  0771  2F5E               	goto	l657
-   453  0772  3A0C               	xorlw	12	; case 26
-   454  0773  1903               	skipnz
-   455  0774  2F60               	goto	l659
-   456  0775  3A04               	xorlw	4	; case 30
-   457  0776  1903               	skipnz
-   458  0777  2F62               	goto	l661
-   459  0778  3A3C               	xorlw	60	; case 34
-   460  0779  1903               	skipnz
-   461  077A  2F64               	goto	l663
-   462  077B  3A04               	xorlw	4	; case 38
-   463  077C  1903               	skipnz
-   464  077D  2F66               	goto	l665
-   465  077E  2F7F               	goto	l671
-   466  077F                     l671:	
-   467                           
-   468                           ;test_IO.c: 76: if(currentTemperature <= selectedTemperature){
-   469  077F  082B               	movf	main@selectedTemperature+1,w
-   470  0780  3A80               	xorlw	128
-   471  0781  00F0               	movwf	??_main
-   472  0782  0829               	movf	main@currentTemperature+1,w
-   473  0783  3A80               	xorlw	128
-   474  0784  0270               	subwf	??_main,w
-   475  0785  1D03               	skipz
-   476  0786  2F89               	goto	u245
-   477  0787  0828               	movf	main@currentTemperature,w
-   478  0788  022A               	subwf	main@selectedTemperature,w
-   479  0789                     u245:	
-   480  0789  1C03               	skipc
-   481  078A  2FC2               	goto	l687
-   482                           
-   483                           ;test_IO.c: 77: if(currentTemperature <= selectedTemperature - 1){
-   484  078B  1283               	bcf	3,5	;RP0=0, select bank0
-   485  078C  1303               	bcf	3,6	;RP1=0, select bank0
-   486  078D  082A               	movf	main@selectedTemperature,w
-   487  078E  3EFF               	addlw	255
-   488  078F  00F0               	movwf	??_main
-   489  0790  082B               	movf	main@selectedTemperature+1,w
-   490  0791  1803               	skipnc
-   491  0792  3E01               	addlw	1
-   492  0793  3EFF               	addlw	255
-   493  0794  00F1               	movwf	??_main+1
-   494  0795  0871               	movf	??_main+1,w
-   495  0796  3A80               	xorlw	128
-   496  0797  00F2               	movwf	??_main+2
-   497  0798  0829               	movf	main@currentTemperature+1,w
-   498  0799  3A80               	xorlw	128
-   499  079A  0272               	subwf	??_main+2,w
-   500  079B  1D03               	skipz
-   501  079C  2F9F               	goto	u255
-   502  079D  0828               	movf	main@currentTemperature,w
-   503  079E  0270               	subwf	??_main,w
-   504  079F                     u255:	
-   505  079F  1C03               	skipc
-   506  07A0  2FA8               	goto	l677
+   441                           ;test_IO.c: 49: OPTION_REGbits.PS2=1 ;
+   442  0042  1501               	bsf	1,2	;volatile
+   443                           
+   444                           ;test_IO.c: 50: TMR0 = 0;
+   445  0043  1283               	bcf	3,5	;RP0=0, select bank0
+   446  0044  1303               	bcf	3,6	;RP1=0, select bank0
+   447  0045  0181               	clrf	1	;volatile
+   448                           
+   449                           ;test_IO.c: 51: INTCONbits.T0IE=1;
+   450  0046  168B               	bsf	11,5	;volatile
+   451                           
+   452                           ;test_IO.c: 52: INTCONbits.PEIE=0;
+   453  0047  130B               	bcf	11,6	;volatile
+   454                           
+   455                           ;test_IO.c: 53: INTCONbits.T0IF = 0;
+   456  0048  110B               	bcf	11,2	;volatile
+   457                           
+   458                           ;test_IO.c: 54: (GIE = 1);
+   459  0049  178B               	bsf	11,7	;volatile
+   460                           
+   461                           ;test_IO.c: 58: unsigned long ValeurADC = 0L;
+   462  004A  3000               	movlw	0
+   463  004B  00D2               	movwf	main@ValeurADC+3
+   464  004C  3000               	movlw	0
+   465  004D  00D1               	movwf	main@ValeurADC+2
+   466  004E  3000               	movlw	0
+   467  004F  00D0               	movwf	main@ValeurADC+1
+   468  0050  3000               	movlw	0
+   469  0051  00CF               	movwf	main@ValeurADC
+   470                           
+   471                           ;test_IO.c: 59: float tension=0.0f;
+   472  0052  3000               	movlw	0
+   473  0053  00CC               	movwf	main@tension
+   474  0054  3000               	movlw	0
+   475  0055  00CD               	movwf	main@tension+1
+   476  0056  3000               	movlw	0
+   477  0057  00CE               	movwf	main@tension+2
+   478                           
+   479                           ;test_IO.c: 60: TRISA = 0xFF;
+   480  0058  30FF               	movlw	255
+   481  0059  1683               	bsf	3,5	;RP0=1, select bank1
+   482  005A  1303               	bcf	3,6	;RP1=0, select bank1
+   483  005B  0085               	movwf	5	;volatile
+   484                           
+   485                           ;test_IO.c: 61: ADCON1 = 0b10001110;
+   486  005C  308E               	movlw	142
+   487  005D  009F               	movwf	31	;volatile
+   488                           
+   489                           ;test_IO.c: 62: ADCON0 = 0b01000001;
+   490  005E  3041               	movlw	65
+   491  005F  1283               	bcf	3,5	;RP0=0, select bank0
+   492  0060  1303               	bcf	3,6	;RP1=0, select bank0
+   493  0061  009F               	movwf	31	;volatile
+   494                           
+   495                           ;test_IO.c: 64: _delay((unsigned long)((100)*(4000000/4000000.0)));
+   496  0062  3020               	movlw	32
+   497  0063  1283               	bcf	3,5	;RP0=0, select bank0
+   498  0064  1303               	bcf	3,6	;RP1=0, select bank0
+   499  0065  00C8               	movwf	??_main
+   500  0066                     u1277:	
+   501  0066  0BC8               	decfsz	??_main,f
+   502  0067  2866               	goto	u1277
+   503  0068  0000               	nop
+   504  0069                     l1113:	
+   505                           ;test_IO.c: 65: while (1)
+   506                           
    507                           
-   508                           ;test_IO.c: 78: goUp = 1;
-   509  07A1  3001               	movlw	1
-   510  07A2  1283               	bcf	3,5	;RP0=0, select bank0
-   511  07A3  1303               	bcf	3,6	;RP1=0, select bank0
-   512  07A4  00A0               	movwf	main@goUp
-   513  07A5  3000               	movlw	0
-   514  07A6  00A1               	movwf	main@goUp+1
-   515  07A7  2FC0               	goto	l685
-   516  07A8                     l677:	
-   517                           ;test_IO.c: 81: }else{
-   518                           
-   519                           ;test_IO.c: 80: PORTD = 0b11111110;
-   520                           
-   521                           
-   522                           ;test_IO.c: 82: if(currentTemperature >= selectedTemperature){
-   523  07A8  1283               	bcf	3,5	;RP0=0, select bank0
-   524  07A9  1303               	bcf	3,6	;RP1=0, select bank0
-   525  07AA  0829               	movf	main@currentTemperature+1,w
-   526  07AB  3A80               	xorlw	128
-   527  07AC  00F0               	movwf	??_main
-   528  07AD  082B               	movf	main@selectedTemperature+1,w
-   529  07AE  3A80               	xorlw	128
-   530  07AF  0270               	subwf	??_main,w
-   531  07B0  1D03               	skipz
-   532  07B1  2FB4               	goto	u265
-   533  07B2  082A               	movf	main@selectedTemperature,w
-   534  07B3  0228               	subwf	main@currentTemperature,w
-   535  07B4                     u265:	
-   536  07B4  1C03               	skipc
-   537  07B5  2FBA               	goto	l681
-   538                           
-   539                           ;test_IO.c: 83: goUp = 0;
-   540  07B6  1283               	bcf	3,5	;RP0=0, select bank0
-   541  07B7  1303               	bcf	3,6	;RP1=0, select bank0
-   542  07B8  01A0               	clrf	main@goUp
-   543  07B9  01A1               	clrf	main@goUp+1
-   544  07BA                     l681:	
-   545                           
-   546                           ;test_IO.c: 84: }
-   547                           ;test_IO.c: 85: if(!goUp){
-   548  07BA  1283               	bcf	3,5	;RP0=0, select bank0
-   549  07BB  1303               	bcf	3,6	;RP1=0, select bank0
-   550  07BC  0820               	movf	main@goUp,w
-   551  07BD  0421               	iorwf	main@goUp+1,w
-   552  07BE  1903               	btfsc	3,2
-   553  07BF  2FF7               	goto	L10
-   554  07C0                     l685:	
-   555                           ;test_IO.c: 88: }else{
-   556                           
-   557                           ;test_IO.c: 87: PORTD = 0b11111100;
-   558                           
+   508                           ;test_IO.c: 66: {
+   509                           ;test_IO.c: 68: if(timer > 250){
+   510  0069  1283               	bcf	3,5	;RP0=0, select bank0
+   511  006A  1303               	bcf	3,6	;RP1=0, select bank0
+   512  006B  0861               	movf	_timer+1,w
+   513  006C  3A80               	xorlw	128
+   514  006D  00FF               	movwf	127
+   515  006E  3080               	movlw	128
+   516  006F  027F               	subwf	127,w
+   517  0070  1D03               	skipz
+   518  0071  2874               	goto	u1065
+   519  0072  30FB               	movlw	251
+   520  0073  0260               	subwf	_timer,w
+   521  0074                     u1065:	
+   522  0074  1C03               	skipc
+   523  0075  287A               	goto	l1117
+   524                           
+   525                           ;test_IO.c: 69: timer = 0;
+   526  0076  1283               	bcf	3,5	;RP0=0, select bank0
+   527  0077  1303               	bcf	3,6	;RP1=0, select bank0
+   528  0078  01E0               	clrf	_timer
+   529  0079  01E1               	clrf	_timer+1
+   530  007A                     l1117:	
+   531                           
+   532                           ;test_IO.c: 70: }
+   533                           ;test_IO.c: 72: ADCON0bits.GO_DONE = 1;
+   534  007A  1283               	bcf	3,5	;RP0=0, select bank0
+   535  007B  1303               	bcf	3,6	;RP1=0, select bank0
+   536  007C  151F               	bsf	31,2	;volatile
+   537  007D                     l43:	
+   538                           ;test_IO.c: 73: while(ADCON0bits.GO_DONE==1);
+   539                           
+   540  007D  191F               	btfsc	31,2	;volatile
+   541  007E  287D               	goto	l43
+   542                           
+   543                           ;test_IO.c: 74: ValeurADC = ADRESH <<8;
+   544  007F  081E               	movf	30,w	;volatile
+   545  0080  00C8               	movwf	??_main
+   546  0081  01C9               	clrf	??_main+1
+   547  0082  0848               	movf	??_main,w
+   548  0083  00C9               	movwf	??_main+1
+   549  0084  01C8               	clrf	??_main
+   550  0085  0848               	movf	??_main,w
+   551  0086  00CF               	movwf	main@ValeurADC
+   552  0087  0849               	movf	??_main+1,w
+   553  0088  00D0               	movwf	main@ValeurADC+1
+   554  0089  3000               	movlw	0
+   555  008A  1BD0               	btfsc	main@ValeurADC+1,7
+   556  008B  30FF               	movlw	255
+   557  008C  00D1               	movwf	main@ValeurADC+2
+   558  008D  00D2               	movwf	main@ValeurADC+3
    559                           
-   560                           ;test_IO.c: 90: PORTD = 0b11111110;
-   561  07C0  30FE               	movlw	254
-   562  07C1  2FFA               	goto	L9
-   563  07C2                     l687:	
-   564                           ;test_IO.c: 91: }
-   565                           ;test_IO.c: 92: }
-   566                           ;test_IO.c: 93: }else{
-   567                           
-   568                           
-   569                           ;test_IO.c: 94: if(currentTemperature >= selectedTemperature + 1){
-   570  07C2  1283               	bcf	3,5	;RP0=0, select bank0
-   571  07C3  1303               	bcf	3,6	;RP1=0, select bank0
-   572  07C4  082A               	movf	main@selectedTemperature,w
-   573  07C5  3E01               	addlw	1
-   574  07C6  00F0               	movwf	??_main
-   575  07C7  082B               	movf	main@selectedTemperature+1,w
-   576  07C8  1803               	skipnc
-   577  07C9  3E01               	addlw	1
-   578  07CA  3E00               	addlw	0
-   579  07CB  00F1               	movwf	??_main+1
-   580  07CC  0829               	movf	main@currentTemperature+1,w
-   581  07CD  3A80               	xorlw	128
-   582  07CE  00F2               	movwf	??_main+2
-   583  07CF  0871               	movf	??_main+1,w
-   584  07D0  3A80               	xorlw	128
-   585  07D1  0272               	subwf	??_main+2,w
-   586  07D2  1D03               	skipz
-   587  07D3  2FD6               	goto	u285
-   588  07D4  0870               	movf	??_main,w
-   589  07D5  0228               	subwf	main@currentTemperature,w
-   590  07D6                     u285:	
-   591  07D6  1C03               	skipc
-   592  07D7  2FDF               	goto	l691
-   593                           
-   594                           ;test_IO.c: 95: goDown = 1;
-   595  07D8  3001               	movlw	1
-   596  07D9  1283               	bcf	3,5	;RP0=0, select bank0
-   597  07DA  1303               	bcf	3,6	;RP1=0, select bank0
-   598  07DB  00A2               	movwf	main@goDown
-   599  07DC  3000               	movlw	0
-   600  07DD  00A3               	movwf	main@goDown+1
-   601  07DE  2FF9               	goto	l699
-   602  07DF                     l691:	
-   603                           ;test_IO.c: 97: }else{
-   604                           
-   605                           ;test_IO.c: 96: PORTD = 0b11111101;
-   606                           
-   607                           
-   608                           ;test_IO.c: 98: if(currentTemperature >= selectedTemperature){
-   609  07DF  1283               	bcf	3,5	;RP0=0, select bank0
-   610  07E0  1303               	bcf	3,6	;RP1=0, select bank0
-   611  07E1  0829               	movf	main@currentTemperature+1,w
-   612  07E2  3A80               	xorlw	128
-   613  07E3  00F0               	movwf	??_main
-   614  07E4  082B               	movf	main@selectedTemperature+1,w
-   615  07E5  3A80               	xorlw	128
-   616  07E6  0270               	subwf	??_main,w
-   617  07E7  1D03               	skipz
-   618  07E8  2FEB               	goto	u295
-   619  07E9  082A               	movf	main@selectedTemperature,w
-   620  07EA  0228               	subwf	main@currentTemperature,w
-   621  07EB                     u295:	
-   622  07EB  1C03               	skipc
-   623  07EC  2FF1               	goto	l695
-   624                           
-   625                           ;test_IO.c: 99: goDown = 0;
-   626  07ED  1283               	bcf	3,5	;RP0=0, select bank0
-   627  07EE  1303               	bcf	3,6	;RP1=0, select bank0
-   628  07EF  01A2               	clrf	main@goDown
-   629  07F0  01A3               	clrf	main@goDown+1
-   630  07F1                     l695:	
-   631                           
-   632                           ;test_IO.c: 100: }
-   633                           ;test_IO.c: 102: if(!goDown){
-   634  07F1  1283               	bcf	3,5	;RP0=0, select bank0
-   635  07F2  1303               	bcf	3,6	;RP1=0, select bank0
-   636  07F3  0822               	movf	main@goDown,w
-   637  07F4  0423               	iorwf	main@goDown+1,w
-   638  07F5  1D03               	btfss	3,2
-   639  07F6  2FF9               	goto	l699
-   640  07F7                     L10:	
-   641                           
-   642                           ;test_IO.c: 103: PORTD = 0b11111100;
-   643  07F7  30FC               	movlw	252
-   644  07F8  2FFA               	goto	L9
-   645  07F9                     l699:	
-   646                           ;test_IO.c: 104: }else{
-   647                           
-   648                           
-   649                           ;test_IO.c: 105: PORTD = 0b11111101;
-   650  07F9  30FD               	movlw	253
-   651  07FA                     L9:	
-   652  07FA  0088               	movwf	8	;volatile
-   653  07FB  2F07               	goto	l629
-   654  07FC                     __end_of_main:	
-   655  007E                     btemp	set	126	;btemp
-   656  007E                     wtemp0	set	126
+   560                           ;test_IO.c: 75: ValeurADC += ADRESL;
+   561  008E  1683               	bsf	3,5	;RP0=1, select bank1
+   562  008F  1303               	bcf	3,6	;RP1=0, select bank1
+   563  0090  081E               	movf	30,w	;volatile
+   564  0091  1283               	bcf	3,5	;RP0=0, select bank0
+   565  0092  1303               	bcf	3,6	;RP1=0, select bank0
+   566  0093  00C8               	movwf	??_main
+   567  0094  01C9               	clrf	??_main+1
+   568  0095  01CA               	clrf	??_main+2
+   569  0096  01CB               	clrf	??_main+3
+   570  0097  0848               	movf	??_main,w
+   571  0098  07CF               	addwf	main@ValeurADC,f
+   572  0099  0849               	movf	??_main+1,w
+   573  009A  1103               	clrz
+   574  009B  1803               	skipnc
+   575  009C  3E01               	addlw	1
+   576  009D  1D03               	btfss	3,2
+   577  009E  07D0               	addwf	main@ValeurADC+1,f
+   578  009F  084A               	movf	??_main+2,w
+   579  00A0  1103               	clrz
+   580  00A1  1803               	skipnc
+   581  00A2  3E01               	addlw	1
+   582  00A3  1D03               	btfss	3,2
+   583  00A4  07D1               	addwf	main@ValeurADC+2,f
+   584  00A5  084B               	movf	??_main+3,w
+   585  00A6  1103               	clrz
+   586  00A7  1803               	skipnc
+   587  00A8  3E01               	addlw	1
+   588  00A9  1D03               	btfss	3,2
+   589  00AA  07D2               	addwf	main@ValeurADC+3,f
+   590                           
+   591                           ;test_IO.c: 76: tension = (5.0f - 0.0f)*ValeurADC / 1024;
+   592  00AB  3000               	movlw	0
+   593  00AC  00B8               	movwf	___ftdiv@f2
+   594  00AD  3080               	movlw	128
+   595  00AE  00B9               	movwf	___ftdiv@f2+1
+   596  00AF  3044               	movlw	68
+   597  00B0  00BA               	movwf	___ftdiv@f2+2
+   598  00B1  3000               	movlw	0
+   599  00B2  00A8               	movwf	___ftmul@f1
+   600  00B3  30A0               	movlw	160
+   601  00B4  00A9               	movwf	___ftmul@f1+1
+   602  00B5  3040               	movlw	64
+   603  00B6  00AA               	movwf	___ftmul@f1+2
+   604  00B7  0852               	movf	main@ValeurADC+3,w
+   605  00B8  00A6               	movwf	___lltoft@c+3
+   606  00B9  0851               	movf	main@ValeurADC+2,w
+   607  00BA  00A5               	movwf	___lltoft@c+2
+   608  00BB  0850               	movf	main@ValeurADC+1,w
+   609  00BC  00A4               	movwf	___lltoft@c+1
+   610  00BD  084F               	movf	main@ValeurADC,w
+   611  00BE  00A3               	movwf	___lltoft@c
+   612  00BF  120A  118A  24C5  120A  118A  	fcall	___lltoft
+   613  00C4  1283               	bcf	3,5	;RP0=0, select bank0
+   614  00C5  1303               	bcf	3,6	;RP1=0, select bank0
+   615  00C6  0823               	movf	?___lltoft,w
+   616  00C7  00AB               	movwf	___ftmul@f2
+   617  00C8  0824               	movf	?___lltoft+1,w
+   618  00C9  00AC               	movwf	___ftmul@f2+1
+   619  00CA  0825               	movf	?___lltoft+2,w
+   620  00CB  00AD               	movwf	___ftmul@f2+2
+   621  00CC  120A  118A  2269  120A  118A  	fcall	___ftmul
+   622  00D1  1283               	bcf	3,5	;RP0=0, select bank0
+   623  00D2  1303               	bcf	3,6	;RP1=0, select bank0
+   624  00D3  0828               	movf	?___ftmul,w
+   625  00D4  00BB               	movwf	___ftdiv@f1
+   626  00D5  0829               	movf	?___ftmul+1,w
+   627  00D6  00BC               	movwf	___ftdiv@f1+1
+   628  00D7  082A               	movf	?___ftmul+2,w
+   629  00D8  00BD               	movwf	___ftdiv@f1+2
+   630  00D9  120A  118A  233C  120A  118A  	fcall	___ftdiv
+   631  00DE  1283               	bcf	3,5	;RP0=0, select bank0
+   632  00DF  1303               	bcf	3,6	;RP1=0, select bank0
+   633  00E0  0838               	movf	?___ftdiv,w
+   634  00E1  00CC               	movwf	main@tension
+   635  00E2  0839               	movf	?___ftdiv+1,w
+   636  00E3  00CD               	movwf	main@tension+1
+   637  00E4  083A               	movf	?___ftdiv+2,w
+   638  00E5  00CE               	movwf	main@tension+2
+   639                           
+   640                           ;test_IO.c: 77: currentTemperature = tension / 125 * 1000;
+   641  00E6  3000               	movlw	0
+   642  00E7  00A8               	movwf	___ftmul@f1
+   643  00E8  307A               	movlw	122
+   644  00E9  00A9               	movwf	___ftmul@f1+1
+   645  00EA  3044               	movlw	68
+   646  00EB  00AA               	movwf	___ftmul@f1+2
+   647  00EC  3000               	movlw	0
+   648  00ED  00B8               	movwf	___ftdiv@f2
+   649  00EE  30FA               	movlw	250
+   650  00EF  00B9               	movwf	___ftdiv@f2+1
+   651  00F0  3042               	movlw	66
+   652  00F1  00BA               	movwf	___ftdiv@f2+2
+   653  00F2  084C               	movf	main@tension,w
+   654  00F3  00BB               	movwf	___ftdiv@f1
+   655  00F4  084D               	movf	main@tension+1,w
+   656  00F5  00BC               	movwf	___ftdiv@f1+1
+   657  00F6  084E               	movf	main@tension+2,w
+   658  00F7  00BD               	movwf	___ftdiv@f1+2
+   659  00F8  120A  118A  233C  120A  118A  	fcall	___ftdiv
+   660  00FD  1283               	bcf	3,5	;RP0=0, select bank0
+   661  00FE  1303               	bcf	3,6	;RP1=0, select bank0
+   662  00FF  0838               	movf	?___ftdiv,w
+   663  0100  00AB               	movwf	___ftmul@f2
+   664  0101  0839               	movf	?___ftdiv+1,w
+   665  0102  00AC               	movwf	___ftmul@f2+1
+   666  0103  083A               	movf	?___ftdiv+2,w
+   667  0104  00AD               	movwf	___ftmul@f2+2
+   668  0105  120A  118A  2269  120A  118A  	fcall	___ftmul
+   669  010A  1283               	bcf	3,5	;RP0=0, select bank0
+   670  010B  1303               	bcf	3,6	;RP1=0, select bank0
+   671  010C  0828               	movf	?___ftmul,w
+   672  010D  00DB               	movwf	main@currentTemperature
+   673  010E  0829               	movf	?___ftmul+1,w
+   674  010F  00DC               	movwf	main@currentTemperature+1
+   675  0110  082A               	movf	?___ftmul+2,w
+   676  0111  00DD               	movwf	main@currentTemperature+2
+   677                           
+   678                           ;test_IO.c: 78: _delay((unsigned long)((500)*(4000000/4000.0)));
+   679  0112  3003               	movlw	3
+   680  0113  1283               	bcf	3,5	;RP0=0, select bank0
+   681  0114  1303               	bcf	3,6	;RP1=0, select bank0
+   682  0115  00CA               	movwf	??_main+2
+   683  0116  308A               	movlw	138
+   684  0117  00C9               	movwf	??_main+1
+   685  0118  3055               	movlw	85
+   686  0119  00C8               	movwf	??_main
+   687  011A                     u1287:	
+   688  011A  0BC8               	decfsz	??_main,f
+   689  011B  291A               	goto	u1287
+   690  011C  0BC9               	decfsz	??_main+1,f
+   691  011D  291A               	goto	u1287
+   692  011E  0BCA               	decfsz	??_main+2,f
+   693  011F  291A               	goto	u1287
+   694                           
+   695                           ;test_IO.c: 80: if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
+   696  0120  1283               	bcf	3,5	;RP0=0, select bank0
+   697  0121  1303               	bcf	3,6	;RP1=0, select bank0
+   698  0122  1C07               	btfss	7,0	;volatile
+   699  0123  2947               	goto	l1139
+   700  0124  0857               	movf	main@toggleButtonRC0,w
+   701  0125  0458               	iorwf	main@toggleButtonRC0+1,w
+   702  0126  1D03               	btfss	3,2
+   703  0127  2947               	goto	l1139
+   704                           
+   705                           ;test_IO.c: 81: toggleButtonRC0 = 1;
+   706  0128  3001               	movlw	1
+   707  0129  00D7               	movwf	main@toggleButtonRC0
+   708  012A  3000               	movlw	0
+   709  012B  00D8               	movwf	main@toggleButtonRC0+1
+   710                           
+   711                           ;test_IO.c: 82: if(selectedTemperature - 4 >= 22){
+   712  012C  085E               	movf	main@selectedTemperature,w
+   713  012D  3EFC               	addlw	252
+   714  012E  00C8               	movwf	??_main
+   715  012F  085F               	movf	main@selectedTemperature+1,w
+   716  0130  1803               	skipnc
+   717  0131  3E01               	addlw	1
+   718  0132  3EFF               	addlw	255
+   719  0133  00C9               	movwf	??_main+1
+   720  0134  0849               	movf	??_main+1,w
+   721  0135  3A80               	xorlw	128
+   722  0136  00FF               	movwf	127
+   723  0137  3080               	movlw	128
+   724  0138  027F               	subwf	127,w
+   725  0139  1D03               	skipz
+   726  013A  293D               	goto	u1115
+   727  013B  3016               	movlw	22
+   728  013C  0248               	subwf	??_main,w
+   729  013D                     u1115:	
+   730  013D  1C03               	skipc
+   731  013E  2947               	goto	l1139
+   732                           
+   733                           ;test_IO.c: 83: selectedTemperature -= 4;
+   734  013F  30FC               	movlw	252
+   735  0140  1283               	bcf	3,5	;RP0=0, select bank0
+   736  0141  1303               	bcf	3,6	;RP1=0, select bank0
+   737  0142  07DE               	addwf	main@selectedTemperature,f
+   738  0143  1803               	skipnc
+   739  0144  0ADF               	incf	main@selectedTemperature+1,f
+   740  0145  30FF               	movlw	255
+   741  0146  07DF               	addwf	main@selectedTemperature+1,f
+   742  0147                     l1139:	
+   743                           
+   744                           ;test_IO.c: 84: }
+   745                           ;test_IO.c: 85: }
+   746                           ;test_IO.c: 87: if((PORTC & 0b00000001) == 0b0000000){
+   747  0147  1283               	bcf	3,5	;RP0=0, select bank0
+   748  0148  1303               	bcf	3,6	;RP1=0, select bank0
+   749  0149  1807               	btfsc	7,0	;volatile
+   750  014A  294D               	goto	l1143
+   751                           
+   752                           ;test_IO.c: 88: toggleButtonRC0 = 0;
+   753  014B  01D7               	clrf	main@toggleButtonRC0
+   754  014C  01D8               	clrf	main@toggleButtonRC0+1
+   755  014D                     l1143:	
+   756                           
+   757                           ;test_IO.c: 89: }
+   758                           ;test_IO.c: 92: if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
+   759  014D  1C87               	btfss	7,1	;volatile
+   760  014E  2972               	goto	l1153
+   761  014F  0859               	movf	main@toggleButtonRC1,w
+   762  0150  045A               	iorwf	main@toggleButtonRC1+1,w
+   763  0151  1D03               	btfss	3,2
+   764  0152  2972               	goto	l1153
+   765                           
+   766                           ;test_IO.c: 93: toggleButtonRC1 = 1;
+   767  0153  3001               	movlw	1
+   768  0154  00D9               	movwf	main@toggleButtonRC1
+   769  0155  3000               	movlw	0
+   770  0156  00DA               	movwf	main@toggleButtonRC1+1
+   771                           
+   772                           ;test_IO.c: 94: if(selectedTemperature + 4 <= 38){
+   773  0157  085E               	movf	main@selectedTemperature,w
+   774  0158  3E04               	addlw	4
+   775  0159  00C8               	movwf	??_main
+   776  015A  085F               	movf	main@selectedTemperature+1,w
+   777  015B  1803               	skipnc
+   778  015C  3E01               	addlw	1
+   779  015D  3E00               	addlw	0
+   780  015E  00C9               	movwf	??_main+1
+   781  015F  0849               	movf	??_main+1,w
+   782  0160  3A80               	xorlw	128
+   783  0161  00FF               	movwf	127
+   784  0162  3080               	movlw	128
+   785  0163  027F               	subwf	127,w
+   786  0164  1D03               	skipz
+   787  0165  2968               	goto	u1155
+   788  0166  3027               	movlw	39
+   789  0167  0248               	subwf	??_main,w
+   790  0168                     u1155:	
+   791  0168  1803               	skipnc
+   792  0169  2972               	goto	l1153
+   793                           
+   794                           ;test_IO.c: 95: selectedTemperature += 4;
+   795  016A  3004               	movlw	4
+   796  016B  1283               	bcf	3,5	;RP0=0, select bank0
+   797  016C  1303               	bcf	3,6	;RP1=0, select bank0
+   798  016D  07DE               	addwf	main@selectedTemperature,f
+   799  016E  1803               	skipnc
+   800  016F  0ADF               	incf	main@selectedTemperature+1,f
+   801  0170  3000               	movlw	0
+   802  0171  07DF               	addwf	main@selectedTemperature+1,f
+   803  0172                     l1153:	
+   804                           
+   805                           ;test_IO.c: 96: }
+   806                           ;test_IO.c: 97: }
+   807                           ;test_IO.c: 99: if((PORTC & 0b00000010) == 0b00000000){
+   808  0172  1283               	bcf	3,5	;RP0=0, select bank0
+   809  0173  1303               	bcf	3,6	;RP1=0, select bank0
+   810  0174  1887               	btfsc	7,1	;volatile
+   811  0175  2984               	goto	l1169
+   812                           
+   813                           ;test_IO.c: 100: toggleButtonRC1 = 0;
+   814  0176  01D9               	clrf	main@toggleButtonRC1
+   815  0177  01DA               	clrf	main@toggleButtonRC1+1
+   816                           
+   817                           ;test_IO.c: 101: }
+   818                           ;test_IO.c: 104: switch(selectedTemperature){
+   819  0178  2984               	goto	l1169
+   820  0179                     l1157:	
+   821                           ;test_IO.c: 105: case 22:
+   822                           
+   823                           
+   824                           ;test_IO.c: 106: PORTC = 0b00001011;
+   825  0179  300B               	movlw	11
+   826  017A  2982               	goto	L4
+   827  017B                     l1159:	
+   828                           ;test_IO.c: 108: case 26:
+   829                           
+   830                           ;test_IO.c: 107: break;
+   831                           
+   832                           
+   833                           ;test_IO.c: 109: PORTC = 0b00010011;
+   834  017B  3013               	movlw	19
+   835  017C  2982               	goto	L4
+   836  017D                     l1161:	
+   837                           ;test_IO.c: 111: case 30:
+   838                           
+   839                           ;test_IO.c: 110: break;
+   840                           
+   841                           
+   842                           ;test_IO.c: 112: PORTC = 0b00100011;
+   843  017D  3023               	movlw	35
+   844  017E  2982               	goto	L4
+   845  017F                     l1163:	
+   846                           ;test_IO.c: 114: case 34:
+   847                           
+   848                           ;test_IO.c: 113: break;
+   849                           
+   850                           
+   851                           ;test_IO.c: 115: PORTC = 0b01000011;
+   852  017F  3043               	movlw	67
+   853  0180  2982               	goto	L4
+   854  0181                     l1165:	
+   855                           ;test_IO.c: 117: case 38:
+   856                           
+   857                           ;test_IO.c: 116: break;
+   858                           
+   859                           
+   860                           ;test_IO.c: 118: PORTC = 0b10000011;
+   861  0181  3083               	movlw	131
+   862  0182                     L4:	
+   863  0182  0087               	movwf	7	;volatile
+   864                           
+   865                           ;test_IO.c: 120: }
+   866                           
+   867                           ;test_IO.c: 119: break;
+   868  0183  299A               	goto	l1171
+   869  0184                     l1169:	
+   870                           
+   871                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   872                           ; Switch size 1, requested type "space"
+   873                           ; Number of cases is 1, Range of values is 0 to 0
+   874                           ; switch strategies available:
+   875                           ; Name         Instructions Cycles
+   876                           ; simple_byte            4     3 (average)
+   877                           ; direct_byte           11     8 (fixed)
+   878                           ; jumptable            260     6 (fixed)
+   879                           ;	Chosen strategy is simple_byte
+   880  0184  085F               	movf	main@selectedTemperature+1,w
+   881  0185  3A00               	xorlw	0	; case 0
+   882  0186  1903               	skipnz
+   883  0187  2989               	goto	l1247
+   884  0188  299A               	goto	l1171
+   885  0189                     l1247:	
+   886                           
+   887                           ; Switch size 1, requested type "space"
+   888                           ; Number of cases is 5, Range of values is 22 to 38
+   889                           ; switch strategies available:
+   890                           ; Name         Instructions Cycles
+   891                           ; simple_byte           16     9 (average)
+   892                           ; direct_byte           62    11 (fixed)
+   893                           ; jumptable            263     9 (fixed)
+   894                           ;	Chosen strategy is simple_byte
+   895  0189  085E               	movf	main@selectedTemperature,w
+   896  018A  3A16               	xorlw	22	; case 22
+   897  018B  1903               	skipnz
+   898  018C  2979               	goto	l1157
+   899  018D  3A0C               	xorlw	12	; case 26
+   900  018E  1903               	skipnz
+   901  018F  297B               	goto	l1159
+   902  0190  3A04               	xorlw	4	; case 30
+   903  0191  1903               	skipnz
+   904  0192  297D               	goto	l1161
+   905  0193  3A3C               	xorlw	60	; case 34
+   906  0194  1903               	skipnz
+   907  0195  297F               	goto	l1163
+   908  0196  3A04               	xorlw	4	; case 38
+   909  0197  1903               	skipnz
+   910  0198  2981               	goto	l1165
+   911  0199  299A               	goto	l1171
+   912  019A                     l1171:	
+   913                           
+   914                           ;test_IO.c: 122: if(currentTemperature <= selectedTemperature){
+   915  019A  085F               	movf	main@selectedTemperature+1,w
+   916  019B  00A4               	movwf	___awtoft@c+1
+   917  019C  085E               	movf	main@selectedTemperature,w
+   918  019D  00A3               	movwf	___awtoft@c
+   919  019E  120A  118A  24F4  120A  118A  	fcall	___awtoft
+   920  01A3  1283               	bcf	3,5	;RP0=0, select bank0
+   921  01A4  1303               	bcf	3,6	;RP1=0, select bank0
+   922  01A5  0823               	movf	?___awtoft,w
+   923  01A6  00A8               	movwf	___ftge@ff1
+   924  01A7  0824               	movf	?___awtoft+1,w
+   925  01A8  00A9               	movwf	___ftge@ff1+1
+   926  01A9  0825               	movf	?___awtoft+2,w
+   927  01AA  00AA               	movwf	___ftge@ff1+2
+   928  01AB  085B               	movf	main@currentTemperature,w
+   929  01AC  00AB               	movwf	___ftge@ff2
+   930  01AD  085C               	movf	main@currentTemperature+1,w
+   931  01AE  00AC               	movwf	___ftge@ff2+1
+   932  01AF  085D               	movf	main@currentTemperature+2,w
+   933  01B0  00AD               	movwf	___ftge@ff2+2
+   934  01B1  120A  118A  2466  120A  118A  	fcall	___ftge
+   935  01B6  1C03               	btfss	3,0
+   936  01B7  2A0F               	goto	l1187
+   937                           
+   938                           ;test_IO.c: 123: if(currentTemperature <= selectedTemperature - 1){
+   939  01B8  1283               	bcf	3,5	;RP0=0, select bank0
+   940  01B9  1303               	bcf	3,6	;RP1=0, select bank0
+   941  01BA  085E               	movf	main@selectedTemperature,w
+   942  01BB  3EFF               	addlw	255
+   943  01BC  00A3               	movwf	___awtoft@c
+   944  01BD  085F               	movf	main@selectedTemperature+1,w
+   945  01BE  1803               	skipnc
+   946  01BF  3E01               	addlw	1
+   947  01C0  3EFF               	addlw	255
+   948  01C1  00A4               	movwf	___awtoft@c+1
+   949  01C2  120A  118A  24F4  120A  118A  	fcall	___awtoft
+   950  01C7  1283               	bcf	3,5	;RP0=0, select bank0
+   951  01C8  1303               	bcf	3,6	;RP1=0, select bank0
+   952  01C9  0823               	movf	?___awtoft,w
+   953  01CA  00A8               	movwf	___ftge@ff1
+   954  01CB  0824               	movf	?___awtoft+1,w
+   955  01CC  00A9               	movwf	___ftge@ff1+1
+   956  01CD  0825               	movf	?___awtoft+2,w
+   957  01CE  00AA               	movwf	___ftge@ff1+2
+   958  01CF  085B               	movf	main@currentTemperature,w
+   959  01D0  00AB               	movwf	___ftge@ff2
+   960  01D1  085C               	movf	main@currentTemperature+1,w
+   961  01D2  00AC               	movwf	___ftge@ff2+1
+   962  01D3  085D               	movf	main@currentTemperature+2,w
+   963  01D4  00AD               	movwf	___ftge@ff2+2
+   964  01D5  120A  118A  2466  120A  118A  	fcall	___ftge
+   965  01DA  1C03               	btfss	3,0
+   966  01DB  29E3               	goto	l1177
+   967                           
+   968                           ;test_IO.c: 124: goUp = 1;
+   969  01DC  3001               	movlw	1
+   970  01DD  1283               	bcf	3,5	;RP0=0, select bank0
+   971  01DE  1303               	bcf	3,6	;RP1=0, select bank0
+   972  01DF  00D3               	movwf	main@goUp
+   973  01E0  3000               	movlw	0
+   974  01E1  00D4               	movwf	main@goUp+1
+   975  01E2  2A0D               	goto	l1185
+   976  01E3                     l1177:	
+   977                           ;test_IO.c: 127: }else{
+   978                           
+   979                           ;test_IO.c: 126: PORTD = 0b11111110;
+   980                           
+   981                           
+   982                           ;test_IO.c: 128: if(currentTemperature >= selectedTemperature){
+   983  01E3  1283               	bcf	3,5	;RP0=0, select bank0
+   984  01E4  1303               	bcf	3,6	;RP1=0, select bank0
+   985  01E5  085B               	movf	main@currentTemperature,w
+   986  01E6  00A8               	movwf	___ftge@ff1
+   987  01E7  085C               	movf	main@currentTemperature+1,w
+   988  01E8  00A9               	movwf	___ftge@ff1+1
+   989  01E9  085D               	movf	main@currentTemperature+2,w
+   990  01EA  00AA               	movwf	___ftge@ff1+2
+   991  01EB  085F               	movf	main@selectedTemperature+1,w
+   992  01EC  00A4               	movwf	___awtoft@c+1
+   993  01ED  085E               	movf	main@selectedTemperature,w
+   994  01EE  00A3               	movwf	___awtoft@c
+   995  01EF  120A  118A  24F4  120A  118A  	fcall	___awtoft
+   996  01F4  1283               	bcf	3,5	;RP0=0, select bank0
+   997  01F5  1303               	bcf	3,6	;RP1=0, select bank0
+   998  01F6  0823               	movf	?___awtoft,w
+   999  01F7  00AB               	movwf	___ftge@ff2
+  1000  01F8  0824               	movf	?___awtoft+1,w
+  1001  01F9  00AC               	movwf	___ftge@ff2+1
+  1002  01FA  0825               	movf	?___awtoft+2,w
+  1003  01FB  00AD               	movwf	___ftge@ff2+2
+  1004  01FC  120A  118A  2466  120A  118A  	fcall	___ftge
+  1005  0201  1C03               	btfss	3,0
+  1006  0202  2A07               	goto	l1181
+  1007                           
+  1008                           ;test_IO.c: 129: goUp = 0;
+  1009  0203  1283               	bcf	3,5	;RP0=0, select bank0
+  1010  0204  1303               	bcf	3,6	;RP1=0, select bank0
+  1011  0205  01D3               	clrf	main@goUp
+  1012  0206  01D4               	clrf	main@goUp+1
+  1013  0207                     l1181:	
+  1014                           
+  1015                           ;test_IO.c: 130: }
+  1016                           ;test_IO.c: 131: if(!goUp){
+  1017  0207  1283               	bcf	3,5	;RP0=0, select bank0
+  1018  0208  1303               	bcf	3,6	;RP1=0, select bank0
+  1019  0209  0853               	movf	main@goUp,w
+  1020  020A  0454               	iorwf	main@goUp+1,w
+  1021  020B  1903               	btfsc	3,2
+  1022  020C  2A64               	goto	L10
+  1023  020D                     l1185:	
+  1024                           ;test_IO.c: 134: }else{
+  1025                           
+  1026                           ;test_IO.c: 133: PORTD = 0b11111100;
+  1027                           
+  1028                           
+  1029                           ;test_IO.c: 136: PORTD = 0b11111110;
+  1030  020D  30FE               	movlw	254
+  1031  020E  2A67               	goto	L9
+  1032  020F                     l1187:	
+  1033                           ;test_IO.c: 137: }
+  1034                           ;test_IO.c: 138: }
+  1035                           ;test_IO.c: 139: }else{
+  1036                           
+  1037                           
+  1038                           ;test_IO.c: 140: if(currentTemperature >= selectedTemperature + 1){
+  1039  020F  1283               	bcf	3,5	;RP0=0, select bank0
+  1040  0210  1303               	bcf	3,6	;RP1=0, select bank0
+  1041  0211  085B               	movf	main@currentTemperature,w
+  1042  0212  00A8               	movwf	___ftge@ff1
+  1043  0213  085C               	movf	main@currentTemperature+1,w
+  1044  0214  00A9               	movwf	___ftge@ff1+1
+  1045  0215  085D               	movf	main@currentTemperature+2,w
+  1046  0216  00AA               	movwf	___ftge@ff1+2
+  1047  0217  085E               	movf	main@selectedTemperature,w
+  1048  0218  3E01               	addlw	1
+  1049  0219  00A3               	movwf	___awtoft@c
+  1050  021A  085F               	movf	main@selectedTemperature+1,w
+  1051  021B  1803               	skipnc
+  1052  021C  3E01               	addlw	1
+  1053  021D  3E00               	addlw	0
+  1054  021E  00A4               	movwf	___awtoft@c+1
+  1055  021F  120A  118A  24F4  120A  118A  	fcall	___awtoft
+  1056  0224  1283               	bcf	3,5	;RP0=0, select bank0
+  1057  0225  1303               	bcf	3,6	;RP1=0, select bank0
+  1058  0226  0823               	movf	?___awtoft,w
+  1059  0227  00AB               	movwf	___ftge@ff2
+  1060  0228  0824               	movf	?___awtoft+1,w
+  1061  0229  00AC               	movwf	___ftge@ff2+1
+  1062  022A  0825               	movf	?___awtoft+2,w
+  1063  022B  00AD               	movwf	___ftge@ff2+2
+  1064  022C  120A  118A  2466  120A  118A  	fcall	___ftge
+  1065  0231  1C03               	btfss	3,0
+  1066  0232  2A3A               	goto	l1191
+  1067                           
+  1068                           ;test_IO.c: 141: goDown = 1;
+  1069  0233  3001               	movlw	1
+  1070  0234  1283               	bcf	3,5	;RP0=0, select bank0
+  1071  0235  1303               	bcf	3,6	;RP1=0, select bank0
+  1072  0236  00D5               	movwf	main@goDown
+  1073  0237  3000               	movlw	0
+  1074  0238  00D6               	movwf	main@goDown+1
+  1075  0239  2A66               	goto	l1199
+  1076  023A                     l1191:	
+  1077                           ;test_IO.c: 143: }else{
+  1078                           
+  1079                           ;test_IO.c: 142: PORTD = 0b11111101;
+  1080                           
+  1081                           
+  1082                           ;test_IO.c: 144: if(currentTemperature >= selectedTemperature){
+  1083  023A  1283               	bcf	3,5	;RP0=0, select bank0
+  1084  023B  1303               	bcf	3,6	;RP1=0, select bank0
+  1085  023C  085B               	movf	main@currentTemperature,w
+  1086  023D  00A8               	movwf	___ftge@ff1
+  1087  023E  085C               	movf	main@currentTemperature+1,w
+  1088  023F  00A9               	movwf	___ftge@ff1+1
+  1089  0240  085D               	movf	main@currentTemperature+2,w
+  1090  0241  00AA               	movwf	___ftge@ff1+2
+  1091  0242  085F               	movf	main@selectedTemperature+1,w
+  1092  0243  00A4               	movwf	___awtoft@c+1
+  1093  0244  085E               	movf	main@selectedTemperature,w
+  1094  0245  00A3               	movwf	___awtoft@c
+  1095  0246  120A  118A  24F4  120A  118A  	fcall	___awtoft
+  1096  024B  1283               	bcf	3,5	;RP0=0, select bank0
+  1097  024C  1303               	bcf	3,6	;RP1=0, select bank0
+  1098  024D  0823               	movf	?___awtoft,w
+  1099  024E  00AB               	movwf	___ftge@ff2
+  1100  024F  0824               	movf	?___awtoft+1,w
+  1101  0250  00AC               	movwf	___ftge@ff2+1
+  1102  0251  0825               	movf	?___awtoft+2,w
+  1103  0252  00AD               	movwf	___ftge@ff2+2
+  1104  0253  120A  118A  2466  120A  118A  	fcall	___ftge
+  1105  0258  1C03               	btfss	3,0
+  1106  0259  2A5E               	goto	l1195
+  1107                           
+  1108                           ;test_IO.c: 145: goDown = 0;
+  1109  025A  1283               	bcf	3,5	;RP0=0, select bank0
+  1110  025B  1303               	bcf	3,6	;RP1=0, select bank0
+  1111  025C  01D5               	clrf	main@goDown
+  1112  025D  01D6               	clrf	main@goDown+1
+  1113  025E                     l1195:	
+  1114                           
+  1115                           ;test_IO.c: 146: }
+  1116                           ;test_IO.c: 148: if(!goDown){
+  1117  025E  1283               	bcf	3,5	;RP0=0, select bank0
+  1118  025F  1303               	bcf	3,6	;RP1=0, select bank0
+  1119  0260  0855               	movf	main@goDown,w
+  1120  0261  0456               	iorwf	main@goDown+1,w
+  1121  0262  1D03               	btfss	3,2
+  1122  0263  2A66               	goto	l1199
+  1123  0264                     L10:	
+  1124                           
+  1125                           ;test_IO.c: 149: PORTD = 0b11111100;
+  1126  0264  30FC               	movlw	252
+  1127  0265  2A67               	goto	L9
+  1128  0266                     l1199:	
+  1129                           ;test_IO.c: 150: }else{
+  1130                           
+  1131                           
+  1132                           ;test_IO.c: 151: PORTD = 0b11111101;
+  1133  0266  30FD               	movlw	253
+  1134  0267                     L9:	
+  1135  0267  0088               	movwf	8	;volatile
+  1136  0268  2869               	goto	l1113
+  1137  0269                     __end_of_main:	
+  1138                           
+  1139                           	psect	text1
+  1140  04C5                     __ptext1:	
+  1141 ;; *************** function ___lltoft *****************
+  1142 ;; Defined at:
+  1143 ;;		line 35 in file "/opt/microchip/xc8/v1.45/sources/common/lltoft.c"
+  1144 ;; Parameters:    Size  Location     Type
+  1145 ;;  c               4    3[BANK0 ] unsigned long 
+  1146 ;; Auto vars:     Size  Location     Type
+  1147 ;;  exp             1    7[BANK0 ] unsigned char 
+  1148 ;; Return value:  Size  Location     Type
+  1149 ;;                  3    3[BANK0 ] float 
+  1150 ;; Registers used:
+  1151 ;;		wreg, status,2, status,0, pclath, cstack
+  1152 ;; Tracked objects:
+  1153 ;;		On entry : 0/0
+  1154 ;;		On exit  : 0/0
+  1155 ;;		Unchanged: 0/0
+  1156 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1157 ;;      Params:         0       4       0       0       0
+  1158 ;;      Locals:         0       1       0       0       0
+  1159 ;;      Temps:          1       0       0       0       0
+  1160 ;;      Totals:         1       5       0       0       0
+  1161 ;;Total ram usage:        6 bytes
+  1162 ;; Hardware stack levels used:    1
+  1163 ;; Hardware stack levels required when called:    2
+  1164 ;; This function calls:
+  1165 ;;		___ftpack
+  1166 ;; This function is called by:
+  1167 ;;		_main
+  1168 ;; This function uses a non-reentrant model
+  1169 ;;
+  1170                           
+  1171                           
+  1172                           ;psect for function ___lltoft
+  1173  04C5                     ___lltoft:	
+  1174                           
+  1175                           ;incstack = 0
+  1176                           ; Regs used in ___lltoft: [wreg+status,2+status,0+pclath+cstack]
+  1177  04C5  308E               	movlw	142
+  1178  04C6  00F9               	movwf	??___lltoft
+  1179  04C7  0879               	movf	??___lltoft,w
+  1180  04C8  1283               	bcf	3,5	;RP0=0, select bank0
+  1181  04C9  1303               	bcf	3,6	;RP1=0, select bank0
+  1182  04CA  00A7               	movwf	___lltoft@exp
+  1183  04CB                     l1063:	
+  1184  04CB  30FF               	movlw	255
+  1185  04CC  0526               	andwf	___lltoft@c+3,w
+  1186  04CD  1903               	btfsc	3,2
+  1187  04CE  2CDD               	goto	l1065
+  1188  04CF  3001               	movlw	1
+  1189  04D0                     u1045:	
+  1190  04D0  1003               	clrc
+  1191  04D1  0CA6               	rrf	___lltoft@c+3,f
+  1192  04D2  0CA5               	rrf	___lltoft@c+2,f
+  1193  04D3  0CA4               	rrf	___lltoft@c+1,f
+  1194  04D4  0CA3               	rrf	___lltoft@c,f
+  1195  04D5  3EFF               	addlw	-1
+  1196  04D6  1D03               	skipz
+  1197  04D7  2CD0               	goto	u1045
+  1198  04D8  3001               	movlw	1
+  1199  04D9  00F9               	movwf	??___lltoft
+  1200  04DA  0879               	movf	??___lltoft,w
+  1201  04DB  07A7               	addwf	___lltoft@exp,f
+  1202  04DC  2CCB               	goto	l1063
+  1203  04DD                     l1065:	
+  1204  04DD  0823               	movf	___lltoft@c,w
+  1205  04DE  00F4               	movwf	___ftpack@arg
+  1206  04DF  0824               	movf	___lltoft@c+1,w
+  1207  04E0  00F5               	movwf	___ftpack@arg+1
+  1208  04E1  0825               	movf	___lltoft@c+2,w
+  1209  04E2  00F6               	movwf	___ftpack@arg+2
+  1210  04E3  0827               	movf	___lltoft@exp,w
+  1211  04E4  00F9               	movwf	??___lltoft
+  1212  04E5  0879               	movf	??___lltoft,w
+  1213  04E6  00F7               	movwf	___ftpack@exp
+  1214  04E7  01F8               	clrf	___ftpack@sign
+  1215  04E8  120A  118A  23F4   	fcall	___ftpack
+  1216  04EB  0874               	movf	?___ftpack,w
+  1217  04EC  1283               	bcf	3,5	;RP0=0, select bank0
+  1218  04ED  1303               	bcf	3,6	;RP1=0, select bank0
+  1219  04EE  00A3               	movwf	?___lltoft
+  1220  04EF  0875               	movf	?___ftpack+1,w
+  1221  04F0  00A4               	movwf	?___lltoft+1
+  1222  04F1  0876               	movf	?___ftpack+2,w
+  1223  04F2  00A5               	movwf	?___lltoft+2
+  1224  04F3  0008               	return
+  1225  04F4                     __end_of___lltoft:	
+  1226                           
+  1227                           	psect	text2
+  1228  0269                     __ptext2:	
+  1229 ;; *************** function ___ftmul *****************
+  1230 ;; Defined at:
+  1231 ;;		line 62 in file "/opt/microchip/xc8/v1.45/sources/common/ftmul.c"
+  1232 ;; Parameters:    Size  Location     Type
+  1233 ;;  f1              3    8[BANK0 ] float 
+  1234 ;;  f2              3   11[BANK0 ] float 
+  1235 ;; Auto vars:     Size  Location     Type
+  1236 ;;  f3_as_produc    3   19[BANK0 ] unsigned um
+  1237 ;;  sign            1   23[BANK0 ] unsigned char 
+  1238 ;;  cntr            1   22[BANK0 ] unsigned char 
+  1239 ;;  exp             1   18[BANK0 ] unsigned char 
+  1240 ;; Return value:  Size  Location     Type
+  1241 ;;                  3    8[BANK0 ] float 
+  1242 ;; Registers used:
+  1243 ;;		wreg, status,2, status,0, pclath, cstack
+  1244 ;; Tracked objects:
+  1245 ;;		On entry : 0/0
+  1246 ;;		On exit  : 0/0
+  1247 ;;		Unchanged: 0/0
+  1248 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1249 ;;      Params:         0       6       0       0       0
+  1250 ;;      Locals:         0       6       0       0       0
+  1251 ;;      Temps:          0       4       0       0       0
+  1252 ;;      Totals:         0      16       0       0       0
+  1253 ;;Total ram usage:       16 bytes
+  1254 ;; Hardware stack levels used:    1
+  1255 ;; Hardware stack levels required when called:    2
+  1256 ;; This function calls:
+  1257 ;;		___ftpack
+  1258 ;; This function is called by:
+  1259 ;;		_main
+  1260 ;; This function uses a non-reentrant model
+  1261 ;;
+  1262                           
+  1263                           
+  1264                           ;psect for function ___ftmul
+  1265  0269                     ___ftmul:	
+  1266                           
+  1267                           ;incstack = 0
+  1268                           ; Regs used in ___ftmul: [wreg+status,2+status,0+pclath+cstack]
+  1269  0269  1283               	bcf	3,5	;RP0=0, select bank0
+  1270  026A  1303               	bcf	3,6	;RP1=0, select bank0
+  1271  026B  0828               	movf	___ftmul@f1,w
+  1272  026C  00AE               	movwf	??___ftmul
+  1273  026D  0829               	movf	___ftmul@f1+1,w
+  1274  026E  00AF               	movwf	??___ftmul+1
+  1275  026F  082A               	movf	___ftmul@f1+2,w
+  1276  0270  00B0               	movwf	??___ftmul+2
+  1277  0271  1003               	clrc
+  1278  0272  0D2F               	rlf	??___ftmul+1,w
+  1279  0273  0D30               	rlf	??___ftmul+2,w
+  1280  0274  00B1               	movwf	??___ftmul+3
+  1281  0275  0831               	movf	??___ftmul+3,w
+  1282  0276  00B2               	movwf	___ftmul@exp
+  1283  0277  0832               	movf	___ftmul@exp,w
+  1284  0278  1D03               	btfss	3,2
+  1285  0279  2A81               	goto	l1015
+  1286  027A  3000               	movlw	0
+  1287  027B  00A8               	movwf	?___ftmul
+  1288  027C  3000               	movlw	0
+  1289  027D  00A9               	movwf	?___ftmul+1
+  1290  027E  3000               	movlw	0
+  1291  027F  00AA               	movwf	?___ftmul+2
+  1292  0280  0008               	return
+  1293  0281                     l1015:	
+  1294  0281  082B               	movf	___ftmul@f2,w
+  1295  0282  00AE               	movwf	??___ftmul
+  1296  0283  082C               	movf	___ftmul@f2+1,w
+  1297  0284  00AF               	movwf	??___ftmul+1
+  1298  0285  082D               	movf	___ftmul@f2+2,w
+  1299  0286  00B0               	movwf	??___ftmul+2
+  1300  0287  1003               	clrc
+  1301  0288  0D2F               	rlf	??___ftmul+1,w
+  1302  0289  0D30               	rlf	??___ftmul+2,w
+  1303  028A  00B1               	movwf	??___ftmul+3
+  1304  028B  0831               	movf	??___ftmul+3,w
+  1305  028C  00B7               	movwf	___ftmul@sign
+  1306  028D  0837               	movf	___ftmul@sign,w
+  1307  028E  1D03               	btfss	3,2
+  1308  028F  2A97               	goto	l1021
+  1309  0290  3000               	movlw	0
+  1310  0291  00A8               	movwf	?___ftmul
+  1311  0292  3000               	movlw	0
+  1312  0293  00A9               	movwf	?___ftmul+1
+  1313  0294  3000               	movlw	0
+  1314  0295  00AA               	movwf	?___ftmul+2
+  1315  0296  0008               	return
+  1316  0297                     l1021:	
+  1317  0297  0837               	movf	___ftmul@sign,w
+  1318  0298  3E7B               	addlw	123
+  1319  0299  00AE               	movwf	??___ftmul
+  1320  029A  082E               	movf	??___ftmul,w
+  1321  029B  07B2               	addwf	___ftmul@exp,f
+  1322  029C  0828               	movf	___ftmul@f1,w
+  1323  029D  00AE               	movwf	??___ftmul
+  1324  029E  0829               	movf	___ftmul@f1+1,w
+  1325  029F  00AF               	movwf	??___ftmul+1
+  1326  02A0  082A               	movf	___ftmul@f1+2,w
+  1327  02A1  00B0               	movwf	??___ftmul+2
+  1328  02A2  3010               	movlw	16
+  1329  02A3                     u925:	
+  1330  02A3  1003               	clrc
+  1331  02A4  0CB0               	rrf	??___ftmul+2,f
+  1332  02A5  0CAF               	rrf	??___ftmul+1,f
+  1333  02A6  0CAE               	rrf	??___ftmul,f
+  1334  02A7  3EFF               	addlw	-1
+  1335  02A8  1D03               	skipz
+  1336  02A9  2AA3               	goto	u925
+  1337  02AA  082E               	movf	??___ftmul,w
+  1338  02AB  00B1               	movwf	??___ftmul+3
+  1339  02AC  0831               	movf	??___ftmul+3,w
+  1340  02AD  00B7               	movwf	___ftmul@sign
+  1341  02AE  082B               	movf	___ftmul@f2,w
+  1342  02AF  00AE               	movwf	??___ftmul
+  1343  02B0  082C               	movf	___ftmul@f2+1,w
+  1344  02B1  00AF               	movwf	??___ftmul+1
+  1345  02B2  082D               	movf	___ftmul@f2+2,w
+  1346  02B3  00B0               	movwf	??___ftmul+2
+  1347  02B4  3010               	movlw	16
+  1348  02B5                     u935:	
+  1349  02B5  1003               	clrc
+  1350  02B6  0CB0               	rrf	??___ftmul+2,f
+  1351  02B7  0CAF               	rrf	??___ftmul+1,f
+  1352  02B8  0CAE               	rrf	??___ftmul,f
+  1353  02B9  3EFF               	addlw	-1
+  1354  02BA  1D03               	skipz
+  1355  02BB  2AB5               	goto	u935
+  1356  02BC  082E               	movf	??___ftmul,w
+  1357  02BD  00B1               	movwf	??___ftmul+3
+  1358  02BE  0831               	movf	??___ftmul+3,w
+  1359  02BF  06B7               	xorwf	___ftmul@sign,f
+  1360  02C0  3080               	movlw	128
+  1361  02C1  00AE               	movwf	??___ftmul
+  1362  02C2  082E               	movf	??___ftmul,w
+  1363  02C3  05B7               	andwf	___ftmul@sign,f
+  1364  02C4  17A9               	bsf	___ftmul@f1+1,7
+  1365  02C5  17AC               	bsf	___ftmul@f2+1,7
+  1366  02C6  30FF               	movlw	255
+  1367  02C7  05AB               	andwf	___ftmul@f2,f
+  1368  02C8  30FF               	movlw	255
+  1369  02C9  05AC               	andwf	___ftmul@f2+1,f
+  1370  02CA  3000               	movlw	0
+  1371  02CB  05AD               	andwf	___ftmul@f2+2,f
+  1372  02CC  3000               	movlw	0
+  1373  02CD  00B3               	movwf	___ftmul@f3_as_product
+  1374  02CE  3000               	movlw	0
+  1375  02CF  00B4               	movwf	___ftmul@f3_as_product+1
+  1376  02D0  3000               	movlw	0
+  1377  02D1  00B5               	movwf	___ftmul@f3_as_product+2
+  1378  02D2  3007               	movlw	7
+  1379  02D3  00AE               	movwf	??___ftmul
+  1380  02D4  082E               	movf	??___ftmul,w
+  1381  02D5  00B6               	movwf	___ftmul@cntr
+  1382  02D6                     l1033:	
+  1383  02D6  1C28               	btfss	___ftmul@f1,0
+  1384  02D7  2AE6               	goto	l1037
+  1385  02D8  082B               	movf	___ftmul@f2,w
+  1386  02D9  07B3               	addwf	___ftmul@f3_as_product,f
+  1387  02DA  082C               	movf	___ftmul@f2+1,w
+  1388  02DB  1103               	clrz
+  1389  02DC  1803               	skipnc
+  1390  02DD  0A2C               	incf	___ftmul@f2+1,w
+  1391  02DE  1D03               	btfss	3,2
+  1392  02DF  07B4               	addwf	___ftmul@f3_as_product+1,f
+  1393  02E0  082D               	movf	___ftmul@f2+2,w
+  1394  02E1  1103               	clrz
+  1395  02E2  1803               	skipnc
+  1396  02E3  0A2D               	incf	___ftmul@f2+2,w
+  1397  02E4  1D03               	btfss	3,2
+  1398  02E5  07B5               	addwf	___ftmul@f3_as_product+2,f
+  1399  02E6                     l1037:	
+  1400  02E6  3001               	movlw	1
+  1401  02E7                     u965:	
+  1402  02E7  1003               	clrc
+  1403  02E8  0CAA               	rrf	___ftmul@f1+2,f
+  1404  02E9  0CA9               	rrf	___ftmul@f1+1,f
+  1405  02EA  0CA8               	rrf	___ftmul@f1,f
+  1406  02EB  3EFF               	addlw	-1
+  1407  02EC  1D03               	skipz
+  1408  02ED  2AE7               	goto	u965
+  1409  02EE  3001               	movlw	1
+  1410  02EF                     u975:	
+  1411  02EF  1003               	clrc
+  1412  02F0  0DAB               	rlf	___ftmul@f2,f
+  1413  02F1  0DAC               	rlf	___ftmul@f2+1,f
+  1414  02F2  0DAD               	rlf	___ftmul@f2+2,f
+  1415  02F3  3EFF               	addlw	-1
+  1416  02F4  1D03               	skipz
+  1417  02F5  2AEF               	goto	u975
+  1418  02F6  3001               	movlw	1
+  1419  02F7  02B6               	subwf	___ftmul@cntr,f
+  1420  02F8  1D03               	btfss	3,2
+  1421  02F9  2AD6               	goto	l1033
+  1422  02FA  3009               	movlw	9
+  1423  02FB  00AE               	movwf	??___ftmul
+  1424  02FC  082E               	movf	??___ftmul,w
+  1425  02FD  00B6               	movwf	___ftmul@cntr
+  1426  02FE                     l1045:	
+  1427  02FE  1C28               	btfss	___ftmul@f1,0
+  1428  02FF  2B0E               	goto	l1049
+  1429  0300  082B               	movf	___ftmul@f2,w
+  1430  0301  07B3               	addwf	___ftmul@f3_as_product,f
+  1431  0302  082C               	movf	___ftmul@f2+1,w
+  1432  0303  1103               	clrz
+  1433  0304  1803               	skipnc
+  1434  0305  0A2C               	incf	___ftmul@f2+1,w
+  1435  0306  1D03               	btfss	3,2
+  1436  0307  07B4               	addwf	___ftmul@f3_as_product+1,f
+  1437  0308  082D               	movf	___ftmul@f2+2,w
+  1438  0309  1103               	clrz
+  1439  030A  1803               	skipnc
+  1440  030B  0A2D               	incf	___ftmul@f2+2,w
+  1441  030C  1D03               	btfss	3,2
+  1442  030D  07B5               	addwf	___ftmul@f3_as_product+2,f
+  1443  030E                     l1049:	
+  1444  030E  3001               	movlw	1
+  1445  030F                     u1015:	
+  1446  030F  1003               	clrc
+  1447  0310  0CAA               	rrf	___ftmul@f1+2,f
+  1448  0311  0CA9               	rrf	___ftmul@f1+1,f
+  1449  0312  0CA8               	rrf	___ftmul@f1,f
+  1450  0313  3EFF               	addlw	-1
+  1451  0314  1D03               	skipz
+  1452  0315  2B0F               	goto	u1015
+  1453  0316  3001               	movlw	1
+  1454  0317                     u1025:	
+  1455  0317  1003               	clrc
+  1456  0318  0CB5               	rrf	___ftmul@f3_as_product+2,f
+  1457  0319  0CB4               	rrf	___ftmul@f3_as_product+1,f
+  1458  031A  0CB3               	rrf	___ftmul@f3_as_product,f
+  1459  031B  3EFF               	addlw	-1
+  1460  031C  1D03               	skipz
+  1461  031D  2B17               	goto	u1025
+  1462  031E  3001               	movlw	1
+  1463  031F  02B6               	subwf	___ftmul@cntr,f
+  1464  0320  1D03               	btfss	3,2
+  1465  0321  2AFE               	goto	l1045
+  1466  0322  0833               	movf	___ftmul@f3_as_product,w
+  1467  0323  00F4               	movwf	___ftpack@arg
+  1468  0324  0834               	movf	___ftmul@f3_as_product+1,w
+  1469  0325  00F5               	movwf	___ftpack@arg+1
+  1470  0326  0835               	movf	___ftmul@f3_as_product+2,w
+  1471  0327  00F6               	movwf	___ftpack@arg+2
+  1472  0328  0832               	movf	___ftmul@exp,w
+  1473  0329  00AE               	movwf	??___ftmul
+  1474  032A  082E               	movf	??___ftmul,w
+  1475  032B  00F7               	movwf	___ftpack@exp
+  1476  032C  0837               	movf	___ftmul@sign,w
+  1477  032D  00AF               	movwf	??___ftmul+1
+  1478  032E  082F               	movf	??___ftmul+1,w
+  1479  032F  00F8               	movwf	___ftpack@sign
+  1480  0330  120A  118A  23F4   	fcall	___ftpack
+  1481  0333  0874               	movf	?___ftpack,w
+  1482  0334  1283               	bcf	3,5	;RP0=0, select bank0
+  1483  0335  1303               	bcf	3,6	;RP1=0, select bank0
+  1484  0336  00A8               	movwf	?___ftmul
+  1485  0337  0875               	movf	?___ftpack+1,w
+  1486  0338  00A9               	movwf	?___ftmul+1
+  1487  0339  0876               	movf	?___ftpack+2,w
+  1488  033A  00AA               	movwf	?___ftmul+2
+  1489  033B  0008               	return
+  1490  033C                     __end_of___ftmul:	
+  1491                           
+  1492                           	psect	text3
+  1493  0466                     __ptext3:	
+  1494 ;; *************** function ___ftge *****************
+  1495 ;; Defined at:
+  1496 ;;		line 4 in file "/opt/microchip/xc8/v1.45/sources/common/ftge.c"
+  1497 ;; Parameters:    Size  Location     Type
+  1498 ;;  ff1             3    8[BANK0 ] float 
+  1499 ;;  ff2             3   11[BANK0 ] float 
+  1500 ;; Auto vars:     Size  Location     Type
+  1501 ;;		None
+  1502 ;; Return value:  Size  Location     Type
+  1503 ;;		None               void
+  1504 ;; Registers used:
+  1505 ;;		wreg, status,2, status,0
+  1506 ;; Tracked objects:
+  1507 ;;		On entry : 0/0
+  1508 ;;		On exit  : 0/0
+  1509 ;;		Unchanged: 0/0
+  1510 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1511 ;;      Params:         0       6       0       0       0
+  1512 ;;      Locals:         0       0       0       0       0
+  1513 ;;      Temps:          0       6       0       0       0
+  1514 ;;      Totals:         0      12       0       0       0
+  1515 ;;Total ram usage:       12 bytes
+  1516 ;; Hardware stack levels used:    1
+  1517 ;; Hardware stack levels required when called:    1
+  1518 ;; This function calls:
+  1519 ;;		Nothing
+  1520 ;; This function is called by:
+  1521 ;;		_main
+  1522 ;; This function uses a non-reentrant model
+  1523 ;;
+  1524                           
+  1525                           
+  1526                           ;psect for function ___ftge
+  1527  0466                     ___ftge:	
+  1528                           
+  1529                           ;incstack = 0
+  1530                           ; Regs used in ___ftge: [wreg+status,2+status,0]
+  1531  0466  1283               	bcf	3,5	;RP0=0, select bank0
+  1532  0467  1303               	bcf	3,6	;RP1=0, select bank0
+  1533  0468  1FAA               	btfss	___ftge@ff1+2,7
+  1534  0469  2C8F               	goto	l993
+  1535  046A  3000               	movlw	0
+  1536  046B  00AE               	movwf	??___ftge
+  1537  046C  3000               	movlw	0
+  1538  046D  00AF               	movwf	??___ftge+1
+  1539  046E  3080               	movlw	128
+  1540  046F  00B0               	movwf	??___ftge+2
+  1541  0470  0928               	comf	___ftge@ff1,w
+  1542  0471  00B1               	movwf	??___ftge+3
+  1543  0472  0929               	comf	___ftge@ff1+1,w
+  1544  0473  00B2               	movwf	??___ftge+4
+  1545  0474  092A               	comf	___ftge@ff1+2,w
+  1546  0475  00B3               	movwf	??___ftge+5
+  1547  0476  0AB1               	incf	??___ftge+3,f
+  1548  0477  1903               	skipnz
+  1549  0478  0AB2               	incf	??___ftge+4,f
+  1550  0479  1903               	skipnz
+  1551  047A  0AB3               	incf	??___ftge+5,f
+  1552  047B  0831               	movf	??___ftge+3,w
+  1553  047C  07AE               	addwf	??___ftge,f
+  1554  047D  0832               	movf	??___ftge+4,w
+  1555  047E  1803               	skipnc
+  1556  047F  0F32               	incfsz	??___ftge+4,w
+  1557  0480  2C82               	goto	u861
+  1558  0481  2C83               	goto	u862
+  1559  0482                     u861:	
+  1560  0482  07AF               	addwf	??___ftge+1,f
+  1561  0483                     u862:	
+  1562  0483  0833               	movf	??___ftge+5,w
+  1563  0484  1803               	skipnc
+  1564  0485  0F33               	incfsz	??___ftge+5,w
+  1565  0486  2C88               	goto	u863
+  1566  0487  2C89               	goto	u864
+  1567  0488                     u863:	
+  1568  0488  07B0               	addwf	??___ftge+2,f
+  1569  0489                     u864:	
+  1570  0489  082E               	movf	??___ftge,w
+  1571  048A  00A8               	movwf	___ftge@ff1
+  1572  048B  082F               	movf	??___ftge+1,w
+  1573  048C  00A9               	movwf	___ftge@ff1+1
+  1574  048D  0830               	movf	??___ftge+2,w
+  1575  048E  00AA               	movwf	___ftge@ff1+2
+  1576  048F                     l993:	
+  1577  048F  1FAD               	btfss	___ftge@ff2+2,7
+  1578  0490  2CB6               	goto	l997
+  1579  0491  3000               	movlw	0
+  1580  0492  00AE               	movwf	??___ftge
+  1581  0493  3000               	movlw	0
+  1582  0494  00AF               	movwf	??___ftge+1
+  1583  0495  3080               	movlw	128
+  1584  0496  00B0               	movwf	??___ftge+2
+  1585  0497  092B               	comf	___ftge@ff2,w
+  1586  0498  00B1               	movwf	??___ftge+3
+  1587  0499  092C               	comf	___ftge@ff2+1,w
+  1588  049A  00B2               	movwf	??___ftge+4
+  1589  049B  092D               	comf	___ftge@ff2+2,w
+  1590  049C  00B3               	movwf	??___ftge+5
+  1591  049D  0AB1               	incf	??___ftge+3,f
+  1592  049E  1903               	skipnz
+  1593  049F  0AB2               	incf	??___ftge+4,f
+  1594  04A0  1903               	skipnz
+  1595  04A1  0AB3               	incf	??___ftge+5,f
+  1596  04A2  0831               	movf	??___ftge+3,w
+  1597  04A3  07AE               	addwf	??___ftge,f
+  1598  04A4  0832               	movf	??___ftge+4,w
+  1599  04A5  1803               	skipnc
+  1600  04A6  0F32               	incfsz	??___ftge+4,w
+  1601  04A7  2CA9               	goto	u881
+  1602  04A8  2CAA               	goto	u882
+  1603  04A9                     u881:	
+  1604  04A9  07AF               	addwf	??___ftge+1,f
+  1605  04AA                     u882:	
+  1606  04AA  0833               	movf	??___ftge+5,w
+  1607  04AB  1803               	skipnc
+  1608  04AC  0F33               	incfsz	??___ftge+5,w
+  1609  04AD  2CAF               	goto	u883
+  1610  04AE  2CB0               	goto	u884
+  1611  04AF                     u883:	
+  1612  04AF  07B0               	addwf	??___ftge+2,f
+  1613  04B0                     u884:	
+  1614  04B0  082E               	movf	??___ftge,w
+  1615  04B1  00AB               	movwf	___ftge@ff2
+  1616  04B2  082F               	movf	??___ftge+1,w
+  1617  04B3  00AC               	movwf	___ftge@ff2+1
+  1618  04B4  0830               	movf	??___ftge+2,w
+  1619  04B5  00AD               	movwf	___ftge@ff2+2
+  1620  04B6                     l997:	
+  1621  04B6  3080               	movlw	128
+  1622  04B7  06AA               	xorwf	___ftge@ff1+2,f
+  1623  04B8  3080               	movlw	128
+  1624  04B9  06AD               	xorwf	___ftge@ff2+2,f
+  1625  04BA  082D               	movf	___ftge@ff2+2,w
+  1626  04BB  022A               	subwf	___ftge@ff1+2,w
+  1627  04BC  1D03               	skipz
+  1628  04BD  0008               	return
+  1629  04BE  082C               	movf	___ftge@ff2+1,w
+  1630  04BF  0229               	subwf	___ftge@ff1+1,w
+  1631  04C0  1D03               	skipz
+  1632  04C1  0008               	return
+  1633  04C2  082B               	movf	___ftge@ff2,w
+  1634  04C3  0228               	subwf	___ftge@ff1,w
+  1635  04C4  0008               	return
+  1636  04C5                     __end_of___ftge:	
+  1637                           
+  1638                           	psect	text4
+  1639  033C                     __ptext4:	
+  1640 ;; *************** function ___ftdiv *****************
+  1641 ;; Defined at:
+  1642 ;;		line 56 in file "/opt/microchip/xc8/v1.45/sources/common/ftdiv.c"
+  1643 ;; Parameters:    Size  Location     Type
+  1644 ;;  f2              3   24[BANK0 ] float 
+  1645 ;;  f1              3   27[BANK0 ] float 
+  1646 ;; Auto vars:     Size  Location     Type
+  1647 ;;  f3              3   35[BANK0 ] float 
+  1648 ;;  sign            1   39[BANK0 ] unsigned char 
+  1649 ;;  exp             1   38[BANK0 ] unsigned char 
+  1650 ;;  cntr            1   34[BANK0 ] unsigned char 
+  1651 ;; Return value:  Size  Location     Type
+  1652 ;;                  3   24[BANK0 ] float 
+  1653 ;; Registers used:
+  1654 ;;		wreg, status,2, status,0, pclath, cstack
+  1655 ;; Tracked objects:
+  1656 ;;		On entry : 0/0
+  1657 ;;		On exit  : 0/0
+  1658 ;;		Unchanged: 0/0
+  1659 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1660 ;;      Params:         0       6       0       0       0
+  1661 ;;      Locals:         0       6       0       0       0
+  1662 ;;      Temps:          0       4       0       0       0
+  1663 ;;      Totals:         0      16       0       0       0
+  1664 ;;Total ram usage:       16 bytes
+  1665 ;; Hardware stack levels used:    1
+  1666 ;; Hardware stack levels required when called:    2
+  1667 ;; This function calls:
+  1668 ;;		___ftpack
+  1669 ;; This function is called by:
+  1670 ;;		_main
+  1671 ;; This function uses a non-reentrant model
+  1672 ;;
+  1673                           
+  1674                           
+  1675                           ;psect for function ___ftdiv
+  1676  033C                     ___ftdiv:	
+  1677                           
+  1678                           ;incstack = 0
+  1679                           ; Regs used in ___ftdiv: [wreg+status,2+status,0+pclath+cstack]
+  1680  033C  1283               	bcf	3,5	;RP0=0, select bank0
+  1681  033D  1303               	bcf	3,6	;RP1=0, select bank0
+  1682  033E  083B               	movf	___ftdiv@f1,w
+  1683  033F  00BE               	movwf	??___ftdiv
+  1684  0340  083C               	movf	___ftdiv@f1+1,w
+  1685  0341  00BF               	movwf	??___ftdiv+1
+  1686  0342  083D               	movf	___ftdiv@f1+2,w
+  1687  0343  00C0               	movwf	??___ftdiv+2
+  1688  0344  1003               	clrc
+  1689  0345  0D3F               	rlf	??___ftdiv+1,w
+  1690  0346  0D40               	rlf	??___ftdiv+2,w
+  1691  0347  00C1               	movwf	??___ftdiv+3
+  1692  0348  0841               	movf	??___ftdiv+3,w
+  1693  0349  00C6               	movwf	___ftdiv@exp
+  1694  034A  0846               	movf	___ftdiv@exp,w
+  1695  034B  1D03               	btfss	3,2
+  1696  034C  2B54               	goto	l953
+  1697  034D  3000               	movlw	0
+  1698  034E  00B8               	movwf	?___ftdiv
+  1699  034F  3000               	movlw	0
+  1700  0350  00B9               	movwf	?___ftdiv+1
+  1701  0351  3000               	movlw	0
+  1702  0352  00BA               	movwf	?___ftdiv+2
+  1703  0353  0008               	return
+  1704  0354                     l953:	
+  1705  0354  0838               	movf	___ftdiv@f2,w
+  1706  0355  00BE               	movwf	??___ftdiv
+  1707  0356  0839               	movf	___ftdiv@f2+1,w
+  1708  0357  00BF               	movwf	??___ftdiv+1
+  1709  0358  083A               	movf	___ftdiv@f2+2,w
+  1710  0359  00C0               	movwf	??___ftdiv+2
+  1711  035A  1003               	clrc
+  1712  035B  0D3F               	rlf	??___ftdiv+1,w
+  1713  035C  0D40               	rlf	??___ftdiv+2,w
+  1714  035D  00C1               	movwf	??___ftdiv+3
+  1715  035E  0841               	movf	??___ftdiv+3,w
+  1716  035F  00C7               	movwf	___ftdiv@sign
+  1717  0360  0847               	movf	___ftdiv@sign,w
+  1718  0361  1D03               	btfss	3,2
+  1719  0362  2B6A               	goto	l959
+  1720  0363  3000               	movlw	0
+  1721  0364  00B8               	movwf	?___ftdiv
+  1722  0365  3000               	movlw	0
+  1723  0366  00B9               	movwf	?___ftdiv+1
+  1724  0367  3000               	movlw	0
+  1725  0368  00BA               	movwf	?___ftdiv+2
+  1726  0369  0008               	return
+  1727  036A                     l959:	
+  1728  036A  3000               	movlw	0
+  1729  036B  00C3               	movwf	___ftdiv@f3
+  1730  036C  3000               	movlw	0
+  1731  036D  00C4               	movwf	___ftdiv@f3+1
+  1732  036E  3000               	movlw	0
+  1733  036F  00C5               	movwf	___ftdiv@f3+2
+  1734  0370  3089               	movlw	137
+  1735  0371  0747               	addwf	___ftdiv@sign,w
+  1736  0372  00BE               	movwf	??___ftdiv
+  1737  0373  083E               	movf	??___ftdiv,w
+  1738  0374  02C6               	subwf	___ftdiv@exp,f
+  1739  0375  083B               	movf	___ftdiv@f1,w
+  1740  0376  00BE               	movwf	??___ftdiv
+  1741  0377  083C               	movf	___ftdiv@f1+1,w
+  1742  0378  00BF               	movwf	??___ftdiv+1
+  1743  0379  083D               	movf	___ftdiv@f1+2,w
+  1744  037A  00C0               	movwf	??___ftdiv+2
+  1745  037B  3010               	movlw	16
+  1746  037C                     u795:	
+  1747  037C  1003               	clrc
+  1748  037D  0CC0               	rrf	??___ftdiv+2,f
+  1749  037E  0CBF               	rrf	??___ftdiv+1,f
+  1750  037F  0CBE               	rrf	??___ftdiv,f
+  1751  0380  3EFF               	addlw	-1
+  1752  0381  1D03               	skipz
+  1753  0382  2B7C               	goto	u795
+  1754  0383  083E               	movf	??___ftdiv,w
+  1755  0384  00C1               	movwf	??___ftdiv+3
+  1756  0385  0841               	movf	??___ftdiv+3,w
+  1757  0386  00C7               	movwf	___ftdiv@sign
+  1758  0387  0838               	movf	___ftdiv@f2,w
+  1759  0388  00BE               	movwf	??___ftdiv
+  1760  0389  0839               	movf	___ftdiv@f2+1,w
+  1761  038A  00BF               	movwf	??___ftdiv+1
+  1762  038B  083A               	movf	___ftdiv@f2+2,w
+  1763  038C  00C0               	movwf	??___ftdiv+2
+  1764  038D  3010               	movlw	16
+  1765  038E                     u805:	
+  1766  038E  1003               	clrc
+  1767  038F  0CC0               	rrf	??___ftdiv+2,f
+  1768  0390  0CBF               	rrf	??___ftdiv+1,f
+  1769  0391  0CBE               	rrf	??___ftdiv,f
+  1770  0392  3EFF               	addlw	-1
+  1771  0393  1D03               	skipz
+  1772  0394  2B8E               	goto	u805
+  1773  0395  083E               	movf	??___ftdiv,w
+  1774  0396  00C1               	movwf	??___ftdiv+3
+  1775  0397  0841               	movf	??___ftdiv+3,w
+  1776  0398  06C7               	xorwf	___ftdiv@sign,f
+  1777  0399  3080               	movlw	128
+  1778  039A  00BE               	movwf	??___ftdiv
+  1779  039B  083E               	movf	??___ftdiv,w
+  1780  039C  05C7               	andwf	___ftdiv@sign,f
+  1781  039D  17BC               	bsf	___ftdiv@f1+1,7
+  1782  039E  30FF               	movlw	255
+  1783  039F  05BB               	andwf	___ftdiv@f1,f
+  1784  03A0  30FF               	movlw	255
+  1785  03A1  05BC               	andwf	___ftdiv@f1+1,f
+  1786  03A2  3000               	movlw	0
+  1787  03A3  05BD               	andwf	___ftdiv@f1+2,f
+  1788  03A4  17B9               	bsf	___ftdiv@f2+1,7
+  1789  03A5  30FF               	movlw	255
+  1790  03A6  05B8               	andwf	___ftdiv@f2,f
+  1791  03A7  30FF               	movlw	255
+  1792  03A8  05B9               	andwf	___ftdiv@f2+1,f
+  1793  03A9  3000               	movlw	0
+  1794  03AA  05BA               	andwf	___ftdiv@f2+2,f
+  1795  03AB  3018               	movlw	24
+  1796  03AC  00BE               	movwf	??___ftdiv
+  1797  03AD  083E               	movf	??___ftdiv,w
+  1798  03AE  00C2               	movwf	___ftdiv@cntr
+  1799  03AF                     l973:	
+  1800  03AF  3001               	movlw	1
+  1801  03B0                     u815:	
+  1802  03B0  1003               	clrc
+  1803  03B1  0DC3               	rlf	___ftdiv@f3,f
+  1804  03B2  0DC4               	rlf	___ftdiv@f3+1,f
+  1805  03B3  0DC5               	rlf	___ftdiv@f3+2,f
+  1806  03B4  3EFF               	addlw	-1
+  1807  03B5  1D03               	skipz
+  1808  03B6  2BB0               	goto	u815
+  1809  03B7  083A               	movf	___ftdiv@f2+2,w
+  1810  03B8  023D               	subwf	___ftdiv@f1+2,w
+  1811  03B9  1D03               	skipz
+  1812  03BA  2BC1               	goto	u825
+  1813  03BB  0839               	movf	___ftdiv@f2+1,w
+  1814  03BC  023C               	subwf	___ftdiv@f1+1,w
+  1815  03BD  1D03               	skipz
+  1816  03BE  2BC1               	goto	u825
+  1817  03BF  0838               	movf	___ftdiv@f2,w
+  1818  03C0  023B               	subwf	___ftdiv@f1,w
+  1819  03C1                     u825:	
+  1820  03C1  1C03               	skipc
+  1821  03C2  2BCE               	goto	l981
+  1822  03C3  0838               	movf	___ftdiv@f2,w
+  1823  03C4  02BB               	subwf	___ftdiv@f1,f
+  1824  03C5  0839               	movf	___ftdiv@f2+1,w
+  1825  03C6  1C03               	skipc
+  1826  03C7  0F39               	incfsz	___ftdiv@f2+1,w
+  1827  03C8  02BC               	subwf	___ftdiv@f1+1,f
+  1828  03C9  083A               	movf	___ftdiv@f2+2,w
+  1829  03CA  1C03               	skipc
+  1830  03CB  0A3A               	incf	___ftdiv@f2+2,w
+  1831  03CC  02BD               	subwf	___ftdiv@f1+2,f
+  1832  03CD  1443               	bsf	___ftdiv@f3,0
+  1833  03CE                     l981:	
+  1834  03CE  3001               	movlw	1
+  1835  03CF                     u835:	
+  1836  03CF  1003               	clrc
+  1837  03D0  0DBB               	rlf	___ftdiv@f1,f
+  1838  03D1  0DBC               	rlf	___ftdiv@f1+1,f
+  1839  03D2  0DBD               	rlf	___ftdiv@f1+2,f
+  1840  03D3  3EFF               	addlw	-1
+  1841  03D4  1D03               	skipz
+  1842  03D5  2BCF               	goto	u835
+  1843  03D6  3001               	movlw	1
+  1844  03D7  02C2               	subwf	___ftdiv@cntr,f
+  1845  03D8  1D03               	btfss	3,2
+  1846  03D9  2BAF               	goto	l973
+  1847  03DA  0843               	movf	___ftdiv@f3,w
+  1848  03DB  00F4               	movwf	___ftpack@arg
+  1849  03DC  0844               	movf	___ftdiv@f3+1,w
+  1850  03DD  00F5               	movwf	___ftpack@arg+1
+  1851  03DE  0845               	movf	___ftdiv@f3+2,w
+  1852  03DF  00F6               	movwf	___ftpack@arg+2
+  1853  03E0  0846               	movf	___ftdiv@exp,w
+  1854  03E1  00BE               	movwf	??___ftdiv
+  1855  03E2  083E               	movf	??___ftdiv,w
+  1856  03E3  00F7               	movwf	___ftpack@exp
+  1857  03E4  0847               	movf	___ftdiv@sign,w
+  1858  03E5  00BF               	movwf	??___ftdiv+1
+  1859  03E6  083F               	movf	??___ftdiv+1,w
+  1860  03E7  00F8               	movwf	___ftpack@sign
+  1861  03E8  120A  118A  23F4   	fcall	___ftpack
+  1862  03EB  0874               	movf	?___ftpack,w
+  1863  03EC  1283               	bcf	3,5	;RP0=0, select bank0
+  1864  03ED  1303               	bcf	3,6	;RP1=0, select bank0
+  1865  03EE  00B8               	movwf	?___ftdiv
+  1866  03EF  0875               	movf	?___ftpack+1,w
+  1867  03F0  00B9               	movwf	?___ftdiv+1
+  1868  03F1  0876               	movf	?___ftpack+2,w
+  1869  03F2  00BA               	movwf	?___ftdiv+2
+  1870  03F3  0008               	return
+  1871  03F4                     __end_of___ftdiv:	
+  1872                           
+  1873                           	psect	text5
+  1874  04F4                     __ptext5:	
+  1875 ;; *************** function ___awtoft *****************
+  1876 ;; Defined at:
+  1877 ;;		line 32 in file "/opt/microchip/xc8/v1.45/sources/common/awtoft.c"
+  1878 ;; Parameters:    Size  Location     Type
+  1879 ;;  c               2    3[BANK0 ] int 
+  1880 ;; Auto vars:     Size  Location     Type
+  1881 ;;  sign            1    9[COMMON] unsigned char 
+  1882 ;; Return value:  Size  Location     Type
+  1883 ;;                  3    3[BANK0 ] float 
+  1884 ;; Registers used:
+  1885 ;;		wreg, status,2, status,0, pclath, cstack
+  1886 ;; Tracked objects:
+  1887 ;;		On entry : 0/0
+  1888 ;;		On exit  : 0/0
+  1889 ;;		Unchanged: 0/0
+  1890 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1891 ;;      Params:         0       3       0       0       0
+  1892 ;;      Locals:         1       0       0       0       0
+  1893 ;;      Temps:          0       2       0       0       0
+  1894 ;;      Totals:         1       5       0       0       0
+  1895 ;;Total ram usage:        6 bytes
+  1896 ;; Hardware stack levels used:    1
+  1897 ;; Hardware stack levels required when called:    2
+  1898 ;; This function calls:
+  1899 ;;		___ftpack
+  1900 ;; This function is called by:
+  1901 ;;		_main
+  1902 ;; This function uses a non-reentrant model
+  1903 ;;
+  1904                           
+  1905                           
+  1906                           ;psect for function ___awtoft
+  1907  04F4                     ___awtoft:	
+  1908                           
+  1909                           ;incstack = 0
+  1910                           ; Regs used in ___awtoft: [wreg+status,2+status,0+pclath+cstack]
+  1911  04F4  01F9               	clrf	___awtoft@sign
+  1912  04F5  1283               	bcf	3,5	;RP0=0, select bank0
+  1913  04F6  1303               	bcf	3,6	;RP1=0, select bank0
+  1914  04F7  1FA4               	btfss	___awtoft@c+1,7
+  1915  04F8  2D00               	goto	l943
+  1916  04F9  09A3               	comf	___awtoft@c,f
+  1917  04FA  09A4               	comf	___awtoft@c+1,f
+  1918  04FB  0AA3               	incf	___awtoft@c,f
+  1919  04FC  1903               	skipnz
+  1920  04FD  0AA4               	incf	___awtoft@c+1,f
+  1921  04FE  01F9               	clrf	___awtoft@sign
+  1922  04FF  0AF9               	incf	___awtoft@sign,f
+  1923  0500                     l943:	
+  1924  0500  0823               	movf	___awtoft@c,w
+  1925  0501  00F4               	movwf	___ftpack@arg
+  1926  0502  0824               	movf	___awtoft@c+1,w
+  1927  0503  00F5               	movwf	___ftpack@arg+1
+  1928  0504  01F6               	clrf	___ftpack@arg+2
+  1929  0505  308E               	movlw	142
+  1930  0506  00A6               	movwf	??___awtoft
+  1931  0507  0826               	movf	??___awtoft,w
+  1932  0508  00F7               	movwf	___ftpack@exp
+  1933  0509  0879               	movf	___awtoft@sign,w
+  1934  050A  00A7               	movwf	??___awtoft+1
+  1935  050B  0827               	movf	??___awtoft+1,w
+  1936  050C  00F8               	movwf	___ftpack@sign
+  1937  050D  120A  118A  23F4   	fcall	___ftpack
+  1938  0510  0874               	movf	?___ftpack,w
+  1939  0511  1283               	bcf	3,5	;RP0=0, select bank0
+  1940  0512  1303               	bcf	3,6	;RP1=0, select bank0
+  1941  0513  00A3               	movwf	?___awtoft
+  1942  0514  0875               	movf	?___ftpack+1,w
+  1943  0515  00A4               	movwf	?___awtoft+1
+  1944  0516  0876               	movf	?___ftpack+2,w
+  1945  0517  00A5               	movwf	?___awtoft+2
+  1946  0518  0008               	return
+  1947  0519                     __end_of___awtoft:	
+  1948                           
+  1949                           	psect	text6
+  1950  03F4                     __ptext6:	
+  1951 ;; *************** function ___ftpack *****************
+  1952 ;; Defined at:
+  1953 ;;		line 62 in file "/opt/microchip/xc8/v1.45/sources/common/float.c"
+  1954 ;; Parameters:    Size  Location     Type
+  1955 ;;  arg             3    4[COMMON] unsigned um
+  1956 ;;  exp             1    7[COMMON] unsigned char 
+  1957 ;;  sign            1    8[COMMON] unsigned char 
+  1958 ;; Auto vars:     Size  Location     Type
+  1959 ;;		None
+  1960 ;; Return value:  Size  Location     Type
+  1961 ;;                  3    4[COMMON] float 
+  1962 ;; Registers used:
+  1963 ;;		wreg, status,2, status,0
+  1964 ;; Tracked objects:
+  1965 ;;		On entry : 0/0
+  1966 ;;		On exit  : 0/0
+  1967 ;;		Unchanged: 0/0
+  1968 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1969 ;;      Params:         5       0       0       0       0
+  1970 ;;      Locals:         0       0       0       0       0
+  1971 ;;      Temps:          0       3       0       0       0
+  1972 ;;      Totals:         5       3       0       0       0
+  1973 ;;Total ram usage:        8 bytes
+  1974 ;; Hardware stack levels used:    1
+  1975 ;; Hardware stack levels required when called:    1
+  1976 ;; This function calls:
+  1977 ;;		Nothing
+  1978 ;; This function is called by:
+  1979 ;;		___awtoft
+  1980 ;;		___ftdiv
+  1981 ;;		___ftmul
+  1982 ;;		___lltoft
+  1983 ;; This function uses a non-reentrant model
+  1984 ;;
+  1985                           
+  1986                           
+  1987                           ;psect for function ___ftpack
+  1988  03F4                     ___ftpack:	
+  1989                           
+  1990                           ;incstack = 0
+  1991                           ; Regs used in ___ftpack: [wreg+status,2+status,0]
+  1992  03F4  0877               	movf	___ftpack@exp,w
+  1993  03F5  1903               	btfsc	3,2
+  1994  03F6  2BFC               	goto	l907
+  1995  03F7  0876               	movf	___ftpack@arg+2,w
+  1996  03F8  0475               	iorwf	___ftpack@arg+1,w
+  1997  03F9  0474               	iorwf	___ftpack@arg,w
+  1998  03FA  1D03               	skipz
+  1999  03FB  2C11               	goto	l913
+  2000  03FC                     l907:	
+  2001  03FC  3000               	movlw	0
+  2002  03FD  00F4               	movwf	?___ftpack
+  2003  03FE  3000               	movlw	0
+  2004  03FF  00F5               	movwf	?___ftpack+1
+  2005  0400  3000               	movlw	0
+  2006  0401  00F6               	movwf	?___ftpack+2
+  2007  0402  0008               	return
+  2008  0403                     l911:	
+  2009  0403  3001               	movlw	1
+  2010  0404  1283               	bcf	3,5	;RP0=0, select bank0
+  2011  0405  1303               	bcf	3,6	;RP1=0, select bank0
+  2012  0406  00A0               	movwf	??___ftpack
+  2013  0407  0820               	movf	??___ftpack,w
+  2014  0408  07F7               	addwf	___ftpack@exp,f
+  2015  0409  3001               	movlw	1
+  2016  040A                     u665:	
+  2017  040A  1003               	clrc
+  2018  040B  0CF6               	rrf	___ftpack@arg+2,f
+  2019  040C  0CF5               	rrf	___ftpack@arg+1,f
+  2020  040D  0CF4               	rrf	___ftpack@arg,f
+  2021  040E  3EFF               	addlw	-1
+  2022  040F  1D03               	skipz
+  2023  0410  2C0A               	goto	u665
+  2024  0411                     l913:	
+  2025  0411  30FE               	movlw	254
+  2026  0412  0576               	andwf	___ftpack@arg+2,w
+  2027  0413  1903               	btfsc	3,2
+  2028  0414  2C2E               	goto	l324
+  2029  0415  2C03               	goto	l911
+  2030  0416                     l915:	
+  2031  0416  3001               	movlw	1
+  2032  0417  1283               	bcf	3,5	;RP0=0, select bank0
+  2033  0418  1303               	bcf	3,6	;RP1=0, select bank0
+  2034  0419  00A0               	movwf	??___ftpack
+  2035  041A  0820               	movf	??___ftpack,w
+  2036  041B  07F7               	addwf	___ftpack@exp,f
+  2037  041C  3001               	movlw	1
+  2038  041D  07F4               	addwf	___ftpack@arg,f
+  2039  041E  3000               	movlw	0
+  2040  041F  1803               	skipnc
+  2041  0420  3001               	movlw	1
+  2042  0421  07F5               	addwf	___ftpack@arg+1,f
+  2043  0422  3000               	movlw	0
+  2044  0423  1803               	skipnc
+  2045  0424  3001               	movlw	1
+  2046  0425  07F6               	addwf	___ftpack@arg+2,f
+  2047  0426  3001               	movlw	1
+  2048  0427                     u685:	
+  2049  0427  1003               	clrc
+  2050  0428  0CF6               	rrf	___ftpack@arg+2,f
+  2051  0429  0CF5               	rrf	___ftpack@arg+1,f
+  2052  042A  0CF4               	rrf	___ftpack@arg,f
+  2053  042B  3EFF               	addlw	-1
+  2054  042C  1D03               	skipz
+  2055  042D  2C27               	goto	u685
+  2056  042E                     l324:	
+  2057  042E  30FF               	movlw	255
+  2058  042F  0576               	andwf	___ftpack@arg+2,w
+  2059  0430  1903               	btfsc	3,2
+  2060  0431  2C3D               	goto	l923
+  2061  0432  2C16               	goto	l915
+  2062  0433                     l921:	
+  2063  0433  3001               	movlw	1
+  2064  0434  02F7               	subwf	___ftpack@exp,f
+  2065  0435  3001               	movlw	1
+  2066  0436                     u705:	
+  2067  0436  1003               	clrc
+  2068  0437  0DF4               	rlf	___ftpack@arg,f
+  2069  0438  0DF5               	rlf	___ftpack@arg+1,f
+  2070  0439  0DF6               	rlf	___ftpack@arg+2,f
+  2071  043A  3EFF               	addlw	-1
+  2072  043B  1D03               	skipz
+  2073  043C  2C36               	goto	u705
+  2074  043D                     l923:	
+  2075  043D  1BF5               	btfsc	___ftpack@arg+1,7
+  2076  043E  2C43               	goto	l331
+  2077  043F  3002               	movlw	2
+  2078  0440  0277               	subwf	___ftpack@exp,w
+  2079  0441  1803               	skipnc
+  2080  0442  2C33               	goto	l921
+  2081  0443                     l331:	
+  2082  0443  1877               	btfsc	___ftpack@exp,0
+  2083  0444  2C4B               	goto	l332
+  2084  0445  30FF               	movlw	255
+  2085  0446  05F4               	andwf	___ftpack@arg,f
+  2086  0447  307F               	movlw	127
+  2087  0448  05F5               	andwf	___ftpack@arg+1,f
+  2088  0449  30FF               	movlw	255
+  2089  044A  05F6               	andwf	___ftpack@arg+2,f
+  2090  044B                     l332:	
+  2091  044B  1003               	clrc
+  2092  044C  0CF7               	rrf	___ftpack@exp,f
+  2093  044D  0877               	movf	___ftpack@exp,w
+  2094  044E  1283               	bcf	3,5	;RP0=0, select bank0
+  2095  044F  1303               	bcf	3,6	;RP1=0, select bank0
+  2096  0450  00A0               	movwf	??___ftpack
+  2097  0451  01A1               	clrf	??___ftpack+1
+  2098  0452  01A2               	clrf	??___ftpack+2
+  2099  0453  3010               	movlw	16
+  2100  0454                     u745:	
+  2101  0454  1003               	clrc
+  2102  0455  0DA0               	rlf	??___ftpack,f
+  2103  0456  0DA1               	rlf	??___ftpack+1,f
+  2104  0457  0DA2               	rlf	??___ftpack+2,f
+  2105  0458  3EFF               	addlw	-1
+  2106  0459  1D03               	skipz
+  2107  045A  2C54               	goto	u745
+  2108  045B  0820               	movf	??___ftpack,w
+  2109  045C  04F4               	iorwf	___ftpack@arg,f
+  2110  045D  0821               	movf	??___ftpack+1,w
+  2111  045E  04F5               	iorwf	___ftpack@arg+1,f
+  2112  045F  0822               	movf	??___ftpack+2,w
+  2113  0460  04F6               	iorwf	___ftpack@arg+2,f
+  2114  0461  0878               	movf	___ftpack@sign,w
+  2115  0462  1903               	btfsc	3,2
+  2116  0463  0008               	return
+  2117  0464  17F6               	bsf	___ftpack@arg+2,7
+  2118  0465  0008               	return
+  2119  0466                     __end_of___ftpack:	
+  2120                           
+  2121                           	psect	text7
+  2122  0519                     __ptext7:	
+  2123 ;; *************** function _timer_0 *****************
+  2124 ;; Defined at:
+  2125 ;;		line 162 in file "test_IO.c"
+  2126 ;; Parameters:    Size  Location     Type
+  2127 ;;		None
+  2128 ;; Auto vars:     Size  Location     Type
+  2129 ;;		None
+  2130 ;; Return value:  Size  Location     Type
+  2131 ;;                  1    wreg      void 
+  2132 ;; Registers used:
+  2133 ;;		wreg, status,2, status,0
+  2134 ;; Tracked objects:
+  2135 ;;		On entry : 0/0
+  2136 ;;		On exit  : 0/0
+  2137 ;;		Unchanged: 0/0
+  2138 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2139 ;;      Params:         0       0       0       0       0
+  2140 ;;      Locals:         0       0       0       0       0
+  2141 ;;      Temps:          4       0       0       0       0
+  2142 ;;      Totals:         4       0       0       0       0
+  2143 ;;Total ram usage:        4 bytes
+  2144 ;; Hardware stack levels used:    1
+  2145 ;; This function calls:
+  2146 ;;		Nothing
+  2147 ;; This function is called by:
+  2148 ;;		Interrupt level 1
+  2149 ;; This function uses a non-reentrant model
+  2150 ;;
+  2151                           
+  2152                           
+  2153                           ;psect for function _timer_0
+  2154  0519                     _timer_0:	
+  2155                           
+  2156                           ;test_IO.c: 165: if(INTCONbits.T0IF == 1)
+  2157  0519  1D0B               	btfss	11,2	;volatile
+  2158  051A  2D2F               	goto	i1l79
+  2159                           
+  2160                           ;test_IO.c: 166: {
+  2161                           ;test_IO.c: 167: PORTBbits.RB4 = ~PORTBbits.RB4;
+  2162  051B  1003               	clrc
+  2163  051C  1E06               	btfss	6,4	;volatile
+  2164  051D  1403               	setc
+  2165  051E  1C03               	btfss	3,0
+  2166  051F  2D24               	goto	u125_20
+  2167  0520  1283               	bcf	3,5	;RP0=0, select bank0
+  2168  0521  1303               	bcf	3,6	;RP1=0, select bank0
+  2169  0522  1606               	bsf	6,4	;volatile
+  2170  0523  2D27               	goto	i1l1211
+  2171  0524                     u125_20:	
+  2172  0524  1283               	bcf	3,5	;RP0=0, select bank0
+  2173  0525  1303               	bcf	3,6	;RP1=0, select bank0
+  2174  0526  1206               	bcf	6,4	;volatile
+  2175  0527                     i1l1211:	
+  2176                           
+  2177                           ;test_IO.c: 168: TMR0 = 0;
+  2178  0527  0181               	clrf	1	;volatile
+  2179                           
+  2180                           ;test_IO.c: 169: INTCONbits.T0IF = 0;
+  2181  0528  110B               	bcf	11,2	;volatile
+  2182                           
+  2183                           ;test_IO.c: 170: timer++;
+  2184  0529  3001               	movlw	1
+  2185  052A  07E0               	addwf	_timer,f
+  2186  052B  1803               	skipnc
+  2187  052C  0AE1               	incf	_timer+1,f
+  2188  052D  3000               	movlw	0
+  2189  052E  07E1               	addwf	_timer+1,f
+  2190  052F                     i1l79:	
+  2191  052F  0873               	movf	??_timer_0+3,w
+  2192  0530  00FF               	movwf	127
+  2193  0531  0872               	movf	??_timer_0+2,w
+  2194  0532  008A               	movwf	10
+  2195  0533  0871               	movf	??_timer_0+1,w
+  2196  0534  0084               	movwf	4
+  2197  0535  0E70               	swapf	??_timer_0^(0+-128),w
+  2198  0536  0083               	movwf	3
+  2199  0537  0EFE               	swapf	126,f
+  2200  0538  0E7E               	swapf	126,w
+  2201  0539  0009               	retfie
+  2202  053A                     __end_of_timer_0:	
+  2203  007E                     btemp	set	126	;btemp
+  2204  007E                     wtemp0	set	126
+  2205                           
+  2206                           	psect	intentry
+  2207  0004                     __pintentry:	
+  2208                           ;incstack = 0
+  2209                           ; Regs used in _timer_0: [wreg+status,2+status,0]
+  2210                           
+  2211  0004                     interrupt_function:	
+  2212  007E                     saved_w	set	btemp
+  2213  0004  00FE               	movwf	btemp
+  2214  0005  0E03               	swapf	3,w
+  2215  0006  00F0               	movwf	??_timer_0
+  2216  0007  0804               	movf	4,w
+  2217  0008  00F1               	movwf	??_timer_0+1
+  2218  0009  080A               	movf	10,w
+  2219  000A  00F2               	movwf	??_timer_0+2
+  2220  000B  1283               	bcf	3,5	;RP0=0, select bank0
+  2221  000C  1303               	bcf	3,6	;RP1=0, select bank0
+  2222  000D  087F               	movf	btemp+1,w
+  2223  000E  00F3               	movwf	??_timer_0+3
+  2224  000F  120A  118A  2D19   	ljmp	_timer_0
 
 
 Data Sizes:
     Strings     0
     Constant    0
     Data        0
-    BSS         0
+    BSS         2
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      3       3
-    BANK0            80     12      12
+    COMMON           14     10      10
+    BANK0            80     64      66
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            96      0       0
@@ -693,9 +2261,28 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
+    _main->___awtoft
+    _main->___lltoft
+    ___lltoft->___ftpack
+    ___ftmul->___lltoft
+    ___ftge->___awtoft
+    ___ftdiv->___lltoft
+    ___awtoft->___ftpack
+
+Critical Paths under _timer_0 in COMMON
+
     None.
 
 Critical Paths under _main in BANK0
+
+    _main->___ftdiv
+    ___lltoft->___ftpack
+    ___ftmul->___lltoft
+    ___ftge->___awtoft
+    ___ftdiv->___ftmul
+    ___awtoft->___ftpack
+
+Critical Paths under _timer_0 in BANK0
 
     None.
 
@@ -703,11 +2290,23 @@ Critical Paths under _main in BANK1
 
     None.
 
+Critical Paths under _timer_0 in BANK1
+
+    None.
+
 Critical Paths under _main in BANK3
 
     None.
 
+Critical Paths under _timer_0 in BANK3
+
+    None.
+
 Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _timer_0 in BANK2
 
     None.
 
@@ -716,16 +2315,80 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                15    15      0     390
-                                              0 COMMON     3     3      0
-                                              0 BANK0     12    12      0
+ (0) _main                                                24    24      0   11158
+                                             40 BANK0     24    24      0
+                           ___awtoft
+                            ___ftdiv
+                             ___ftge
+                            ___ftmul
+                           ___lltoft
  ---------------------------------------------------------------------------------
- Estimated maximum stack depth 0
+ (1) ___lltoft                                             6     2      4    2203
+                                              9 COMMON     1     1      0
+                                              3 BANK0      5     1      4
+                           ___ftpack
+ ---------------------------------------------------------------------------------
+ (1) ___ftmul                                             16    10      6    2652
+                                              8 BANK0     16    10      6
+                           ___ftpack
+                           ___ftpack (ARG)
+                           ___lltoft (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___ftge                                              12     6      6     776
+                                              8 BANK0     12     6      6
+                           ___awtoft (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___ftdiv                                             16    10      6    2606
+                                             24 BANK0     16    10      6
+                            ___ftmul (ARG)
+                           ___ftpack
+                           ___lltoft (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___awtoft                                             6     3      3    2481
+                                              9 COMMON     1     1      0
+                                              3 BANK0      5     2      3
+                           ___ftpack
+ ---------------------------------------------------------------------------------
+ (2) ___ftpack                                             8     3      5    2070
+                                              4 COMMON     5     0      5
+                                              0 BANK0      3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _timer_0                                              4     4      0       0
+                                              0 COMMON     4     4      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
+   ___awtoft
+     ___ftpack
+   ___ftdiv
+     ___ftmul (ARG)
+       ___ftpack
+       ___ftpack (ARG)
+       ___lltoft (ARG)
+         ___ftpack
+     ___ftpack (ARG)
+     ___lltoft (ARG)
+       ___ftpack
+   ___ftge
+     ___awtoft (ARG)
+       ___ftpack
+   ___ftmul
+     ___ftpack
+     ___ftpack (ARG)
+     ___lltoft (ARG)
+       ___ftpack
+   ___lltoft
+     ___ftpack
+
+ _timer_0 (ROOT)
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
@@ -733,17 +2396,17 @@ BITCOMMON            E      0       0       0        0.0%
 EEDATA             100      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-COMMON               E      3       3       1       21.4%
+COMMON               E      A       A       1       71.4%
 BITSFR0              0      0       0       1        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR1              0      0       0       2        0.0%
 SFR1                 0      0       0       2        0.0%
 STACK                0      0       0       2        0.0%
-ABS                  0      0       0       3        0.0%
+ABS                  0      0      4C       3        0.0%
 BITBANK0            50      0       0       4        0.0%
 BITSFR3              0      0       0       4        0.0%
 SFR3                 0      0       0       4        0.0%
-BANK0               50      C       C       5       15.0%
+BANK0               50     40      42       5       82.5%
 BITSFR2              0      0       0       5        0.0%
 SFR2                 0      0       0       5        0.0%
 BITBANK1            50      0       0       6        0.0%
@@ -752,30 +2415,75 @@ BITBANK3            60      0       0       8        0.0%
 BANK3               60      0       0       9        0.0%
 BITBANK2            60      0       0      10        0.0%
 BANK2               60      0       0      11        0.0%
-DATA                 0      0       0      12        0.0%
+DATA                 0      0      4C      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.45 build -152302408 
-Symbol Table                                                                                   Fri Feb 23 09:23:21 2018
+Symbol Table                                                                                   Fri Feb 23 10:39:37 2018
 
-            __CFG_CP$OFF 0000                      l643 0732                      l661 0762  
-                    l653 0757                      l629 0707                      l663 0764  
-                    l671 077F                      l639 072C                      l681 07BA  
-                    l737 076E                      l665 0766                      l657 075E  
-                    l691 07DF                      l659 0760                      l685 07C0  
-                    l677 07A8                      l669 0769                      l695 07F1  
-                    l687 07C2                      l699 07F9                      u225 074D  
-                    u245 0789                      u255 079F                      u265 07B4  
-                    u185 0722             __CFG_CPD$OFF 0000                      u285 07D6  
-                    u295 07EB              __CFG_WRT$ON 0000             __CFG_FOSC$HS 0000  
-           __CFG_LVP$OFF 0000                     _main 06EB                     btemp 007E  
-          __CFG_BOREN$ON 0000                     start 0000                    ?_main 0070  
-          __CFG_WDTE$OFF 0000                    _PORTC 0007                    _PORTD 0008  
-                  _TRISC 0087                    _TRISD 0088                    status 0003  
-                  wtemp0 007E          __initialization 07FC             __end_of_main 07FC  
-                 ??_main 0070           __CFG_PWRTE$OFF 0000   main@currentTemperature 0028  
-__end_of__initialization 07FC           __pcstackCOMMON 0070               __pmaintext 06EB  
-   end_of_initialization 07FC               main@goDown 0022      start_initialization 07FC  
-              ___latbits 0002            __pcstackBANK0 0020      main@toggleButtonRC0 0024  
-    main@toggleButtonRC1 0026            __size_of_main 0111                 main@goUp 0020  
-main@selectedTemperature 002A  
+            __CFG_CP$OFF 0000                       l43 007D                      l331 0443  
+                    l332 044B                      l324 042E                      l911 0403  
+                    l921 0433                      l913 0411                      l923 043D  
+                    l915 0416                      l907 03FC                      l943 0500  
+                    l953 0354                      l981 03CE                      l973 03AF  
+                    l959 036A                      l993 048F                      _GIE 005F  
+                    l997 04B6             __CFG_CPD$OFF 0000                      u705 0436  
+                    u805 038E                      u815 03B0                      u745 0454  
+                    u665 040A                      u825 03C1                      u835 03CF  
+                    u685 0427                      u861 0482                      u925 02A3  
+                    u862 0483                      u863 0488                      u935 02B5  
+                    u864 0489                      u881 04A9                      u882 04AA  
+                    u795 037C                      u883 04AF                      u884 04B0  
+                    u965 02E7                      u975 02EF              __CFG_WRT$ON 0000  
+                    fsr0 0004             __CFG_FOSC$HS 0000             __CFG_LVP$OFF 0000  
+           ___ftdiv@cntr 0042             ___ftdiv@sign 0047                     l1021 0297  
+                   l1015 0281                     l1033 02D6                     l1113 0069  
+                   l1045 02FE                     l1037 02E6                     l1117 007A  
+                   l1063 04CB                     l1143 014D                     l1049 030E  
+                   l1065 04DD                     l1161 017D                     l1153 0172  
+                   l1163 017F                     l1171 019A                     l1139 0147  
+                   l1181 0207                     l1165 0181                     l1157 0179  
+                   l1191 023A                     l1247 0189                     l1159 017B  
+                   l1185 020D                     l1177 01E3                     l1169 0184  
+                   l1195 025E                     l1187 020F                     l1199 0266  
+                   u1015 030F                     u1025 0317                     u1115 013D  
+                   u1045 04D0                     u1065 0074                     u1155 0168  
+                   u1277 0066                     u1287 011A                     i1l79 052F  
+                   _TMR0 0001                     _main 001D             ___ftpack@arg 0074  
+           ___ftpack@exp 0077                     btemp 007E              main@tension 004C  
+          __CFG_BOREN$ON 0000                     start 0012             ___ftmul@cntr 0036  
+           ___ftmul@sign 0037            main@ValeurADC 004F                    ?_main 0070  
+          __CFG_WDTE$OFF 0000          __end_of___ftdiv 03F4          __end_of___ftmul 033C  
+                  _PORTC 0007                    _PORTD 0008                    _TRISA 0085  
+                  _TRISC 0087                    _TRISD 0088             ___lltoft@exp 0027  
+          ___awtoft@sign 0079            ___ftpack@sign 0078                    _timer 0060  
+                  pclath 000A          __end_of_timer_0 053A                    status 0003  
+                  wtemp0 007E          __initialization 0015             __end_of_main 0269  
+                 ??_main 0048                   _ADCON0 001F                   _ADCON1 009F  
+                 _ADRESH 001E                   _ADRESL 009E         __end_of___awtoft 0519  
+       __end_of___ftpack 0466         __end_of___lltoft 04F4                   i1l1211 0527  
+                 u125_20 0524           __CFG_PWRTE$OFF 0000                   ___ftge 0466  
+              ??___ftdiv 003E                ??___ftmul 002E   main@currentTemperature 005B  
+  ___ftmul@f3_as_product 0033                   saved_w 007E                ??_timer_0 0070  
+__end_of__initialization 0019               ___ftge@ff1 0028               ___ftge@ff2 002B  
+             ___ftdiv@f1 003B               ___ftdiv@f2 0038               ___ftdiv@f3 0043  
+             ___awtoft@c 0023               ___ftmul@f1 0028               ___ftmul@f2 002B  
+         __pcstackCOMMON 0070               ___lltoft@c 0023           _OPTION_REGbits 0081  
+             __pbssBANK0 0060               __pmaintext 001D                  ?___ftge 0028  
+             __pintentry 0004                ?___awtoft 0023                ?___ftpack 0074  
+              ?___lltoft 0023          __size_of___ftge 005F                  ___ftdiv 033C  
+                ___ftmul 0269               ??___awtoft 0026               ??___ftpack 0020  
+             ??___lltoft 0079                  __ptext1 04C5                  __ptext2 0269  
+                __ptext3 0466                  __ptext4 033C                  __ptext5 04F4  
+                __ptext6 03F4                  __ptext7 0519                  _timer_0 0519  
+   end_of_initialization 0019                _PORTBbits 0006                _TRISBbits 0086  
+             main@goDown 0055              ___ftdiv@exp 0046              ___ftmul@exp 0032  
+         __end_of___ftge 04C5      start_initialization 0015                 ??___ftge 002E  
+      __size_of___awtoft 0025        __size_of___ftpack 0072        __size_of___lltoft 002F  
+              ___latbits 0002            __pcstackBANK0 0020                 ?___ftdiv 0038  
+               ?___ftmul 0028                 ?_timer_0 0070        interrupt_function 0004  
+    main@toggleButtonRC0 0057      main@toggleButtonRC1 0059               _ADCON0bits 001F  
+       __size_of___ftdiv 00B8         __size_of___ftmul 00D3                 ___awtoft 04F4  
+               ___ftpack 03F4                 ___lltoft 04C5         __size_of_timer_0 0021  
+          __size_of_main 024C                 main@goUp 0053               _INTCONbits 000B  
+               intlevel1 0000  main@selectedTemperature 005E  

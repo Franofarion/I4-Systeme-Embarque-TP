@@ -12,12 +12,22 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production/I4-Systeme-Embarque-TP.production.obj
-cinit CODE 0 7FC 7FC 4 2
-maintext CODE 0 6EB 6EB 111 2
-cstackCOMMON COMMON 1 70 70 3 1
-cstackBANK0 BANK0 1 20 20 C 1
-$/tmp/xcXHDJ9mw.obj
-end_init CODE 0 0 0 3 2
+cinit CODE 0 15 15 8 2
+text1 CODE 0 4C5 4C5 2F 2
+text2 CODE 0 269 269 D3 2
+text3 CODE 0 466 466 5F 2
+text4 CODE 0 33C 33C B8 2
+text5 CODE 0 4F4 4F4 25 2
+text6 CODE 0 3F4 3F4 72 2
+text7 CODE 0 519 519 21 2
+maintext CODE 0 1D 1D 24C 2
+cstackCOMMON COMMON 1 70 70 A 1
+cstackBANK0 BANK0 1 20 20 40 1
+intentry CODE 0 4 4 E 2
+bssBANK0 BANK0 1 60 60 2 1
+$/tmp/xcX7cizrL.obj
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 12 12 3 2
 config CONFIG 0 2007 2007 1 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -25,32 +35,32 @@ config CONFIG 0 2007 2007 1 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 2C-6F 1
+RAM 62-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 2C-6F 1
+BANK0 62-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 3-6EA 2
-CONST 800-1FFF 2
-ENTRY 3-6EA 2
-ENTRY 800-1FFF 2
+CONST 3-3 2
+CONST 53A-1FFF 2
+ENTRY 3-3 2
+ENTRY 53A-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
-CODE 3-6EA 2
-CODE 800-1FFF 2
+CODE 3-3 2
+CODE 53A-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 73-7D 1
+COMMON 7A-7D 1
 EEDATA 2100-21FF 2
-STRCODE 3-6EA 2
-STRCODE 800-1FFF 2
-STRING 3-6EA 2
-STRING 800-1FFF 2
+STRCODE 3-3 2
+STRCODE 53A-1FFF 2
+STRING 3-3 2
+STRING 53A-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -65,56 +75,184 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/I4-Systeme-Embarque-TP.production.obj
-7FC cinit CODE >171:/tmp/xcX7koM5P
-7FC cinit CODE >174:/tmp/xcX7koM5P
-7FC cinit CODE >180:/tmp/xcX7koM5P
-7FC cinit CODE >182:/tmp/xcX7koM5P
-7FD cinit CODE >183:/tmp/xcX7koM5P
-6EB maintext CODE >12:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6EB maintext CODE >14:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6F1 maintext CODE >15:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6F5 maintext CODE >16:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6F7 maintext CODE >17:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6F9 maintext CODE >20:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6FB maintext CODE >21:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-6FD maintext CODE >24:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-701 maintext CODE >25:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-703 maintext CODE >26:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-707 maintext CODE >34:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-70D maintext CODE >35:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-711 maintext CODE >36:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-724 maintext CODE >37:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-72C maintext CODE >41:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-730 maintext CODE >42:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-732 maintext CODE >46:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-738 maintext CODE >47:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-73C maintext CODE >48:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-74F maintext CODE >49:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-757 maintext CODE >53:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-75B maintext CODE >54:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-75D maintext CODE >58:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-75E maintext CODE >60:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-760 maintext CODE >63:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-762 maintext CODE >66:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-764 maintext CODE >69:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-766 maintext CODE >72:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-768 maintext CODE >74:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-769 maintext CODE >58:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-77F maintext CODE >76:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-78B maintext CODE >77:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7A1 maintext CODE >78:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7A8 maintext CODE >82:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7B6 maintext CODE >83:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7BA maintext CODE >85:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7C0 maintext CODE >90:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7C2 maintext CODE >94:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7D8 maintext CODE >95:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7DF maintext CODE >98:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7ED maintext CODE >99:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7F1 maintext CODE >102:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7F7 maintext CODE >103:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7F9 maintext CODE >105:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
-7FB maintext CODE >30:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+15 cinit CODE >208:/tmp/xcXsWmjQJ
+15 cinit CODE >211:/tmp/xcXsWmjQJ
+15 cinit CODE >222:/tmp/xcXsWmjQJ
+16 cinit CODE >223:/tmp/xcXsWmjQJ
+17 cinit CODE >224:/tmp/xcXsWmjQJ
+18 cinit CODE >225:/tmp/xcXsWmjQJ
+19 cinit CODE >231:/tmp/xcXsWmjQJ
+19 cinit CODE >233:/tmp/xcXsWmjQJ
+1A cinit CODE >234:/tmp/xcXsWmjQJ
+4 intentry CODE >162:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+519 text7 CODE >162:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+519 text7 CODE >165:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+51B text7 CODE >167:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+527 text7 CODE >168:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+528 text7 CODE >169:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+529 text7 CODE >170:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+52F text7 CODE >172:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+3F4 text6 CODE >62:/opt/microchip/xc8/v1.45/sources/common/float.c
+3F4 text6 CODE >64:/opt/microchip/xc8/v1.45/sources/common/float.c
+3FC text6 CODE >65:/opt/microchip/xc8/v1.45/sources/common/float.c
+403 text6 CODE >67:/opt/microchip/xc8/v1.45/sources/common/float.c
+409 text6 CODE >68:/opt/microchip/xc8/v1.45/sources/common/float.c
+411 text6 CODE >66:/opt/microchip/xc8/v1.45/sources/common/float.c
+416 text6 CODE >71:/opt/microchip/xc8/v1.45/sources/common/float.c
+41C text6 CODE >72:/opt/microchip/xc8/v1.45/sources/common/float.c
+426 text6 CODE >73:/opt/microchip/xc8/v1.45/sources/common/float.c
+42E text6 CODE >70:/opt/microchip/xc8/v1.45/sources/common/float.c
+42E text6 CODE >74:/opt/microchip/xc8/v1.45/sources/common/float.c
+433 text6 CODE >76:/opt/microchip/xc8/v1.45/sources/common/float.c
+435 text6 CODE >77:/opt/microchip/xc8/v1.45/sources/common/float.c
+43D text6 CODE >75:/opt/microchip/xc8/v1.45/sources/common/float.c
+443 text6 CODE >79:/opt/microchip/xc8/v1.45/sources/common/float.c
+445 text6 CODE >80:/opt/microchip/xc8/v1.45/sources/common/float.c
+44B text6 CODE >81:/opt/microchip/xc8/v1.45/sources/common/float.c
+44D text6 CODE >82:/opt/microchip/xc8/v1.45/sources/common/float.c
+461 text6 CODE >83:/opt/microchip/xc8/v1.45/sources/common/float.c
+464 text6 CODE >84:/opt/microchip/xc8/v1.45/sources/common/float.c
+465 text6 CODE >86:/opt/microchip/xc8/v1.45/sources/common/float.c
+4F4 text5 CODE >32:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+4F4 text5 CODE >36:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+4F5 text5 CODE >37:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+4F9 text5 CODE >38:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+4FE text5 CODE >39:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+500 text5 CODE >41:/opt/microchip/xc8/v1.45/sources/common/awtoft.c
+33C text4 CODE >56:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+33C text4 CODE >63:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+34D text4 CODE >64:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+354 text4 CODE >65:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+363 text4 CODE >66:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+36A text4 CODE >67:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+370 text4 CODE >68:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+375 text4 CODE >69:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+387 text4 CODE >70:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+399 text4 CODE >71:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+39D text4 CODE >72:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+39E text4 CODE >73:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3A4 text4 CODE >74:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3A5 text4 CODE >75:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3AB text4 CODE >76:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3AF text4 CODE >78:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3B7 text4 CODE >79:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3C3 text4 CODE >80:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3CD text4 CODE >81:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3CE text4 CODE >83:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3D6 text4 CODE >84:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+3DA text4 CODE >85:/opt/microchip/xc8/v1.45/sources/common/ftdiv.c
+466 text3 CODE >4:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+466 text3 CODE >6:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+46A text3 CODE >7:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+48F text3 CODE >8:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+491 text3 CODE >9:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+4B6 text3 CODE >10:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+4B8 text3 CODE >11:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+4BA text3 CODE >12:/opt/microchip/xc8/v1.45/sources/common/ftge.c
+269 text2 CODE >62:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+269 text2 CODE >67:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+27A text2 CODE >68:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+281 text2 CODE >69:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+290 text2 CODE >70:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+297 text2 CODE >71:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+29C text2 CODE >72:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2AE text2 CODE >73:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2C0 text2 CODE >74:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2C4 text2 CODE >75:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2C5 text2 CODE >77:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2C6 text2 CODE >78:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2CC text2 CODE >79:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2D2 text2 CODE >134:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2D6 text2 CODE >136:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2D8 text2 CODE >137:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2E6 text2 CODE >138:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2EE text2 CODE >139:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2F6 text2 CODE >140:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2FA text2 CODE >143:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+2FE text2 CODE >145:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+300 text2 CODE >146:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+30E text2 CODE >147:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+316 text2 CODE >148:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+31E text2 CODE >149:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+322 text2 CODE >156:/opt/microchip/xc8/v1.45/sources/common/ftmul.c
+4C5 text1 CODE >35:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4C5 text1 CODE >38:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4CB text1 CODE >41:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4CF text1 CODE >42:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4D8 text1 CODE >43:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4DC text1 CODE >41:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+4DD text1 CODE >45:/opt/microchip/xc8/v1.45/sources/common/lltoft.c
+1D maintext CODE >22:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+1D maintext CODE >24:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+23 maintext CODE >25:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+29 maintext CODE >28:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+2B maintext CODE >29:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+2D maintext CODE >33:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+2F maintext CODE >34:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+31 maintext CODE >38:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+35 maintext CODE >39:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+37 maintext CODE >40:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+3B maintext CODE >44:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+3E maintext CODE >45:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+3F maintext CODE >46:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+40 maintext CODE >47:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+41 maintext CODE >48:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+42 maintext CODE >49:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+43 maintext CODE >50:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+46 maintext CODE >51:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+47 maintext CODE >52:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+48 maintext CODE >53:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+49 maintext CODE >54:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+4A maintext CODE >58:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+52 maintext CODE >59:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+58 maintext CODE >60:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+5C maintext CODE >61:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+5E maintext CODE >62:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+62 maintext CODE >64:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+69 maintext CODE >68:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+76 maintext CODE >69:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+7A maintext CODE >72:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+7D maintext CODE >73:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+7F maintext CODE >74:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+8E maintext CODE >75:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+AB maintext CODE >76:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+E6 maintext CODE >77:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+112 maintext CODE >78:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+120 maintext CODE >80:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+128 maintext CODE >81:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+12C maintext CODE >82:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+13F maintext CODE >83:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+147 maintext CODE >87:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+14B maintext CODE >88:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+14D maintext CODE >92:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+153 maintext CODE >93:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+157 maintext CODE >94:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+16A maintext CODE >95:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+172 maintext CODE >99:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+176 maintext CODE >100:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+178 maintext CODE >104:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+179 maintext CODE >106:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+17B maintext CODE >109:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+17D maintext CODE >112:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+17F maintext CODE >115:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+181 maintext CODE >118:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+183 maintext CODE >120:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+184 maintext CODE >104:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+19A maintext CODE >122:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+1B8 maintext CODE >123:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+1DC maintext CODE >124:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+1E3 maintext CODE >128:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+203 maintext CODE >129:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+207 maintext CODE >131:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+20D maintext CODE >136:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+20F maintext CODE >140:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+233 maintext CODE >141:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+23A maintext CODE >144:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+25A maintext CODE >145:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+25E maintext CODE >148:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+264 maintext CODE >149:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+266 maintext CODE >151:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
+268 maintext CODE >65:/home/azuron/Project/I4/I4-Systeme-Embarque-TP/test_IO.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -129,50 +267,87 @@ $dist/default/production/I4-Systeme-Embarque-TP.production.obj
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hspace_0 2008 0 ABS 0 - -
-__Hspace_1 73 0 ABS 0 - -
+__Hspace_1 7A 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
+_timer_0 A32 0 CODE 0 text7 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@exp 46 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___awtoft@sign 79 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack /tmp/xcXHDJ9mw.obj
-_main DD6 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_TMR0 1 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___sp 0 0 STACK 2 stack /tmp/xcX7cizrL.obj
+_main 3A 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
 btemp 7E 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
-start 0 0 CODE 0 init /tmp/xcXHDJ9mw.obj
+start 24 0 CODE 0 init /tmp/xcX7cizrL.obj
+__size_of___ftdiv 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__size_of___ftmul 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_OPTION_REGbits 81 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@f1 3B 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@f2 38 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@f3 43 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
-intlevel1 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
-intlevel2 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
-intlevel3 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
-intlevel4 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
-intlevel5 0 0 ENTRY 0 functab /tmp/xcXHDJ9mw.obj
+___ftge@ff1 28 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftge@ff2 2B 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+intlevel0 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
+intlevel1 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
+intlevel2 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
+intlevel3 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
+intlevel4 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
+intlevel5 0 0 ENTRY 0 functab /tmp/xcX7cizrL.obj
 wtemp0 7E 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
+___ftmul@f1 28 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftmul@f2 2B 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_ADCON0 1F 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_ADCON1 9F 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_ADRESH 1E 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_ADRESL 9E 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__size_of___awtoft 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of___ftge 98A 0 CODE 0 text3 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
-start_initialization FF8 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__size_of___ftpack 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of___ftdiv 7E8 0 CODE 0 text4 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of___ftmul 678 0 CODE 0 text2 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__size_of___lltoft 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+start_initialization 2A 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
+main@tension 4C 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___awtoft 9E8 0 CODE 0 text5 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_TRISBbits 86 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of___awtoft A32 0 CODE 0 text5 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
-___int_sp 0 0 STACK 2 stack /tmp/xcXHDJ9mw.obj
+___lltoft@c 23 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftpack 7E8 0 CODE 0 text6 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftpack@arg 74 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftpack@exp 77 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___int_sp 0 0 STACK 2 stack /tmp/xcX7cizrL.obj
+__end_of___ftpack 8CC 0 CODE 0 text6 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
-__Hcinit 1000 0 CODE 0 cinit -
+__Hcinit 3A 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hstack 0 0 STACK 2 stack -
 __Hmaintext 0 0 ABS 0 maintext -
+___lltoft 98A 0 CODE 0 text1 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4010 0 CONFIG 0 config -
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit 2A 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 0 idloc -
 __Lstack 0 0 STACK 2 stack -
+__end_of___lltoft 9E8 0 CODE 0 text1 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_PORTBbits 6 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_INTCONbits B 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 0 0 CODE 0 init -
+__Hinit 24 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -180,66 +355,104 @@ __Hsfr3 0 0 ABS 0 sfr3 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 0 0 CODE 0 init -
+__Linit 24 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
+___ftge 8CC 0 CODE 0 text3 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__size_of_timer_0 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_GIE 5F 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __S0 2008 0 ABS 0 - -
-__S1 73 0 ABS 0 - -
+__S1 7A 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-main@toggleButtonRC0 24 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
-main@toggleButtonRC1 26 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
-main@selectedTemperature 2A 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+saved_w 7E 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___awtoft@c 23 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+main@toggleButtonRC0 57 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+main@toggleButtonRC1 59 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+main@selectedTemperature 5E 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
-__Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec /tmp/xcXHDJ9mw.obj
-__pmaintext DD6 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__Lintentry 8 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcX7cizrL.obj
+__size_of___ftge 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+?___awtoft 23 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv 678 0 CODE 0 text4 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftmul 4D2 0 CODE 0 text2 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__pmaintext 3A 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
+?___ftpack 74 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
-main@goUp 20 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
-stackhi 0 0 ABS 0 - /tmp/xcXHDJ9mw.obj
-stacklo 0 0 ABS 0 - /tmp/xcXHDJ9mw.obj
+main@goUp 53 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of_timer_0 A74 0 CODE 0 text7 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+stackhi 0 0 ABS 0 - /tmp/xcX7cizrL.obj
+stacklo 0 0 ABS 0 - /tmp/xcX7cizrL.obj
+?___lltoft 23 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_ADCON0bits 1F 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
+___ftmul@cntr 36 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftmul@sign 37 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__Lend_init 0 0 CODE 0 end_init -
+__Lend_init 24 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization FF8 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
-__Hintentry 0 0 CODE 0 intentry -
-main@goDown 22 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+end_of_initialization 32 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__Hintentry 24 0 CODE 0 intentry -
+main@goDown 55 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lstrings 0 0 ABS 0 strings -
-__Hreset_vec 0 0 CODE 0 reset_vec -
+?___ftdiv 38 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+?___ftmul 28 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__Hreset_vec 6 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+___lltoft@exp 27 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext1 98A 0 CODE 0 text1 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext2 4D2 0 CODE 0 text2 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext3 8CC 0 CODE 0 text3 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext4 678 0 CODE 0 text4 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext5 9E8 0 CODE 0 text5 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext6 7E8 0 CODE 0 text6 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__ptext7 A32 0 CODE 0 text7 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-main@currentTemperature 28 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+main@currentTemperature 5B 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_WRT$ON 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
+main@ValeurADC 4F 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_FOSC$HS 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
-__end_of__initialization FF8 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftmul@exp 32 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__end_of__initialization 32 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
+___ftpack@sign 78 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production/I4-Systeme-Embarque-TP.production.obj
-__Hend_init 6 0 CODE 0 end_init -
-__end_of_main FF8 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@cntr 42 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftdiv@sign 47 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__Hend_init 2A 0 CODE 0 end_init -
+__end_of_main 4D2 0 CODE 0 maintext dist/default/production/I4-Systeme-Embarque-TP.production.obj
 _PORTC 7 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 _PORTD 8 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_TRISA 85 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 _TRISC 87 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 _TRISD 88 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
+interrupt_function 8 0 CODE 0 intentry dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
-__initialization FF8 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
+_timer 60 0 BANK0 1 bssBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__pintentry 8 0 CODE 0 intentry dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__initialization 2A 0 CODE 0 cinit dist/default/production/I4-Systeme-Embarque-TP.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.production.obj
+__pbssBANK0 60 0 BANK0 1 bssBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
+___ftmul@f3_as_product 33 0 BANK0 1 cstackBANK0 dist/default/production/I4-Systeme-Embarque-TP.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -265,9 +478,8 @@ __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production/I4-Systeme-Embarque-TP.produ
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-maintext 0 6EB DD6 111 2
-cstackCOMMON 1 70 70 3 1
-cstackBANK0 1 20 20 C 1
+cstackCOMMON 1 70 70 A 1
+cstackBANK0 1 20 20 42 1
+intentry 0 4 8 536 2
 reset_vec 0 0 0 3 2
 config 0 2007 400E 1 2

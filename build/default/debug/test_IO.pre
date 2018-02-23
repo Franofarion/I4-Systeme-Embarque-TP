@@ -1386,17 +1386,23 @@ extern __bank0 __bit __timeout;
 #pragma config CPD = OFF
 #pragma config WRT = ON
 
-# 12 "test_IO.c"
+# 20 "test_IO.c"
+int timer = 0;
+
 void main(void)
 {
 int selectedTemperature = 30;
-int currentTemperature = 31;
+float currentTemperature = 31;
+
+
 int goUp = 0;
 int goDown = 0;
 
 
+
 int toggleButtonRC0 = 0;
 int toggleButtonRC1 = 0;
+
 
 
 TRISC = 0b00000011;
@@ -1405,9 +1411,41 @@ PORTC = 0b00100011;
 
 
 
+TRISBbits.TRISB4 = 0;
+OPTION_REGbits.T0CS=0;
+OPTION_REGbits.PSA=0;
+OPTION_REGbits.PS0=1 ;
+OPTION_REGbits.PS1=1 ;
+OPTION_REGbits.PS2=1 ;
+TMR0 = 0;
+INTCONbits.T0IE=1;
+INTCONbits.PEIE=0;
+INTCONbits.T0IF = 0;
+(GIE = 1);
+
+
+
+unsigned long ValeurADC = 0L;
+float tension=0.0f;
+TRISA = 0xFF;
+ADCON1 = 0b10001110;
+ADCON0 = 0b01000001;
+
+_delay((unsigned long)((100)*(4000000/4000000.0)));
 while (1)
 {
 
+if(timer > 250){
+timer = 0;
+}
+
+ADCON0bits.GO_DONE = 1;
+while(ADCON0bits.GO_DONE==1);
+ValeurADC = ADRESH <<8;
+ValeurADC += ADRESL;
+tension = (5.0f - 0.0f)*ValeurADC / 1024;
+currentTemperature = tension / 125 * 1000;
+_delay((unsigned long)((500)*(4000000/4000.0)));
 
 if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
 toggleButtonRC0 = 1;
@@ -1485,6 +1523,20 @@ PORTD = 0b11111101;
 }
 }
 
-# 117
+
+}
+}
+
+
+
+void interrupt timer_0(void)
+{
+
+if(INTCONbits.T0IF == 1)
+{
+PORTBbits.RB4 = ~PORTBbits.RB4;
+TMR0 = 0;
+INTCONbits.T0IF = 0;
+timer++;
 }
 }
