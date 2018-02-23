@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"1430 /opt/microchip/xc8/v1.45/include/pic16f877.h
+"1430 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f877.h
 [v _TRISC `Vuc ~T0 @X0 0 e@135 ]
 "1492
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
@@ -47,10 +47,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1152
 [v _ADCON0 `Vuc ~T0 @X0 0 e@31 ]
 [v F1016 `(v ~T0 @X0 1 tf1`ul ]
-"153 /opt/microchip/xc8/v1.45/include/pic.h
+"153 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h
 [v __delay `JF1016 ~T0 @X0 0 e ]
 [p i __delay ]
-"1158 /opt/microchip/xc8/v1.45/include/pic16f877.h
+"1158 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f877.h
 [s S47 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :2 `uc 1 ]
 [n S47 . ADON . GO_nDONE CHS ADCS ]
 "1165
@@ -85,7 +85,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f877.h: 50: extern volatile unsigned char INDF @ 0x000;
-"52 /opt/microchip/xc8/v1.45/include/pic16f877.h
+"52 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f877.h
 [; ;pic16f877.h: 52: asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
 [; ;pic16f877.h: 57: extern volatile unsigned char TMR0 @ 0x001;
@@ -1166,155 +1166,155 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;test_IO.c: 69: timer = 0;
 "69
 [e = _timer -> 0 `i ]
+[; ;test_IO.c: 70: ADCON0bits.GO_DONE = 1;
 "70
-}
-[e :U 94 ]
-[; ;test_IO.c: 70: }
-[; ;test_IO.c: 72: ADCON0bits.GO_DONE = 1;
-"72
 [e = . . _ADCON0bits 3 1 -> -> 1 `i `uc ]
-[; ;test_IO.c: 73: while(ADCON0bits.GO_DONE==1);
-"73
+[; ;test_IO.c: 71: while(ADCON0bits.GO_DONE==1);
+"71
 [e $U 95  ]
 [e :U 96 ]
 [e :U 95 ]
 [e $ == -> . . _ADCON0bits 3 1 `i -> 1 `i 96  ]
 [e :U 97 ]
-[; ;test_IO.c: 74: ValeurADC = ADRESH <<8;
-"74
+[; ;test_IO.c: 72: ValeurADC = ADRESH <<8;
+"72
 [e = _ValeurADC -> -> << -> _ADRESH `i -> 8 `i `l `ul ]
-[; ;test_IO.c: 75: ValeurADC += ADRESL;
-"75
+[; ;test_IO.c: 73: ValeurADC += ADRESL;
+"73
 [e =+ _ValeurADC -> _ADRESL `ul ]
-[; ;test_IO.c: 76: tension = (5.0f - 0.0f)*ValeurADC / 1024;
-"76
+[; ;test_IO.c: 74: tension = (5.0f - 0.0f)*ValeurADC / 1024;
+"74
 [e = _tension / * - -> .5.0 `f -> .0.0 `f -> _ValeurADC `f -> -> 1024 `i `f ]
-[; ;test_IO.c: 77: currentTemperature = tension / 125 * 1000;
-"77
+[; ;test_IO.c: 75: currentTemperature = tension / 125 * 1000;
+"75
 [e = _currentTemperature * / _tension -> -> 125 `i `f -> -> 1000 `i `f ]
-[; ;test_IO.c: 78: _delay((unsigned long)((500)*(4000000/4000.0)));
-"78
+[; ;test_IO.c: 76: _delay((unsigned long)((500)*(4000000/4000.0)));
+"76
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;test_IO.c: 80: if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
-"80
-[e $ ! && == & -> _PORTC `i -> 1 `i -> 1 `i == _toggleButtonRC0 -> 0 `i 98  ]
+"77
+}
+[e :U 94 ]
+[; ;test_IO.c: 77: }
+[; ;test_IO.c: 79: if((PORTC & 0b00000001) == 0b00000000 && toggleButtonRC0 == 0){
+"79
+[e $ ! && == & -> _PORTC `i -> 1 `i -> 0 `i == _toggleButtonRC0 -> 0 `i 98  ]
 {
-[; ;test_IO.c: 81: toggleButtonRC0 = 1;
-"81
+[; ;test_IO.c: 80: toggleButtonRC0 = 1;
+"80
 [e = _toggleButtonRC0 -> 1 `i ]
-[; ;test_IO.c: 82: if(selectedTemperature - 4 >= 22){
-"82
+[; ;test_IO.c: 81: if(selectedTemperature - 4 >= 22){
+"81
 [e $ ! >= - _selectedTemperature -> 4 `i -> 22 `i 99  ]
 {
-[; ;test_IO.c: 83: selectedTemperature -= 4;
-"83
+[; ;test_IO.c: 82: selectedTemperature -= 4;
+"82
 [e =- _selectedTemperature -> 4 `i ]
-"84
+"83
 }
 [e :U 99 ]
-"85
+"84
 }
 [e :U 98 ]
+[; ;test_IO.c: 83: }
 [; ;test_IO.c: 84: }
-[; ;test_IO.c: 85: }
-[; ;test_IO.c: 87: if((PORTC & 0b00000001) == 0b0000000){
-"87
-[e $ ! == & -> _PORTC `i -> 1 `i -> 0 `i 100  ]
+[; ;test_IO.c: 86: if((PORTC & 0b00000001) == 0b0000001){
+"86
+[e $ ! == & -> _PORTC `i -> 1 `i -> 1 `i 100  ]
 {
-[; ;test_IO.c: 88: toggleButtonRC0 = 0;
-"88
+[; ;test_IO.c: 87: toggleButtonRC0 = 0;
+"87
 [e = _toggleButtonRC0 -> 0 `i ]
-"89
+"88
 }
 [e :U 100 ]
-[; ;test_IO.c: 89: }
-[; ;test_IO.c: 92: if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
-"92
-[e $ ! && == & -> _PORTC `i -> 2 `i -> 2 `i == _toggleButtonRC1 -> 0 `i 101  ]
+[; ;test_IO.c: 88: }
+[; ;test_IO.c: 91: if((PORTC & 0b00000010) == 0b00000000 && toggleButtonRC1 == 0){
+"91
+[e $ ! && == & -> _PORTC `i -> 2 `i -> 0 `i == _toggleButtonRC1 -> 0 `i 101  ]
 {
-[; ;test_IO.c: 93: toggleButtonRC1 = 1;
-"93
+[; ;test_IO.c: 92: toggleButtonRC1 = 1;
+"92
 [e = _toggleButtonRC1 -> 1 `i ]
-[; ;test_IO.c: 94: if(selectedTemperature + 4 <= 38){
-"94
+[; ;test_IO.c: 93: if(selectedTemperature + 4 <= 38){
+"93
 [e $ ! <= + _selectedTemperature -> 4 `i -> 38 `i 102  ]
 {
-[; ;test_IO.c: 95: selectedTemperature += 4;
-"95
+[; ;test_IO.c: 94: selectedTemperature += 4;
+"94
 [e =+ _selectedTemperature -> 4 `i ]
-"96
+"95
 }
 [e :U 102 ]
-"97
+"96
 }
 [e :U 101 ]
+[; ;test_IO.c: 95: }
 [; ;test_IO.c: 96: }
-[; ;test_IO.c: 97: }
-[; ;test_IO.c: 99: if((PORTC & 0b00000010) == 0b00000000){
-"99
-[e $ ! == & -> _PORTC `i -> 2 `i -> 0 `i 103  ]
+[; ;test_IO.c: 98: if((PORTC & 0b00000010) == 0b00000010){
+"98
+[e $ ! == & -> _PORTC `i -> 2 `i -> 2 `i 103  ]
 {
-[; ;test_IO.c: 100: toggleButtonRC1 = 0;
-"100
+[; ;test_IO.c: 99: toggleButtonRC1 = 0;
+"99
 [e = _toggleButtonRC1 -> 0 `i ]
-"101
+"100
 }
 [e :U 103 ]
-[; ;test_IO.c: 101: }
-[; ;test_IO.c: 104: switch(selectedTemperature){
-"104
+[; ;test_IO.c: 100: }
+[; ;test_IO.c: 103: switch(selectedTemperature){
+"103
 [e $U 105  ]
 {
-[; ;test_IO.c: 105: case 22:
-"105
-[e :U 106 ]
-[; ;test_IO.c: 106: PORTC = 0b00001011;
-"106
-[e = _PORTC -> -> 11 `i `uc ]
-[; ;test_IO.c: 107: break;
-"107
-[e $U 104  ]
-[; ;test_IO.c: 108: case 26:
-"108
-[e :U 107 ]
-[; ;test_IO.c: 109: PORTC = 0b00010011;
-"109
-[e = _PORTC -> -> 19 `i `uc ]
-[; ;test_IO.c: 110: break;
-"110
-[e $U 104  ]
-[; ;test_IO.c: 111: case 30:
-"111
-[e :U 108 ]
-[; ;test_IO.c: 112: PORTC = 0b00100011;
-"112
-[e = _PORTC -> -> 35 `i `uc ]
-[; ;test_IO.c: 113: break;
-"113
-[e $U 104  ]
-[; ;test_IO.c: 114: case 34:
-"114
-[e :U 109 ]
-[; ;test_IO.c: 115: PORTC = 0b01000011;
-"115
-[e = _PORTC -> -> 67 `i `uc ]
-[; ;test_IO.c: 116: break;
-"116
-[e $U 104  ]
-[; ;test_IO.c: 117: case 38:
-"117
-[e :U 110 ]
-[; ;test_IO.c: 118: PORTC = 0b10000011;
-"118
-[e = _PORTC -> -> 131 `i `uc ]
-[; ;test_IO.c: 119: break;
-"119
-[e $U 104  ]
-"120
-}
-[; ;test_IO.c: 120: }
-[e $U 104  ]
+[; ;test_IO.c: 104: case 22:
 "104
+[e :U 106 ]
+[; ;test_IO.c: 105: PORTC = 0b00001011;
+"105
+[e = _PORTC -> -> 11 `i `uc ]
+[; ;test_IO.c: 106: break;
+"106
+[e $U 104  ]
+[; ;test_IO.c: 107: case 26:
+"107
+[e :U 107 ]
+[; ;test_IO.c: 108: PORTC = 0b00010011;
+"108
+[e = _PORTC -> -> 19 `i `uc ]
+[; ;test_IO.c: 109: break;
+"109
+[e $U 104  ]
+[; ;test_IO.c: 110: case 30:
+"110
+[e :U 108 ]
+[; ;test_IO.c: 111: PORTC = 0b00100011;
+"111
+[e = _PORTC -> -> 35 `i `uc ]
+[; ;test_IO.c: 112: break;
+"112
+[e $U 104  ]
+[; ;test_IO.c: 113: case 34:
+"113
+[e :U 109 ]
+[; ;test_IO.c: 114: PORTC = 0b01000011;
+"114
+[e = _PORTC -> -> 67 `i `uc ]
+[; ;test_IO.c: 115: break;
+"115
+[e $U 104  ]
+[; ;test_IO.c: 116: case 38:
+"116
+[e :U 110 ]
+[; ;test_IO.c: 117: PORTC = 0b10000011;
+"117
+[e = _PORTC -> -> 131 `i `uc ]
+[; ;test_IO.c: 118: break;
+"118
+[e $U 104  ]
+"119
+}
+[; ;test_IO.c: 119: }
+[e $U 104  ]
+"103
 [e :U 105 ]
 [e [\ _selectedTemperature , $ -> 22 `i 106
  , $ -> 26 `i 107
@@ -1322,168 +1322,168 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 34 `i 109
  , $ -> 38 `i 110
  104 ]
-"120
+"119
 [e :U 104 ]
-[; ;test_IO.c: 122: if(currentTemperature <= selectedTemperature){
-"122
+[; ;test_IO.c: 121: if(currentTemperature <= selectedTemperature){
+"121
 [e $ ! <= _currentTemperature -> _selectedTemperature `f 111  ]
 {
-[; ;test_IO.c: 123: if(currentTemperature <= selectedTemperature - 1){
-"123
+[; ;test_IO.c: 122: if(currentTemperature <= selectedTemperature - 1){
+"122
 [e $ ! <= _currentTemperature -> - _selectedTemperature -> 1 `i `f 112  ]
 {
-[; ;test_IO.c: 124: goUp = 1;
-"124
+[; ;test_IO.c: 123: goUp = 1;
+"123
 [e = _goUp -> 1 `i ]
-[; ;test_IO.c: 126: PORTD = 0b11111110;
-"126
+[; ;test_IO.c: 125: PORTD = 0b11111110;
+"125
 [e = _PORTD -> -> 254 `i `uc ]
-"127
+"126
 }
-[; ;test_IO.c: 127: }else{
+[; ;test_IO.c: 126: }else{
 [e $U 113  ]
 [e :U 112 ]
 {
-[; ;test_IO.c: 128: if(currentTemperature >= selectedTemperature){
-"128
+[; ;test_IO.c: 127: if(currentTemperature >= selectedTemperature){
+"127
 [e $ ! >= _currentTemperature -> _selectedTemperature `f 114  ]
 {
-[; ;test_IO.c: 129: goUp = 0;
-"129
+[; ;test_IO.c: 128: goUp = 0;
+"128
 [e = _goUp -> 0 `i ]
-"130
+"129
 }
 [e :U 114 ]
-[; ;test_IO.c: 130: }
-[; ;test_IO.c: 131: if(!goUp){
-"131
+[; ;test_IO.c: 129: }
+[; ;test_IO.c: 130: if(!goUp){
+"130
 [e $ ! ! != _goUp -> 0 `i 115  ]
 {
-[; ;test_IO.c: 133: PORTD = 0b11111100;
-"133
+[; ;test_IO.c: 132: PORTD = 0b11111100;
+"132
 [e = _PORTD -> -> 252 `i `uc ]
-"134
+"133
 }
-[; ;test_IO.c: 134: }else{
+[; ;test_IO.c: 133: }else{
 [e $U 116  ]
 [e :U 115 ]
 {
-[; ;test_IO.c: 136: PORTD = 0b11111110;
-"136
+[; ;test_IO.c: 135: PORTD = 0b11111110;
+"135
 [e = _PORTD -> -> 254 `i `uc ]
-"137
+"136
 }
 [e :U 116 ]
-"138
+"137
 }
 [e :U 113 ]
-"139
+"138
 }
+[; ;test_IO.c: 136: }
 [; ;test_IO.c: 137: }
-[; ;test_IO.c: 138: }
-[; ;test_IO.c: 139: }else{
+[; ;test_IO.c: 138: }else{
 [e $U 117  ]
 [e :U 111 ]
 {
-[; ;test_IO.c: 140: if(currentTemperature >= selectedTemperature + 1){
-"140
+[; ;test_IO.c: 139: if(currentTemperature >= selectedTemperature + 1){
+"139
 [e $ ! >= _currentTemperature -> + _selectedTemperature -> 1 `i `f 118  ]
 {
-[; ;test_IO.c: 141: goDown = 1;
-"141
+[; ;test_IO.c: 140: goDown = 1;
+"140
 [e = _goDown -> 1 `i ]
-[; ;test_IO.c: 142: PORTD = 0b11111101;
-"142
+[; ;test_IO.c: 141: PORTD = 0b11111101;
+"141
 [e = _PORTD -> -> 253 `i `uc ]
-"143
+"142
 }
-[; ;test_IO.c: 143: }else{
+[; ;test_IO.c: 142: }else{
 [e $U 119  ]
 [e :U 118 ]
 {
-[; ;test_IO.c: 144: if(currentTemperature >= selectedTemperature){
-"144
+[; ;test_IO.c: 143: if(currentTemperature >= selectedTemperature){
+"143
 [e $ ! >= _currentTemperature -> _selectedTemperature `f 120  ]
 {
-[; ;test_IO.c: 145: goDown = 0;
-"145
+[; ;test_IO.c: 144: goDown = 0;
+"144
 [e = _goDown -> 0 `i ]
-"146
+"145
 }
 [e :U 120 ]
-[; ;test_IO.c: 146: }
-[; ;test_IO.c: 148: if(!goDown){
-"148
+[; ;test_IO.c: 145: }
+[; ;test_IO.c: 147: if(!goDown){
+"147
 [e $ ! ! != _goDown -> 0 `i 121  ]
 {
-[; ;test_IO.c: 149: PORTD = 0b11111100;
-"149
+[; ;test_IO.c: 148: PORTD = 0b11111100;
+"148
 [e = _PORTD -> -> 252 `i `uc ]
-"150
+"149
 }
-[; ;test_IO.c: 150: }else{
+[; ;test_IO.c: 149: }else{
 [e $U 122  ]
 [e :U 121 ]
 {
-[; ;test_IO.c: 151: PORTD = 0b11111101;
-"151
+[; ;test_IO.c: 150: PORTD = 0b11111101;
+"150
 [e = _PORTD -> -> 253 `i `uc ]
-"152
+"151
 }
 [e :U 122 ]
-"153
+"152
 }
 [e :U 119 ]
-"154
+"153
 }
 [e :U 117 ]
-"157
+"156
 }
 [e :U 91 ]
 "65
 [e $U 92  ]
 [e :U 93 ]
+[; ;test_IO.c: 151: }
 [; ;test_IO.c: 152: }
 [; ;test_IO.c: 153: }
-[; ;test_IO.c: 154: }
+[; ;test_IO.c: 156: }
 [; ;test_IO.c: 157: }
-[; ;test_IO.c: 158: }
-"158
+"157
 [e :UE 90 ]
 }
 [v $root$_timer_0 `(v ~T0 @X0 0 e ]
 [v F1038 `(v ~T0 @X0 1 tf ]
-"162
+"161
 [v _timer_0 `IF1038 ~T0 @X0 1 e ]
-"163
+"162
 {
-[; ;test_IO.c: 162: void interrupt timer_0(void)
-[; ;test_IO.c: 163: {
+[; ;test_IO.c: 161: void interrupt timer_0(void)
+[; ;test_IO.c: 162: {
 [e :U _timer_0 ]
 [f ]
-[; ;test_IO.c: 165: if(INTCONbits.T0IF == 1)
-"165
+[; ;test_IO.c: 164: if(INTCONbits.T0IF == 1)
+"164
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 124  ]
-[; ;test_IO.c: 166: {
-"166
+[; ;test_IO.c: 165: {
+"165
 {
-[; ;test_IO.c: 167: PORTBbits.RB4 = ~PORTBbits.RB4;
-"167
+[; ;test_IO.c: 166: PORTBbits.RB4 = ~PORTBbits.RB4;
+"166
 [e = . . _PORTBbits 0 4 -> ~ -> . . _PORTBbits 0 4 `i `uc ]
-[; ;test_IO.c: 168: TMR0 = 0;
-"168
+[; ;test_IO.c: 167: TMR0 = 0;
+"167
 [e = _TMR0 -> -> 0 `i `uc ]
-[; ;test_IO.c: 169: INTCONbits.T0IF = 0;
-"169
+[; ;test_IO.c: 168: INTCONbits.T0IF = 0;
+"168
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;test_IO.c: 170: timer++;
-"170
+[; ;test_IO.c: 169: timer++;
+"169
 [e ++ _timer -> 1 `i ]
-"171
+"170
 }
 [e :U 124 ]
+[; ;test_IO.c: 170: }
 [; ;test_IO.c: 171: }
-[; ;test_IO.c: 172: }
-"172
+"171
 [e :UE 123 ]
 }

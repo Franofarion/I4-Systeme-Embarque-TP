@@ -64,7 +64,7 @@ void main(void)
     __delay_us(100);
     while (1)
     {
-       
+       //On a trouvé 250 comme valeur qui se rapprochait le plus de 5 secondes, malgrès des calculs nous indiquant 83. 83 itérations ne donnait que 2secondes de timeout
         if(timer > 250){
             timer = 0;
             ADCON0bits.GO_DONE = 1;
@@ -76,30 +76,34 @@ void main(void)
             __delay_ms(500);
         }
         
-        if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){//temp - est appuyé
+        
+        //Gestion des boutons + / - de la température
+        //Grace a 2 variables TogggleButtonRCX on attend que le bouton soit relaché pour le repdrendre en compte une nouvelle fois
+        if((PORTC & 0b00000001) == 0b00000000 && toggleButtonRC0 == 0){//temp - est appuyé 
             toggleButtonRC0 = 1;
-            if(selectedTemperature - 4 >= 22){
+            if(selectedTemperature - 4 >= 22){//On tronque la température
                 selectedTemperature -= 4;
             }
         }
         
-        if((PORTC & 0b00000001) == 0b0000000){
+        //quand on lache le bouton RC0 on pourra réappuyé dessus
+        if((PORTC & 0b00000001) == 0b0000001){
             toggleButtonRC0 = 0;
         }
         
         
-        if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){//temp +  est appuyé
+        if((PORTC & 0b00000010) == 0b00000000 && toggleButtonRC1 == 0){//temp +  est appuyé
             toggleButtonRC1 = 1;
             if(selectedTemperature + 4 <= 38){
                 selectedTemperature += 4;
             }
         }
         
-        if((PORTC & 0b00000010) == 0b00000000){
+        if((PORTC & 0b00000010) == 0b00000010){
             toggleButtonRC1 = 0;   
         }
         
-        
+        //Affichage de la température actuelle
         switch(selectedTemperature){
             case 22:
                 PORTC = 0b00001011;
@@ -118,27 +122,28 @@ void main(void)
                 break;
         }
         
+        
+        //Code permettant la gestion de la ventilation et du chauffage.
         if(currentTemperature <= selectedTemperature){
-            if(currentTemperature <= selectedTemperature - 1){
-                goUp = 1;
+            goDown = 0;
+            if(currentTemperature <= selectedTemperature - 1){//Si la température est en dessous de la température souhaité - 1 : On doit utilie le chauffage juqu'à atteindre la température soouhaité
+                goUp = 1;//On enregistre qu'on monte jusqu'à la température souhaité
                 //allume
                 PORTD = 0b11111110;
             }else{
-                if(currentTemperature >= selectedTemperature){
-                    goUp = 0;
-                } 
-                if(!goUp){
+                if(!goUp){//Si on est toujours au dessus de la température souhaité - 1 mais qu'on a déjà atteint la température souhaité: on doit redescendre jusqu'à température souhaité -1.
                     //eteins
                     PORTD = 0b11111100;
                 }else{
                     //allume
-                    PORTD = 0b11111110;
+                    PORTD = 0b11111110;//Si on était en dessous de Température souhaité -1 et qu'on doit monté jusqu'à atteindre la température souhaité
                 }
             }
-        }else{
-        if(currentTemperature >= selectedTemperature + 1){
-            goDown = 1;
-            PORTD = 0b11111101;
+        }else{//Même chose mais inversé.
+            goUp = 0;
+            if(currentTemperature >= selectedTemperature + 1){
+                goDown = 1;
+                PORTD = 0b11111101;
             }else{
                 if(currentTemperature >= selectedTemperature){
                     goDown = 0;
@@ -150,7 +155,7 @@ void main(void)
                     PORTD = 0b11111101;
                 }
             }   
-        }
+            }
         
        
      }             

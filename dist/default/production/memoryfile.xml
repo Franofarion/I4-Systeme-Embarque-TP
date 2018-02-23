@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production/I4-Systeme-Embarque-TP.production.hex">
+  <executable name="dist/default/production\SysEmbarque.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>1334</used>
-      <free>6858</free>
+      <used>1332</used>
+      <free>6860</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

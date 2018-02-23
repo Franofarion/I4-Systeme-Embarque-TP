@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=I4-Systeme-Embarque-TP
+PROJECTNAME=SysEmbarque
 
 # Active Configuration
 DEFAULTCONF=default

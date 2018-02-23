@@ -1,17 +1,17 @@
 
 # 1 "test_IO.c"
 
-# 26 "/opt/microchip/xc8/v1.45/include/htc.h"
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "/opt/microchip/xc8/v1.45/include/xc8debug.h"
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 50 "/opt/microchip/xc8/v1.45/include/pic16f877.h"
+# 50 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f877.h"
 extern volatile unsigned char INDF @ 0x000;
 
 asm("INDF equ 00h");
@@ -1350,21 +1350,21 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
 
-# 28 "/opt/microchip/xc8/v1.45/include/pic.h"
+# 28 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h"
 #pragma intrinsic(__nop)
 extern void __nop(void);
 
 # 78
 extern unsigned int flash_read(unsigned short addr);
 
-# 114 "/opt/microchip/xc8/v1.45/include/eeprom_routines.h"
+# 114 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\eeprom_routines.h"
 extern void eeprom_write(unsigned char addr, unsigned char value);
 extern unsigned char eeprom_read(unsigned char addr);
 extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
 extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 
 
-# 152 "/opt/microchip/xc8/v1.45/include/pic.h"
+# 152 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h"
 #pragma intrinsic(_delay)
 extern __nonreentrant void _delay(unsigned long);
 #pragma intrinsic(_delaywdt)
@@ -1437,8 +1437,6 @@ while (1)
 
 if(timer > 250){
 timer = 0;
-}
-
 ADCON0bits.GO_DONE = 1;
 while(ADCON0bits.GO_DONE==1);
 ValeurADC = ADRESH <<8;
@@ -1446,27 +1444,28 @@ ValeurADC += ADRESL;
 tension = (5.0f - 0.0f)*ValeurADC / 1024;
 currentTemperature = tension / 125 * 1000;
 _delay((unsigned long)((500)*(4000000/4000.0)));
+}
 
-if((PORTC & 0b00000001) == 0b00000001 && toggleButtonRC0 == 0){
+if((PORTC & 0b00000001) == 0b00000000 && toggleButtonRC0 == 0){
 toggleButtonRC0 = 1;
 if(selectedTemperature - 4 >= 22){
 selectedTemperature -= 4;
 }
 }
 
-if((PORTC & 0b00000001) == 0b0000000){
+if((PORTC & 0b00000001) == 0b0000001){
 toggleButtonRC0 = 0;
 }
 
 
-if((PORTC & 0b00000010) == 0b00000010 && toggleButtonRC1 == 0){
+if((PORTC & 0b00000010) == 0b00000000 && toggleButtonRC1 == 0){
 toggleButtonRC1 = 1;
 if(selectedTemperature + 4 <= 38){
 selectedTemperature += 4;
 }
 }
 
-if((PORTC & 0b00000010) == 0b00000000){
+if((PORTC & 0b00000010) == 0b00000010){
 toggleButtonRC1 = 0;
 }
 
